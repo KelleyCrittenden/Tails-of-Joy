@@ -31,7 +31,7 @@ CREATE TABLE [UserProfile] (
   [Email] nvarchar(555) NOT NULL,
   [Bio] text NOT NULL,
   [ImageLocation] nvarchar(255),
-  [UserTypeId] integer NOT NULL,
+  [UserTypeId] integer NOT NULL DEFAULT 0,
 
   CONSTRAINT [FK_User_UserType] FOREIGN KEY ([UserTypeId]) REFERENCES [UserType] ([Id]),
   CONSTRAINT UQ_FirebaseUserId UNIQUE(FirebaseUserId)
@@ -39,17 +39,17 @@ CREATE TABLE [UserProfile] (
 
 CREATE TABLE [Animal] (
   [Id] integer PRIMARY KEY IDENTITY,
+  [IsAdoptable] integer NOT NULL DEFAULT 0,
   [Name] nvarchar(20) NOT NULL,
   [Breed] nvarchar(50) NOT NULL,
   [Gender] nvarchar(20) NOT NULL,
   [Age] nvarchar(20) NOT NULL,
-  [ImageLocation] nvarchar(255) NOT NULL,
   [Size] nvarchar(20) NOT NULL,
   [ChildFriendly] integer NOT NULL DEFAULT 0,
   [SmallAnimalFriendly] integer NOT NULL DEFAULT 0,
   [Title] nvarchar(150) NOT NULL,
-  [Description] text NOT NULL,
-  [IsAdoptable] integer NOT NULL DEFAULT 0,
+  [Content] text NOT NULL,
+  [ImageLocation] nvarchar(255) NOT NULL,
 )
 
 CREATE TABLE [Adoption] (

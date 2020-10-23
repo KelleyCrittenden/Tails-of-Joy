@@ -10,7 +10,7 @@ namespace Tails_Of_Joy.Models
         public int Id { get; set; }
         public int AnimalId { get; set; } 
         public int UserProfileId { get; set; }
-        public bool IsApproved { get; set; }
+        public int IsApproved { get; set; }
         public Animal Animal { get; set; }
         public UserProfile UserProfile { get; set; }
     }
