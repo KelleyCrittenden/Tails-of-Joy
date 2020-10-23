@@ -14,9 +14,9 @@ namespace Tails_Of_Joy.Models
         public string Age { get; set; }
         public string ImageLocation { get; set; }
         public string Size { get; set; }
-        public bool IsAdoptable { get; set; }
-        public bool ChildFriendly { get; set; }
-        public bool SmallAnimalFriendly { get; set; }
+        public int IsAdoptable { get; set; }
+        public int ChildFriendly { get; set; }
+        public int SmallAnimalFriendly { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
     }
