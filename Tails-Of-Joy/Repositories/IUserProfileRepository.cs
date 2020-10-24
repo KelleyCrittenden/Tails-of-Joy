@@ -4,8 +4,10 @@ using Tails_Of_Joy.Models;
 namespace Tails_Of_Joy.Repositories
 {
     public interface IUserProfileRepository
-        {
-            void Add(UserProfile userProfile);
-            UserProfile GetByFirebaseUserId(string firebaseUserId);
-        }
+    {
+        void Add(UserProfile userProfile);
+        List<UserProfile> GetAllUserProfiles();
+        UserProfile GetByFirebaseUserId(string firebaseUserId);
+        UserProfile GetUserProfileById(int id);
+    }
 }

@@ -5,7 +5,7 @@ using Tails_Of_Joy.Utils;
 
 namespace Tails_Of_Joy.Repositories
 {
-    public class UserProfileRepository : BaseRepository
+    public class UserProfileRepository : BaseRepository, IUserProfileRepository
     {
         public UserProfileRepository(IConfiguration configuration) : base(configuration) { }
 
@@ -17,7 +17,7 @@ namespace Tails_Of_Joy.Repositories
                 using (var cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-                        SELECT up.Id, Up.FirebaseUserId, up.Username, up.FirstName, up.LastName, up.Email, up.Bio, up.ImageLocation, up.UserTypeId,
+                        SELECT up.Id, up.FirebaseUserId, up.Username, up.FirstName, up.LastName, up.Email, up.Bio, up.ImageLocation, up.UserTypeId,
                                ut.Name AS UserTypeName
                           FROM UserProfile up
                                LEFT JOIN UserType ut on up.UserTypeId = ut.Id
@@ -81,5 +81,106 @@ namespace Tails_Of_Joy.Repositories
                 }
             }
         }
+
+        public UserProfile GetUserProfileById(int id)
+        {
+            using (var conn = Connection)
+            {
+                conn.Open();
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"
+                        SELECT up.Id, up.FirebaseUserId, up.Username, up.FirstName, up.LastName, up.Email, up.Bio, up.ImageLocation, up.UserTypeId,
+                               ut.Name AS UserTypeName
+                         FROM UserProfile u
+                              LEFT JOIN UserType ut ON u.UserTypeId = ut.id
+                        WHERE u.id = @id
+                        
+                       ";
+
+                    cmd.Parameters.AddWithValue("@id", id);
+                    UserProfile userProfile = new UserProfile();
+                    var reader = cmd.ExecuteReader();
+
+                    if (reader.Read())
+                    {
+                        userProfile = new UserProfile()
+                        {
+                            Id = DbUtils.GetInt(reader, "Id"),
+                            FirebaseUserId = DbUtils.GetString(reader, "FirebaseUserId"),
+                            Username = DbUtils.GetString(reader, "Username"),
+                            FirstName = DbUtils.GetString(reader, "FirstName"),
+                            LastName = DbUtils.GetString(reader, "LastName"),
+                            Email = DbUtils.GetString(reader, "Email"),
+                            Bio = DbUtils.GetString(reader, "Bio"),
+                            ImageLocation = DbUtils.GetString(reader, "ImageLocation"),
+                            UserTypeId = reader.GetInt32(reader.GetOrdinal("UserTypeId")),
+                            UserType = new UserType()
+                            {
+                                Id = reader.GetInt32(reader.GetOrdinal("UserTypeId")),
+                                Name = reader.GetString(reader.GetOrdinal("UserTypeName"))
+                            },
+
+                        };
+                    }
+
+                    reader.Close();
+
+                    return userProfile;
+                }
+            }
+        }
+
+        public List<UserProfile> GetAllUserProfiles()
+        {
+            using (var conn = Connection)
+            {
+                conn.Open();
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"
+                        SELECT up.Id, up.FirebaseUserId, up.Username, up.FirstName, up.LastName, up.Email, up.Bio, up.ImageLocation, up.UserTypeId,
+                               ut.Name AS UserTypeName
+                        FROM UserProfile u
+                        LEFT JOIN UserType ut ON u.UserTypeId = ut.id
+                        ORDER BY u.DisplayName;
+                      
+                       ";
+
+
+                    List<UserProfile> userProfiles = new List<UserProfile>();
+                    var reader = cmd.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        userProfiles.Add(new UserProfile()
+                        {
+                            Id = DbUtils.GetInt(reader, "Id"),
+                            FirebaseUserId = DbUtils.GetString(reader, "FirebaseUserId"),
+                            Username = DbUtils.GetString(reader, "Username"),
+                            FirstName = DbUtils.GetString(reader, "FirstName"),
+                            LastName = DbUtils.GetString(reader, "LastName"),
+                            Email = DbUtils.GetString(reader, "Email"),
+                            Bio = DbUtils.GetString(reader, "Bio"),
+                            ImageLocation = DbUtils.GetString(reader, "ImageLocation"),
+                            UserTypeId = reader.GetInt32(reader.GetOrdinal("UserTypeId")),
+                            UserType = new UserType()
+                            {
+                                Id = reader.GetInt32(reader.GetOrdinal("UserTypeId")),
+                                Name = reader.GetString(reader.GetOrdinal("UserTypeName"))
+                            },
+
+                        });
+                    }
+
+                    reader.Close();
+
+                    return userProfiles;
+                }
+            }
+        }
+
+
+
     }
 }

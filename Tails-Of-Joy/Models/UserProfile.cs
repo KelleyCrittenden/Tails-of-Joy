@@ -19,6 +19,5 @@ namespace Tails_Of_Joy.Models
         public string ImageLocation { get; set; }
         public int UserTypeId { get; set; }
         public UserType UserType { get; set; }
-
     }
 }
