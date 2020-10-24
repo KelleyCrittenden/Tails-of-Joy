@@ -12,7 +12,6 @@ namespace Tails_Of_Joy.Controllers
     {
         private readonly ICommentRepository _commentRepository;
         private readonly IUserProfileRepository _userProfileRepository;
-
         public CommentController(ICommentRepository commentRepository, IUserProfileRepository userProfileRepository)
         {
             _commentRepository = commentRepository;
