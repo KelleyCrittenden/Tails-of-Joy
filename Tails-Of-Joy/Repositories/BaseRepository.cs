@@ -1,4 +1,6 @@
-﻿using Microsoft.Data.SqlClient;
+﻿// Connection from the C# to the SQL Server Database(Tunnel)
+
+using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
 
 namespace Tails_Of_Joy.Repositories

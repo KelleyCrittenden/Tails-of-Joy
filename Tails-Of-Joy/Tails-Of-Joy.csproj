@@ -13,7 +13,6 @@
   <ItemGroup>
     <Folder Include="Client\" />
     <Folder Include="NewFolder\" />
-    <Folder Include="Repositories\" />
   </ItemGroup>
 
 

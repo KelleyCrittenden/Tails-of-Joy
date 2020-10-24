@@ -12,6 +12,7 @@ export function UserProfileProvider(props) {
     const [isLoggedIn, setIsLoggedIn] = useState(userProfile != null);
 
     const [isFirebaseReady, setIsFirebaseReady] = useState(false);
+
     useEffect(() => {
         firebase.auth().onAuthStateChanged((u) => {
             setIsFirebaseReady(true);
