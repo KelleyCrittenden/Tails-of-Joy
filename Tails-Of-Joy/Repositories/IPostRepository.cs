@@ -7,6 +7,7 @@ namespace Tails_Of_Joy.Repositories
     {
         void Add(Post post);
         void DeletePost(int id);
+        List<Post> GetAllPosts();
         List<Post> GetAllPostsByUserId(int userProfileId);
         Post GetPostById(int id);
         Post GetUserPostById(int id, int userProfileId);

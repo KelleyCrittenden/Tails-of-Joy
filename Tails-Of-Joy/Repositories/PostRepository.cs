@@ -13,7 +13,7 @@ using Tails_Of_Joy.Utils;
 
 namespace Tails_Of_Joy.Repositories
 {
-    public class PostRepository : BaseRepository, IPostRepository, IPostRepository
+    public class PostRepository : BaseRepository, IPostRepository
     {
         public PostRepository(IConfiguration config) : base(config) { }
 
@@ -40,7 +40,8 @@ namespace Tails_Of_Joy.Repositories
                               ut.[Name] AS UserTypeName
                          FROM Post p
                               LEFT JOIN UserProfile u ON p.UserProfileId = u.id
-                              LEFT JOIN UserType ut ON u.UserTypeId = ut.id;
+                              LEFT JOIN UserType ut ON u.UserTypeId = ut.id";
+
                     var reader = cmd.ExecuteReader();
 
                     var posts = new List<Post>();
