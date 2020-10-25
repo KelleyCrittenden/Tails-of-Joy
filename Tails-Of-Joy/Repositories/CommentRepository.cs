@@ -127,9 +127,9 @@ namespace Tails_Of_Joy.Repositories
                 using (var cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-                      SELECT c.Id, c.PostId, c.UserProfileId, c.Content, c.CreateDateTime
-                        FROM Comment c
-                        WHERE c.Id = @id 
+                      SELECT Id, PostId, UserProfileId, Content, CreateDateTime
+                        FROM Comment
+                        WHERE Id = @id 
                        ";
 
                     cmd.Parameters.AddWithValue("@id", id);

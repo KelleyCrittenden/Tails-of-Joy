@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Tails_Of_Joy.Models;
 using Tails_Of_Joy.Repositories;
 
 namespace Tails_Of_Joy.Controllers
 {
+    //[Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class AnimalController : ControllerBase
@@ -22,7 +19,7 @@ namespace Tails_Of_Joy.Controllers
         //Displaying All the Available Animals
         // GET: api/<AnimalController>
         [HttpGet]
-        public IActionResult Get()
+        public IActionResult GetAllAvailableAnimals()
         {
             return Ok(_animalRepository.GetAllAvailableAnimals());
         }
@@ -30,7 +27,7 @@ namespace Tails_Of_Joy.Controllers
 
         //Displaying All the Adopted Animals
         // GET: api/<AnimalController>
-        [HttpGet]
+        [HttpGet("adopted")]
         public IActionResult GetAllAdoptedAnimals()
         {
             return Ok(_animalRepository.GetAllAdoptedAnimals());
@@ -52,7 +49,7 @@ namespace Tails_Of_Joy.Controllers
         }
 
 
-        //Adding a new animal
+        // Adding a new animal
         // POST api/<AnimalController>
         [HttpPost]
         public IActionResult Post(Animal animal)
@@ -62,7 +59,7 @@ namespace Tails_Of_Joy.Controllers
         }
 
 
-        //Editing a Single Animal
+        // Editing a Single Animal
         // PUT api/<AnimalController>/5
         [HttpPut("{id}")]
         public IActionResult Put(int id, Animal animal)
@@ -76,7 +73,7 @@ namespace Tails_Of_Joy.Controllers
         }
 
 
-        //Updating Animal from Available to Adopted
+        // Updating Animal from Available to Adopted
         // DELETE api/<AnimalController>/5
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)

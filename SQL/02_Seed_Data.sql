@@ -67,6 +67,6 @@ set identity_insert [Animal] off
 
 set identity_insert [Adoption] on
 
-insert into Adoption (Id, AnimalId, UserProfileId, IsApproved) values (1, 1, 1, 1)
+insert into Adoption (Id, AnimalId, UserProfileId, IsApproved) values (1, 1, 1, 2)
 
 set identity_insert [Adoption] off

@@ -5,12 +5,13 @@ using Tails_Of_Joy.Models;
 
 namespace Tails_Of_Joy.Controllers
 {
-    [Authorize]
+    //[Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class CommentController : ControllerBase
     {
         private readonly ICommentRepository _commentRepository;
+
         private readonly IUserProfileRepository _userProfileRepository;
         public CommentController(ICommentRepository commentRepository, IUserProfileRepository userProfileRepository)
         {
@@ -49,11 +50,9 @@ namespace Tails_Of_Joy.Controllers
         [HttpPost]
         public IActionResult Post(Comment comment)
         {
-
             _commentRepository.AddComment(comment);
             //produces a status code of 201, which means userProfile object created sucessfully
             return CreatedAtAction("Get", new { id = comment.Id }, comment);
-
         }
 
         [HttpDelete("{id}")]

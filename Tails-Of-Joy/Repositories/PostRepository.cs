@@ -1,11 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
-using System.Diagnostics.Eventing.Reader;
-using System.Reflection;
-using System.Reflection.PortableExecutable;
-using System.Security.Cryptography.X509Certificates;
-using System.Security.Policy;
 using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
 using Tails_Of_Joy.Models;
@@ -35,6 +29,7 @@ namespace Tails_Of_Joy.Repositories
                               u.FirstName, 
                               u.LastName,
                               u.Email,
+                              u.Bio,
                               u.ImageLocation AS AvatarImage,
                               u.UserTypeId, 
                               ut.[Name] AS UserTypeName
@@ -76,15 +71,17 @@ namespace Tails_Of_Joy.Repositories
                               u.FirstName, 
                               u.LastName,
                               u.Email,
+                              u.Bio,
                               u.ImageLocation AS AvatarImage,
                               u.UserTypeId, 
                               ut.[Name] AS UserTypeName
                          FROM Post p
                               LEFT JOIN UserProfile u ON p.UserProfileId = u.id
                               LEFT JOIN UserType ut ON u.UserTypeId = ut.id
-                        WHERE p.id = @id ";
+                        WHERE p.id = @id";
 
                     cmd.Parameters.AddWithValue("@id", id);
+
                     var reader = cmd.ExecuteReader();
 
                     Post post = null;
@@ -118,6 +115,7 @@ namespace Tails_Of_Joy.Repositories
                               u.FirstName, 
                               u.LastName,
                               u.Email,
+                              u.Bio
                               u.ImageLocation AS AvatarImage,
                               u.UserTypeId, 
                               ut.[Name] AS UserTypeName
@@ -163,6 +161,7 @@ namespace Tails_Of_Joy.Repositories
                               u.FirstName, 
                               u.LastName,
                               u.Email,
+                              u.Bio,
                               u.ImageLocation AS AvatarImage,
                               u.UserTypeId, 
                               ut.[Name] AS UserTypeName
@@ -207,6 +206,7 @@ namespace Tails_Of_Joy.Repositories
                               u.FirstName, 
                               u.LastName,
                               u.Email,
+                              u.Bio,
                               u.ImageLocation AS AvatarImage,
                               u.UserTypeId, 
                               ut.[Name] AS UserTypeName
@@ -312,13 +312,13 @@ namespace Tails_Of_Joy.Repositories
                 Id = reader.GetInt32(reader.GetOrdinal("Id")),
                 Title = reader.GetString(reader.GetOrdinal("Title")),
                 Content = reader.GetString(reader.GetOrdinal("Content")),
-                ImageLocation = DbUtils.GetNullableString(reader, "HeaderImage"),
+                ImageLocation = DbUtils.GetNullableString(reader, "ImageLocation"),
                 CreateDateTime = reader.GetDateTime(reader.GetOrdinal("CreateDateTime")),
                 UserProfileId = reader.GetInt32(reader.GetOrdinal("UserProfileId")),
                 UserProfile = new UserProfile()
                 {
                     Id = reader.GetInt32(reader.GetOrdinal("UserProfileId")),
-                    Username = reader.GetString(reader.GetOrdinal("DisplayName")),
+                    Username = reader.GetString(reader.GetOrdinal("Username")),
                     FirstName = reader.GetString(reader.GetOrdinal("FirstName")),
                     LastName = reader.GetString(reader.GetOrdinal("LastName")),
                     Email = reader.GetString(reader.GetOrdinal("Email")),

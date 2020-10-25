@@ -10,28 +10,35 @@ using Tails_Of_Joy.Repositories;
 
 namespace Tails_Of_Joy.Controllers
 {
-    [Authorize]
+    //[Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class PostController : Controller
     {
         private readonly IPostRepository _postRepository;
-
-
-
         public PostController(IPostRepository postRepository)
         {
             _postRepository = postRepository;
-
         }
 
         [HttpGet]
         public IActionResult Get()
         {
-
             return Ok(_postRepository.GetAllPosts());
         }
 
+        // Displaying details of one Post
+        // GET api/<PostController>/5
+        [HttpGet("{id}")]
+        public IActionResult Get(int id)
+        {
+            var post = _postRepository.GetPostById(id);
+            if (post != null)
+            {
+                NotFound();
+            }
+            return Ok(post);
+        }
 
         [HttpGet("User/{id}")]
         public IActionResult GetbyUser(int id)

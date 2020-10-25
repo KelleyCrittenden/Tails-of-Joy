@@ -57,7 +57,7 @@ namespace Tails_Of_Joy.Repositories
             }
         }
 
-        public List<Adoption> GetAllApprovedAdoptions(int id)
+        public List<Adoption> GetAllApprovedAdoptions()
         {
             using (var conn = Connection)
             {
@@ -70,8 +70,6 @@ namespace Tails_Of_Joy.Repositories
                             LEFT JOIN Animal a ON ad.AnimalId = a.Id
                             LEFT JOIN UserProfile up ON ad.UserProfileId = up.Id
                             WHERE ad.IsApproved = 2";
-
-                    cmd.Parameters.AddWithValue("@userProfile", id);
 
                     var adoptions = new List<Adoption>();
 
@@ -93,7 +91,6 @@ namespace Tails_Of_Joy.Repositories
 
                         };
 
-
                         adoptions.Add(adoption);
                     }
                     reader.Close();
@@ -102,7 +99,7 @@ namespace Tails_Of_Joy.Repositories
             }
         }
 
-        public List<Adoption> GetAllPendingAdoptions(int id)
+        public List<Adoption> GetAllPendingAdoptions()
         {
             using (var conn = Connection)
             {
@@ -115,8 +112,6 @@ namespace Tails_Of_Joy.Repositories
                             LEFT JOIN Animal a ON ad.AnimalId = a.Id
                             LEFT JOIN UserProfile up ON ad.UserProfileId = up.Id
                             WHERE ad.IsApproved = 0";
-
-                    cmd.Parameters.AddWithValue("@userProfile", id);
 
                     var adoptions = new List<Adoption>();
 
@@ -167,6 +162,7 @@ namespace Tails_Of_Joy.Repositories
             }
         }
 
+        // Changing IsApproved to 1 = Not Approved
         public void Delete(int id)
         {
             using (var conn = Connection)
@@ -187,6 +183,7 @@ namespace Tails_Of_Joy.Repositories
             }
         }
 
+        // Changing IsApproved t0 2 = Is Approved
         public void Update(Adoption adoption)
         {
             using (var conn = Connection)
@@ -207,7 +204,7 @@ namespace Tails_Of_Joy.Repositories
             }
         }
 
-        public void GetAdoptionById(int id)
+        public Adoption GetById(int id)
         {
             using (var conn = Connection)
             {
@@ -219,7 +216,7 @@ namespace Tails_Of_Joy.Repositories
                             FROM Adoption ap
                             LEFT JOIN Animal a ON ad.AnimalId = a.id
                             LEFT JOIN UserProfile up on ad.UserProfileId = up.id
-                            WHERE ad.id = @id AND ad.IsApproved = 2";
+                            WHERE ad.id = @id";
 
                     cmd.Parameters.AddWithValue("@id", id);
 
@@ -227,13 +224,12 @@ namespace Tails_Of_Joy.Repositories
 
                     if (reader.Read())
                     {
-                        Adoption adoption = new Adoption
+                        Adoption adoption = new Adoption()
                         {
                             Id = reader.GetInt32(reader.GetOrdinal("Id")),
                             AnimalId = reader.GetInt32(reader.GetOrdinal("AnimalId")),
                             UserProfileId = reader.GetInt32(reader.GetOrdinal("UserProfileId")),
                             IsApproved = reader.GetInt32(reader.GetOrdinal("IsApproved")),
-
                             Animal = new Animal
                             {
                                 Id = reader.GetInt32(reader.GetOrdinal("PostId")),
@@ -246,12 +242,17 @@ namespace Tails_Of_Joy.Repositories
                                 FirstName = reader.GetString(reader.GetOrdinal("FirstName")),
                                 LastName = reader.GetString(reader.GetOrdinal("LastName")),
                             }
-                        };
+                        }; 
+                        reader.Close();
+                        return adoption;
                     }
-
-
+                    reader.Close();
+                    return null;
                 }
             }
         }
+
+
     }
 }
+

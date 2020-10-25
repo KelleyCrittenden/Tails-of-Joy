@@ -5,6 +5,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
+using Tails_Of_Joy.Repositories;
 
 namespace Tails_Of_Joy
 {
@@ -20,8 +21,11 @@ namespace Tails_Of_Joy
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            //services.AddTransient<IUserProfileRepository, UserProfileRepository>();
-            //services.AddTransient<IQuoteRepository, QuoteRepository>();
+            services.AddTransient<IUserProfileRepository, UserProfileRepository>();
+            services.AddTransient<IAdoptionRepository, AdoptionRepository>();
+            services.AddTransient<IAnimalRepository, AnimalRepository>();
+            services.AddTransient<ICommentRepository, CommentRepository>();
+            services.AddTransient<IPostRepository, PostRepository>();
 
             var firebaseProjectId = Configuration.GetValue<string>("FirebaseProjectId");
             var googleTokenUrl = $"https://securetoken.google.com/{firebaseProjectId}";

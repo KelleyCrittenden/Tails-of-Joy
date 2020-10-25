@@ -5,7 +5,7 @@ using Tails_Of_Joy.Repositories;
 
 namespace Tails_Of_Joy.Controllers
 {
-    [Authorize]
+    //[Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class UserProfileController : ControllerBase
