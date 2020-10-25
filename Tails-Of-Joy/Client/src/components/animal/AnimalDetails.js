@@ -17,38 +17,27 @@ const AnimalDetails = () => {
         <>
             <Card className="m-4">
                 <Row margin="m-4">
-                    <h3 className="text-left px-2"><strong>{animal.name}</strong></h3>
+                    <h1 ><strong>{animal.name}</strong></h1>
                 </Row>
                 <Row margin="m-4">
                     <Col sm="6">
                         <h1>{animal.breed}</h1>
                     </Col>
-
-                    <Row margin="m-4">
-                        <Col sm="6">
-                            <h1>{animal.gender}</h1>
-                        </Col>
-                    </Row>
-                    <Row margin="m-4">
-                        <Col sm="6">
-                            <h1>{animal.age}</h1>
-                        </Col>
-                    </Row>
-                    <Row margin="m-4">
-                        <Col sm="6">
-                            <h1>{animal.size}</h1>
-                        </Col>
-                    </Row>
-                    <Row margin="m-4">
-                        <Col sm="6">
-                            <h1>{animal.childFriendly}</h1>
-                        </Col>
-                    </Row>
-                    <Row margin="m-4">
-                        <Col sm="6">
-                            <h1>{animal.smallAnimalFriendly}</h1>
-                        </Col>
-                    </Row>
+                    <Col sm="6">
+                        <h1>{animal.gender}</h1>
+                    </Col>
+                    <Col sm="6">
+                        <h1>{animal.age}</h1>
+                    </Col>
+                    <Col sm="6">
+                        <h1>{animal.size}</h1>
+                    </Col>
+                    <Col sm="6">
+                        <h1>{animal.childFriendly}</h1>
+                    </Col>
+                    <Col sm="6">
+                        <h1>{animal.smallAnimalFriendly}</h1>
+                    </Col>
                 </Row>
                 <Row>
                     <Col sm="6">
