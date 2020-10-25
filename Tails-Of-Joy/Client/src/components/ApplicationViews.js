@@ -4,6 +4,9 @@ import { Switch, Route, Redirect } from "react-router-dom";
 import { UserProfileContext } from "../providers/UserProfileProvider";
 import Login from "./Login";
 import Register from "./Register";
+import AnimalList from "./animal/AnimalList"
+import AnimalDetails from "./animal/AnimalDetails"
+
 
 export function ApplicationViews() {
     const { isLoggedIn } = useContext(UserProfileContext);
@@ -11,13 +14,14 @@ export function ApplicationViews() {
     return (
         <main>
             <Switch>
-                {/* <Route path="/" exact>
-          {isLoggedIn ? <QuoteList /> : <Redirect to="/login" />}
-        </Route>
 
-        <Route path="/add">
-          {isLoggedIn ? <QuoteAddForm /> : <Redirect to="/login" />}
-        </Route> */}
+                <Route exact path="/animal">
+                    {isLoggedIn ? <AnimalList /> : <Redirect to="/login" />}
+                </Route>
+
+                <Route exact path="/animal/details/:id">
+                    {isLoggedIn ? <AnimalDetails /> : <Redirect to="/login" />}
+                </Route>
 
                 <Route path="/login">
                     <Login />
