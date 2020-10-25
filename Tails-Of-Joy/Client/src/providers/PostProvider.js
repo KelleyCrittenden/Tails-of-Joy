@@ -1,5 +1,7 @@
-import { useContext } from "react";
+import React, { useState, createContext, useContext } from "react";
 import { UserProfileContext } from "./UserProfileProvider";
+
+export const PostContext = createContext();
 
 export const PostProvider = (props) => {
     const [post, setPost] = useState({});
@@ -14,7 +16,7 @@ export const PostProvider = (props) => {
                     Authorization: `Bearer ${token}`
                 }
             }).then((res) => res.json())
-                .then(setAnimals);
+                .then(setPosts);
         });
 
     const getPostById = (id) => {
@@ -35,7 +37,7 @@ export const PostProvider = (props) => {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 }
-            }).then(res => res.json()).then(setAnimal)
+            }).then(res => res.json()).then(setPost)
         });
 
     const updatePost = (post) => {
