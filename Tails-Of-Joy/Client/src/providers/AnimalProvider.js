@@ -4,10 +4,8 @@ import { UserProfileContext } from "./UserProfileProvider";
 export const AnimalContext = createContext();
 
 export const AnimalProvider = (props) => {
-
-    const [animal, setAnimal] = ({});
+    const [animal, setAnimal] = useState({});
     const [animals, setAnimals] = useState([]);
-
     const { getToken } = useContext(UserProfileContext);
 
     const getAllAvailableAnimals = () =>
@@ -34,7 +32,7 @@ export const AnimalProvider = (props) => {
 
     const addAnimal = (animal) =>
         getToken().then((token) => {
-            fetch((`/api/animal/${id}`), {
+            fetch((`/api/animal/${animal.id}`), {
                 method: "POST",
                 headers: {
                     Authorization: `Bearer ${token}`,
@@ -44,7 +42,7 @@ export const AnimalProvider = (props) => {
 
     const updateAnimal = (animal) => {
         getToken().then((token) => {
-            fetch(`/api/animal/${id}`, {
+            fetch(`/api/animal/${animal.id}`, {
                 method: "PUT",
                 headers: {
                     Authoriziation: `Bearer ${token}`,
@@ -57,7 +55,7 @@ export const AnimalProvider = (props) => {
 
     const deleteAnimal = (animalId) => {
         return getToken().then((token) => {
-            fetch(`/api/tag/${id}`, {
+            fetch(`/api/tag/${animalId}`, {
                 method: "DELETE",
                 headers: {
                     Authorization: `Bearer ${token}`,
