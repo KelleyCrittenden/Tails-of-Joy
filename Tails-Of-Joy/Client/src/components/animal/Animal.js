@@ -9,8 +9,8 @@ export default function Animal({ animal }) {
         <Card className="m-4" >
             <CardBody>
 
-                <strong>{animal.name}</strong>
-                <h4>{animal.breed}</h4>
+                <h4>{animal.name}</h4>
+                <h5>{animal.breed}</h5>
                 <p>{animal.title}</p>
 
                 <Button onClick={() => history.push(`/animal/details/${animal.id}`)}></Button>
