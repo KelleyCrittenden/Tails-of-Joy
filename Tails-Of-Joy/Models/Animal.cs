@@ -18,6 +18,6 @@ namespace Tails_Of_Joy.Models
         public int ChildFriendly { get; set; }
         public int SmallAnimalFriendly { get; set; }
         public string Title { get; set; }
-        public string Description { get; set; }
+        public string Content { get; set; }
     }
 }

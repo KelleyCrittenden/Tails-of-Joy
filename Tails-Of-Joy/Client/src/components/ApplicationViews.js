@@ -5,7 +5,7 @@ import { UserProfileContext } from "../providers/UserProfileProvider";
 import Login from "./Login";
 import Register from "./Register";
 
-export default function ApplicationViews() {
+export function ApplicationViews() {
     const { isLoggedIn } = useContext(UserProfileContext);
 
     return (
