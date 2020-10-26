@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
+﻿using System.Security.Claims;
 using Microsoft.AspNetCore.Mvc;
 using Tails_Of_Joy.Models;
 using Tails_Of_Joy.Repositories;
@@ -15,10 +10,15 @@ namespace Tails_Of_Joy.Controllers
     [ApiController]
     public class PostController : Controller
     {
+        private readonly IUserProfileRepository _userProfileRepository;
         private readonly IPostRepository _postRepository;
-        public PostController(IPostRepository postRepository)
+       
+        public PostController(IPostRepository postRepository,
+            IUserProfileRepository userProfileRepository)
         {
+            _userProfileRepository = userProfileRepository;
             _postRepository = postRepository;
+            
         }
 
         [HttpGet]
@@ -48,10 +48,14 @@ namespace Tails_Of_Joy.Controllers
 
 
         [HttpPost]
-        public IActionResult Post(Post post)
+        public IActionResult Add(Post post)
         {
+            var currentUserProfile = GetCurrentUserProfile();
+            if (currentUserProfile == null)
+            {
+                return Unauthorized();
+            }
             _postRepository.Add(post);
-
             return CreatedAtAction("Get", new { id = post.Id }, post);
         }
 
@@ -59,12 +63,16 @@ namespace Tails_Of_Joy.Controllers
         [HttpPut("edit/{id}")]
         public IActionResult Put(int id, Post post)
         {
+            var currentUserProfile = GetCurrentUserProfile();
+            if (currentUserProfile == null)
+            {
+                return Unauthorized();
+            }
             if (id != post.Id)
             {
                 return BadRequest();
 
             }
-
             _postRepository.UpdatePost(post);
             return NoContent();
         }
@@ -74,9 +82,20 @@ namespace Tails_Of_Joy.Controllers
         [HttpPut("delete/{id}")]
         public IActionResult Delete(int id)
         {
-
+            var currentUserProfile = GetCurrentUserProfile();
+            if (currentUserProfile == null)
+            {
+                return Unauthorized();
+            }
             _postRepository.DeletePost(id);
             return NoContent();
         }
+
+        private UserProfile GetCurrentUserProfile()
+        {
+            var firebaseUserId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            return _userProfileRepository.GetByFirebaseUserId(firebaseUserId);
+        }
+
     }
 }

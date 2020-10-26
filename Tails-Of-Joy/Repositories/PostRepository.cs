@@ -35,7 +35,8 @@ namespace Tails_Of_Joy.Repositories
                               ut.[Name] AS UserTypeName
                          FROM Post p
                               LEFT JOIN UserProfile u ON p.UserProfileId = u.id
-                              LEFT JOIN UserType ut ON u.UserTypeId = ut.id";
+                              LEFT JOIN UserType ut ON u.UserTypeId = ut.id
+                    WHERE IsDeleted = 0";
 
                     var reader = cmd.ExecuteReader();
 
@@ -249,7 +250,7 @@ namespace Tails_Of_Joy.Repositories
 
                     cmd.Parameters.AddWithValue("@Title", post.Title);
                     cmd.Parameters.AddWithValue("@Content", post.Content);
-                    cmd.Parameters.AddWithValue("@ImageLocation", DbUtils.ValueOrDBNull(post.ImageLocation));
+                    cmd.Parameters.AddWithValue("@ImageLocation", post.ImageLocation);
                     cmd.Parameters.AddWithValue("@CreateDateTime", DateTime.Now);
                     cmd.Parameters.AddWithValue("@UserProfileId", post.UserProfileId);
 
@@ -270,7 +271,7 @@ namespace Tails_Of_Joy.Repositories
                         SET
                             Title = @title,
                             Content = @content,
-                            ImageLocation = @imageLocation,
+                            ImageLocation = @imageLocation
                         WHERE Id = @id";
 
                     cmd.Parameters.AddWithValue("@title", post.Title);
@@ -293,10 +294,14 @@ namespace Tails_Of_Joy.Repositories
                 using (SqlCommand cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-                        DELETE Post
+                        UPDATE Post
+                        SET
+                        IsDeleted = @isDeleted
                         WHERE Id = @id";
 
+                    cmd.Parameters.AddWithValue("@isDeleted", 1);
                     cmd.Parameters.AddWithValue("@id", id);
+
 
                     cmd.ExecuteNonQuery();
 

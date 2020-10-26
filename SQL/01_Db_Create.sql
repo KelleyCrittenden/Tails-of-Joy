@@ -69,6 +69,7 @@ CREATE TABLE [Post] (
   [ImageLocation] nvarchar(255),
   [CreateDateTime] datetime NOT NULL,
   [UserProfileId] integer NOT NULL,
+  [IsDeleted] integer NOT NULL DEFAULT 0,
 
   CONSTRAINT [FK_Post_UserProfile] FOREIGN KEY ([UserProfileId]) REFERENCES [UserProfile] ([Id])
 )

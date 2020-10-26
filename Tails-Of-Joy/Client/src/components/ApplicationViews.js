@@ -6,6 +6,11 @@ import Login from "./Login";
 import Register from "./Register";
 import AnimalList from "./animal/AnimalList"
 import AnimalDetails from "./animal/AnimalDetails"
+import PostList from "./post/PostList"
+import PostDetails from "./post/PostDetails"
+import PostAdd from "./post/PostAdd"
+import PostDelete from "./post/PostDelete"
+import PostEdit from "./post/PostEdit"
 
 
 export function ApplicationViews() {
@@ -21,6 +26,26 @@ export function ApplicationViews() {
 
                 <Route exact path="/animal/details/:id">
                     {isLoggedIn ? <AnimalDetails /> : <Redirect to="/login" />}
+                </Route>
+
+                <Route exact path="/post">
+                    {isLoggedIn ? <PostList /> : <Redirect to="/login" />}
+                </Route>
+
+                <Route exact path="/post/details/:id">
+                    {isLoggedIn ? <PostDetails /> : <Redirect to="/login" />}
+                </Route>
+
+                <Route exact path="/post/add">
+                    {isLoggedIn ? <PostAdd /> : <Redirect to="/login" />}
+                </Route>
+
+                <Route exact path="/post/delete/:id">
+                    {isLoggedIn ? <PostDelete /> : <Redirect to="/login" />}
+                </Route>
+
+                <Route exact path="/post/edit/:id">
+                    {isLoggedIn ? <PostEdit /> : <Redirect to="/login" />}
                 </Route>
 
                 <Route path="/login">
