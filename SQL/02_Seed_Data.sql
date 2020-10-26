@@ -13,11 +13,11 @@ set identity_insert [UserProfile] on
 
 insert into UserProfile (Id, FirebaseUserId, Username, FirstName, LastName, Email, Bio, ImageLocation, UserTypeId) values (1, 'Ap4P7PjKl2RIgUjvC8YwrVueLY42', 'ADMIN', 'Kelley', 'Crittenden', 'admin@admin.com', 'Owner of Tails of Joy', 'https://robohash.org/numquamutut.png?size=150x150&set=set1', 1);
 
-insert into UserProfile (Id, FirebaseUserId, Username, FirstName, LastName, Email, Bio, ImageLocation, UserTypeId) values (2, 'JXO3kD2t3xaRIkZ5TdMpcG7irrN2', 'UserOne', 'User', 'One', 'userOne@user.com', 'Description of User One', 'https://robohash.org/nisiautemet.png?size=150x150&set=set1', 2);
+insert into UserProfile (Id, FirebaseUserId, Username, FirstName, LastName, Email, Bio, ImageLocation, UserTypeId) values (2, 'JXO3kD2t3xaRIkZ5TdMpcG7irrN2', 'UserOne', 'User', 'One', 'userone@userone.com', 'Description of User One', 'https://robohash.org/nisiautemet.png?size=150x150&set=set1', 2);
 
-insert into UserProfile (Id, FirebaseUserId, Username, FirstName, LastName, Email, Bio, ImageLocation, UserTypeId) values (3, 'S457dChnWtP2b09pYjqDfH1MgWp1', 'UserTwo', 'User', 'Two', 'userTwo@user.com', 'Description of User Two', 'https://robohash.org/hicnihilipsa.png?size=150x150&set=set1', 2);
+insert into UserProfile (Id, FirebaseUserId, Username, FirstName, LastName, Email, Bio, ImageLocation, UserTypeId) values (3, 'S457dChnWtP2b09pYjqDfH1MgWp1', 'UserTwo', 'User', 'Two', 'usertwo@usertwo.com', 'Description of User Two', 'https://robohash.org/hicnihilipsa.png?size=150x150&set=set1', 2);
 
-insert into UserProfile (Id, FirebaseUserId, Username, FirstName, LastName, Email, Bio, ImageLocation, UserTypeId) values (4, '5GX3PlPUoebLKosyT4rrsPn7kdx1', 'UserThree', 'User', 'Three', 'userThree@user.com', 'Description of User Three', 'https://robohash.org/deseruntutipsum.png?size=150x150&set=set1', 2);
+insert into UserProfile (Id, FirebaseUserId, Username, FirstName, LastName, Email, Bio, ImageLocation, UserTypeId) values (4, '5GX3PlPUoebLKosyT4rrsPn7kdx1', 'UserThree', 'User', 'Three', 'userthree@userthree.com', 'Description of User Three', 'https://robohash.org/deseruntutipsum.png?size=150x150&set=set1', 2);
 
 set identity_insert [UserProfile] off
 
