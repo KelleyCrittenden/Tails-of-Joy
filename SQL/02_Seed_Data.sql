@@ -24,21 +24,21 @@ set identity_insert [UserProfile] off
 
 set identity_insert [Post] on
 
-insert into Post (Id, Title, Content, ImageLocation, CreateDateTime, UserProfileId) values (1, 'First Dog Adopted Title', 'First Dog Adopted Content', 'https://picsum.photos/920/360', '2019-08-01', 1);
+insert into Post (Id, Title, Content, ImageLocation, CreateDateTime, UserProfileId, IsDeleted) values (1, 'First Dog Adopted Title', 'First Dog Adopted Content', 'https://picsum.photos/920/360', '2019-08-01', 1, 0);
 
-insert into Post (Id, Title, Content, ImageLocation, CreateDateTime, UserProfileId) values (2, 'Second Dog Adopted Title', 'Second Dog Adopted Content', 'https://picsum.photos/920/360', '2019-08-02', 1);
+insert into Post (Id, Title, Content, ImageLocation, CreateDateTime, UserProfileId, IsDeleted) values (2, 'Second Dog Adopted Title', 'Second Dog Adopted Content', 'https://picsum.photos/920/360', '2019-08-02', 1, 0);
 
-insert into Post (Id, Title, Content, ImageLocation, CreateDateTime, UserProfileId) values (3, 'Third Dog Adopted Title', 'Third Dog Adopted Content', 'https://picsum.photos/920/360', '2019-08-03', 2);
+insert into Post (Id, Title, Content, ImageLocation, CreateDateTime, UserProfileId, IsDeleted) values (3, 'Third Dog Adopted Title', 'Third Dog Adopted Content', 'https://picsum.photos/920/360', '2019-08-03', 2, 0);
 
-insert into Post (Id, Title, Content, ImageLocation, CreateDateTime, UserProfileId) values (4, 'Fourth Dog Adopted Title', 'Fourth Dog Adopted Content', 'https://picsum.photos/920/360', '2019-08-04', 2);
+insert into Post (Id, Title, Content, ImageLocation, CreateDateTime, UserProfileId, IsDeleted) values (4, 'Fourth Dog Adopted Title', 'Fourth Dog Adopted Content', 'https://picsum.photos/920/360', '2019-08-04', 2, 0);
 
-insert into Post (Id, Title, Content, ImageLocation, CreateDateTime, UserProfileId) values (5, 'Fifth Dog Adopted Title', 'Fifth Dog Adopted Content', 'https://picsum.photos/920/360', '2019-08-05', 3);
+insert into Post (Id, Title, Content, ImageLocation, CreateDateTime, UserProfileId, IsDeleted) values (5, 'Fifth Dog Adopted Title', 'Fifth Dog Adopted Content', 'https://picsum.photos/920/360', '2019-08-05', 3, 0);
 
-insert into Post (Id, Title, Content, ImageLocation, CreateDateTime, UserProfileId) values (6, 'Sixth Dog Adopted Title', 'Sixth Dog Adopted Content', 'https://picsum.photos/920/360', '2019-08-06', 3);
+insert into Post (Id, Title, Content, ImageLocation, CreateDateTime, UserProfileId, IsDeleted) values (6, 'Sixth Dog Adopted Title', 'Sixth Dog Adopted Content', 'https://picsum.photos/920/360', '2019-08-06', 3, 0);
 
-insert into Post (Id, Title, Content, ImageLocation, CreateDateTime, UserProfileId) values (7, 'Seventh Dog Adopted Title', 'Seventh Dog Adopted Content', 'https://picsum.photos/920/360', '2019-08-07', 4);
+insert into Post (Id, Title, Content, ImageLocation, CreateDateTime, UserProfileId, IsDeleted) values (7, 'Seventh Dog Adopted Title', 'Seventh Dog Adopted Content', 'https://picsum.photos/920/360', '2019-08-07', 4, 0);
 
-insert into Post (Id, Title, Content, ImageLocation, CreateDateTime, UserProfileId) values (8, 'Eigth Dog Adopted Title', 'Eight Dog Adopted Content', 'https://picsum.photos/920/360', '2019-08-08', 4);
+insert into Post (Id, Title, Content, ImageLocation, CreateDateTime, UserProfileId, IsDeleted) values (8, 'Eigth Dog Adopted Title', 'Eight Dog Adopted Content', 'https://picsum.photos/920/360', '2019-08-08', 4, 0);
 
 set identity_insert [Post] off
 

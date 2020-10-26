@@ -30,19 +30,23 @@ export const PostProvider = (props) => {
         })
     };
 
-    const addPost = (post) =>
+    const addPost = (post) => {
         getToken().then((token) => {
-            fetch((`api/post`), {
+            fetch(("/api/post"), {
                 method: "POST",
                 headers: {
                     Authorization: `Bearer ${token}`,
-                }
-            }).then(res => res.json()).then(setPost)
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(post),
+            }).then(getAllPosts)
         });
+    }
+
 
     const updatePost = (post) => {
         getToken().then((token) => {
-            fetch(`/api/post/${post.id}`, {
+            fetch(`/api/post/edit/${post.id}`, {
                 method: "PUT",
                 headers: {
                     Authorization: `Bearer ${token}`,
@@ -53,12 +57,13 @@ export const PostProvider = (props) => {
         })
     }
 
-    const deletePost = (postId) => {
+    const deletePost = (id) => {
         return getToken().then((token) => {
-            fetch(`/api/post/${postId}`, {
-                method: "DELETE",
+            fetch(`/api/post/delete/${id}`, {
+                method: "PUT",
                 headers: {
                     Authorization: `Bearer ${token}`,
+                    "Content-Type": "application/json"
                 },
             })
         })

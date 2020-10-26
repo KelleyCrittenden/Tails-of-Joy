@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Tails_Of_Joy.Repositories;
 using Tails_Of_Joy.Models;
+using System.Security.Claims;
 
 namespace Tails_Of_Joy.Controllers
 {
@@ -11,7 +12,6 @@ namespace Tails_Of_Joy.Controllers
     public class CommentController : ControllerBase
     {
         private readonly ICommentRepository _commentRepository;
-
         private readonly IUserProfileRepository _userProfileRepository;
         public CommentController(ICommentRepository commentRepository, IUserProfileRepository userProfileRepository)
         {
@@ -36,42 +36,59 @@ namespace Tails_Of_Joy.Controllers
         [HttpGet("{id}")]
         public IActionResult Get(int id)
         {
-
             Comment comment = _commentRepository.GetCommentById(id);
             if (comment == null)
             {
                 return NotFound();
             }
             return Ok(comment);
-
         }
 
 
         [HttpPost]
         public IActionResult Post(Comment comment)
         {
+            var currentUserProfile = GetCurrentUserProfile();
+            if (currentUserProfile == null)
+            {
+                return Unauthorized();
+            }
             _commentRepository.AddComment(comment);
-            //produces a status code of 201, which means userProfile object created sucessfully
             return CreatedAtAction("Get", new { id = comment.Id }, comment);
         }
 
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
+            var currentUserProfile = GetCurrentUserProfile();
+            if (currentUserProfile == null)
+            {
+                return Unauthorized();
+            }
             _commentRepository.DeleteComment(id);
-            //return status 204
             return NoContent();
         }
 
         [HttpPut("{id}")]
         public IActionResult Put(int id, Comment comment)
         {
+            var currentUserProfile = GetCurrentUserProfile();
+            if (currentUserProfile == null)
+            {
+                return Unauthorized();
+            }
             if (id != comment.Id)
             {
                 return BadRequest();
             }
             _commentRepository.UpdateComment(comment);
             return NoContent();
+        }
+
+        private UserProfile GetCurrentUserProfile()
+        {
+            var firebaseUserId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            return _userProfileRepository.GetByFirebaseUserId(firebaseUserId);
         }
     }
 }

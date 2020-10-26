@@ -1,9 +1,10 @@
-import React, { useContext } from "react";
+import React from "react";
 import { Card, CardBody, CardImg, Button } from "reactstrap";
 import { useHistory } from "react-router-dom";
 
 export default function Post({ post }) {
     const history = useHistory();
+    const currentUser = JSON.parse(sessionStorage.getItem('userProfile')).id;
 
     return (
         <Card className="m-4" >
@@ -16,10 +17,14 @@ export default function Post({ post }) {
 
                 <Button onClick={() => history.push(`/post/details/${post.id}`)}></Button>
 
-                <>
-                    <Button onClick={() => history.push(`/post/edit/${post.id}`)}></Button>
-                    <Button onClick={() => history.push(`/post/delete/${post.id}`)}></Button>
-                </>
+                {(currentUser === post.userProfileId) ?
+
+                    <div>
+                        <Button onClick={() => history.push(`/post/edit/${post.id}`)}></Button>
+                        <Button onClick={() => history.push(`/post/delete/${post.id}`)}></Button>
+                    </div>
+                    :
+                    null}
 
             </CardBody>
         </Card>

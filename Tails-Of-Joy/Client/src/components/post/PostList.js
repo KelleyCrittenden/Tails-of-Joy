@@ -1,6 +1,7 @@
 import React, { useContext, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { PostContext } from "../../providers/PostProvider";
+import { Button } from "reactstrap";
 import Post from "./Post"
 
 export default function PostList() {
@@ -16,12 +17,17 @@ export default function PostList() {
     }, []);
 
     return (
+        <>
+            <Button onClick={Create}>
+                Add Post
+            </Button>
 
-        <section>
-            {posts.map((post) => (
-                <Post key={post.id} post={post} />
-            ))}
-        </section>
+            <section>
+                {posts.map((post) => (
+                    <Post key={post.id} post={post} />
+                ))}
+            </section>
+        </>
 
     )
 }
