@@ -9,16 +9,16 @@ export const CommentProvider = (props) => {
     const [comments, setComments] = useState([]);
     const { getToken } = useContext(UserProfileContext);
 
-    const getAllCommentsForPost = (postId) =>
-        getToken().then((token) => {
-            fetch(("/api/comment/getAllCommentsForPost/${postId}"), {
+    const getAllCommentsForPost = (postId) => {
+        return getToken().then((token) => {
+            fetch((`/api/comment/getAllCommentsForPost/${postId}`), {
                 method: "GET",
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
-            }).then((res) => res.json())
-                .then(setComments);
-        });
+            }).then((res => res.json())).then(setComments);
+        })
+    };
 
     const getCommentById = (id) => {
         return getToken().then((token) => {
@@ -31,7 +31,7 @@ export const CommentProvider = (props) => {
         })
     };
 
-    const addComment = (comment) => {
+    const addComment = (newComment) => {
         getToken().then((token) => {
             fetch(("/api/comment"), {
                 method: "POST",
@@ -39,8 +39,8 @@ export const CommentProvider = (props) => {
                     Authorization: `Bearer ${token}`,
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify(comment),
-            }).then(getAllCommentsByPost)
+                body: JSON.stringify(newComment),
+            }).then(getAllCommentsForPost)
         });
     }
 

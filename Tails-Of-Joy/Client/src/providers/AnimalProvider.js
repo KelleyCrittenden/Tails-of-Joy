@@ -30,15 +30,19 @@ export const AnimalProvider = (props) => {
         })
     };
 
-    const addAnimal = (animal) =>
-        getToken().then((token) => {
-            fetch((`/api/animal/${animal.id}`), {
+    const addAnimal = (animal) => {
+        console.log(typeof animal)
+        return getToken().then((token) => {
+            fetch(("/api/animal"), {
                 method: "POST",
                 headers: {
                     Authorization: `Bearer ${token}`,
-                }
-            }).then(res => res.json()).then(setAnimal)
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(animal),
+            })
         });
+    };
 
     const updateAnimal = (animal) => {
         getToken().then((token) => {

@@ -2,6 +2,7 @@
 import React, { useContext, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { AnimalContext } from "../../providers/AnimalProvider";
+import { Button } from "reactstrap";
 import Animal from "./Animal"
 
 export default function AnimlalList() {
@@ -17,12 +18,19 @@ export default function AnimlalList() {
     }, []);
 
     return (
+        <>
+            <div>
+                <Button onClick={Create}>
+                    Add Animal
+                </Button>
+            </div>
 
-        <section>
-            {animals.map((animal) => (
-                <Animal key={animal.id} animal={animal} />
-            ))}
-        </section>
+            <section>
+                {animals.map((animal) => (
+                    <Animal key={animal.id} animal={animal} />
+                ))}
+            </section>
 
+        </>
     )
 }
