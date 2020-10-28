@@ -52,7 +52,25 @@ namespace Tails_Of_Joy.Controllers
         [HttpPut("edit/{id}")]
         public IActionResult Put(int id, UserProfile userProfile)
         {
+            var currentUserProfile = GetCurrentUserProfile();
+            if (currentUserProfile == null)
+            {
+                return Unauthorized();
+            }
             _userProfileRepository.UpdateUserProfile(userProfile);
+            return NoContent();
+        }
+
+
+        [HttpPut("delete/{id}")]
+        public IActionResult Delete(int id)
+        {
+            var currentUserProfile = GetCurrentUserProfile();
+            if (currentUserProfile == null)
+            {
+                return Unauthorized();
+            }
+            _userProfileRepository.DeleteUserProfile(id);
             return NoContent();
         }
 

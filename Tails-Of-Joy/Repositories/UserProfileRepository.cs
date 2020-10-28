@@ -222,6 +222,30 @@ namespace Tails_Of_Joy.Repositories
             }
         }
 
+        public void DeleteUserProfile(int id)
+        {
+            using (SqlConnection conn = Connection)
+            {
+                conn.Open();
+                using (SqlCommand cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"
+                        UPDATE UserProfile
+                        SET
+                        IsDeleted = @isDeleted
+                        WHERE Id = @id";
+
+                    cmd.Parameters.AddWithValue("@isDeleted", 1);
+                    cmd.Parameters.AddWithValue("@id", id);
+
+
+                    cmd.ExecuteNonQuery();
+
+                }
+            }
+
+        }
+
 
 
     }

@@ -82,9 +82,22 @@ export function UserProfileProvider(props) {
         })
     };
 
+    const updateUserProfile = (singleUser) => {
+        getToken().then((token) => {
+            fetch(`$apiUrl}/edit/${singleUser.id}`, {
+                method: "PUT",
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(singleUser),
+            })
+        })
+    }
+
 
     return (
-        <UserProfileContext.Provider value={{ userProfile, isLoggedIn, login, logout, register, getToken, getUserProfileById, singleUser }}>
+        <UserProfileContext.Provider value={{ userProfile, singleUser, isLoggedIn, login, logout, register, getToken, getUserProfileById, updateUserProfile }}>
             {isFirebaseReady
                 ? props.children
                 : <Spinner className="app-spinner dark" />}

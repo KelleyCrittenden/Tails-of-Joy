@@ -1,16 +1,20 @@
-import { useParams } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import { UserProfileContext } from "../../providers/UserProfileProvider";
 import React, { useContext, useEffect } from "react";
-import { Card, CardImg, CardBody, Row, Col } from "reactstrap";
+import { Card, CardImg, CardBody, Row, Col, Button } from "reactstrap";
 
 const UserProfileDetails = () => {
 
     const { id } = useParams();
-    const { singleUser, getUserProfileById } = useContext(UserProfileContext);
+    const history = useHistory();
+    const { userProfile, singleUser, getUserProfileById, updateUserProfile } = useContext(UserProfileContext);
+    const currentUser = JSON.parse(sessionStorage.getItem('userProfile')).id;
 
     useEffect(() => {
         getUserProfileById(id);
     }, [id]);
+
+    console.log(singleUser, "current user Id")
 
     return (
         <>
@@ -28,6 +32,16 @@ const UserProfileDetails = () => {
                 <CardBody>
                     <CardImg className="userProfileDetailImg" top src={singleUser.imageLocation} alt={singleUser.username} />
                 </CardBody>
+
+                {(currentUser === singleUser.id) ?
+
+                    <div>
+                        <Button onClick={() => history.push(`/userProfile/edit/${singleUser.id}`)}>Edit</Button>
+                        <Button onClick={() => history.push(`/userProfile/delete/${singleUser.id}`)}>Delete</Button>
+                    </div>
+                    :
+                    null}
+
             </Card>
         </>
 
