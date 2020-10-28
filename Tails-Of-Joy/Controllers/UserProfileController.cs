@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 using Tails_Of_Joy.Models;
 using Tails_Of_Joy.Repositories;
 
@@ -46,6 +47,19 @@ namespace Tails_Of_Joy.Controllers
                 NotFound();
             }
             return Ok(userProfile);
+        }
+
+        [HttpPut("edit/{id}")]
+        public IActionResult Put(int id, UserProfile userProfile)
+        {
+            _userProfileRepository.UpdateUserProfile(userProfile);
+            return NoContent();
+        }
+
+        private UserProfile GetCurrentUserProfile()
+        {
+            var firebaseUserId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            return _userProfileRepository.GetByFirebaseUserId(firebaseUserId);
         }
     }
 }
