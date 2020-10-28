@@ -16,8 +16,8 @@ const AnimalAdd = () => {
         Gender: "",
         Age: "",
         Size: "",
-        ChildFriendly: "",
-        SmallAnimalFriendly: "",
+        ChildFriendly: true,
+        SmallAnimalFriendly: true,
         Title: "",
         Content: "",
         ImageLocation: ""
@@ -32,8 +32,8 @@ const AnimalAdd = () => {
             Gender: animal.Gender,
             Age: animal.Age,
             Size: animal.Size,
-            ChildFriendly: parseInt(animal.ChildFriendly),
-            SmallAnimalFriendly: parseInt(animal.SmallAnimalFriendly),
+            ChildFriendly: animal.ChildFriendly == `true`,
+            SmallAnimalFriendly: animal.SmallAnimalFriendly == `true`,
             Title: animal.Title,
             Content: animal.Content,
             ImageLocation: animal.ImageLocation
@@ -113,8 +113,8 @@ const AnimalAdd = () => {
                     <Label for="childFriendly">Child Friendly: </Label>
                     <select id="ChildFriendly" onChange={handleFieldChange}>
                         <option>Choose...</option>
-                        <option value={0}>Yes</option>
-                        <option value={1} >No</option>
+                        <option value={true}>Yes</option>
+                        <option value={false} >No</option>
                     </select>
                 </FormGroup>
 
@@ -122,8 +122,8 @@ const AnimalAdd = () => {
                     <Label for="smallAnimalFriendly">Small Animal Friendly: </Label>
                     <select id="SmallAnimalFriendly" onChange={handleFieldChange}>
                         <option>Choose...</option>
-                        <option value={0}>Yes</option>
-                        <option value={1} >No</option>
+                        <option value={true}>Yes</option>
+                        <option value={false} >No</option>
                     </select>
                 </FormGroup>
 

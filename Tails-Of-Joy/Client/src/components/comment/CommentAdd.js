@@ -10,20 +10,20 @@ const CommentAdd = () => {
     const { post } = useContext(PostContext)
     const { id } = useParams();
     const history = useHistory();
+    const user = JSON.parse(sessionStorage.getItem("userProfile")).id
+    post.userProfileId = user
 
     const [comment, setComment] = useState({
-        PostId: "",
-        UserProfileId: "",
+        PostId: parseInt(id),
+        UserProfileId: parseInt(user),
         Content: ""
     })
 
-    const user = JSON.parse(sessionStorage.getItem("userProfile")).id
-    post.userProfileId = user
 
     const newComment = (e) => {
         e.preventDefault();
         addComment(comment);
-        history.push(`/post/details/${id}`)
+        history.push("/post")
     }
 
     const handleFieldChange = (e) => {

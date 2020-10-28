@@ -47,7 +47,7 @@ const PostDetails = () => {
                 </CardBody>
             </Card>
 
-            <Link to={`/post/comment/add/${id}`}>
+            <Link to={`/comment/add/${id}`}>
                 <Button id="addCommentButton"> Add Comment </Button>
             </Link>
 

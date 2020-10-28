@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Tails_Of_Joy.Models;
+using Tails_Of_Joy.Utils;
 
 namespace Tails_Of_Joy.Repositories
 {
@@ -169,15 +170,14 @@ namespace Tails_Of_Joy.Repositories
                     cmd.CommandText = @"
                         INSERT INTO Comment (PostId, UserProfileId, Content, CreateDateTime)
                         OUTPUT INSERTED.ID
-                        VALUES (@postId, @userProfileId, @createDateTime)";
+                        VALUES (@postId, @userProfileId, @content, @createDateTime)";
 
                     cmd.Parameters.AddWithValue("@postId", comment.PostId);
                     cmd.Parameters.AddWithValue("@userProfileId", comment.UserProfileId);
                     cmd.Parameters.AddWithValue("@content", comment.Content);
                     cmd.Parameters.AddWithValue("@createDateTime", DateTime.Now);
-                    int id = (int)cmd.ExecuteScalar();
 
-                    comment.Id = id;
+                    comment.Id = (int)cmd.ExecuteScalar();
                 }
             }
         }
@@ -216,7 +216,7 @@ namespace Tails_Of_Joy.Repositories
                                  DELETE FROM Comment
                                  WHERE Id = @id";
 
-                    cmd.Parameters.AddWithValue("@id", id);
+                    DbUtils.AddParameter(cmd, "@id", id);
 
                     cmd.ExecuteNonQuery();
 

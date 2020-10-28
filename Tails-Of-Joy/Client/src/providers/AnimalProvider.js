@@ -59,7 +59,7 @@ export const AnimalProvider = (props) => {
 
     const deleteAnimal = (animalId) => {
         return getToken().then((token) => {
-            fetch(`/api/tag/${animalId}`, {
+            fetch(`/api/animal/${animalId}`, {
                 method: "DELETE",
                 headers: {
                     Authorization: `Bearer ${token}`,
