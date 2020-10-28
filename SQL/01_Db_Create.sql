@@ -32,6 +32,7 @@ CREATE TABLE [UserProfile] (
   [Bio] text NOT NULL,
   [ImageLocation] nvarchar(255),
   [UserTypeId] integer NOT NULL DEFAULT 0,
+  [IsDeleted] integer NOT NULL DEFAULT 0,
 
   CONSTRAINT [FK_User_UserType] FOREIGN KEY ([UserTypeId]) REFERENCES [UserType] ([Id]),
   CONSTRAINT UQ_FirebaseUserId UNIQUE(FirebaseUserId)

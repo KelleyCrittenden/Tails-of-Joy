@@ -17,19 +17,6 @@ export default function Comment({ comment }) {
                     {/* <div>{comment.userProfile.username}</div> */}
                     <div>{comment.createDateTime}</div>
                     <div className="commentTextArea">{comment.content}</div>
-                    {/* <div>
-                        {(currentUser === comment.userProfileId) ?
-                            <Link to={`/posts/${postId}/comments/${comment.id}/delete`}>
-                                <Button color="danger" className="commentButton">Delete</Button>
-                            </Link>
-                            : <div></div>}
-
-                        {(currentUser === comment.userProfileId) ?
-                            <Link to={`/posts/${postId}/comments/${comment.id}/edit`}>
-                                <Button className="commentButton">Edit</Button>
-                            </Link>
-                            : <div></div>}
-                    </div> */}
 
                     {(currentUser === comment.userProfileId) ?
 

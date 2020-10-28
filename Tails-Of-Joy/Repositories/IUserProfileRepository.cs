@@ -9,5 +9,6 @@ namespace Tails_Of_Joy.Repositories
         List<UserProfile> GetAllUserProfiles();
         UserProfile GetByFirebaseUserId(string firebaseUserId);
         UserProfile GetUserProfileById(int id);
+        void UpdateUserProfile(UserProfile userProfile);
     }
 }

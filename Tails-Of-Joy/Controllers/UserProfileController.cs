@@ -36,5 +36,16 @@ namespace Tails_Of_Joy.Controllers
             return CreatedAtAction(
                 nameof(GetByFirebaseUserId), new { firebaseUserId = userProfile.FirebaseUserId }, userProfile);
         }
+
+        [HttpGet("q={id}")]
+        public IActionResult Get(int id)
+        {
+            var userProfile = _userProfileRepository.GetUserProfileById(id);
+            if (userProfile != null)
+            {
+                NotFound();
+            }
+            return Ok(userProfile);
+        }
     }
 }

@@ -50,7 +50,7 @@ const CommentEdit = () => {
                         onChange={handleFieldChange}
                         type="text"
                         id="Content"
-                        placeholder="Enter Comment"
+                        defaultValue={comment.content}
                     />
 
                     <Button
