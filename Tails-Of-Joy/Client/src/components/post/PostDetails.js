@@ -1,18 +1,25 @@
-import { Link, NavLink, useHistory, useParams } from "react-router-dom";
-import { PostContext } from "../../providers/PostProvider";
+import { useHistory, useParams, Link } from "react-router-dom";
 import React, { useContext, useEffect, useState } from "react";
-import { Card, CardImg, CardBody, Row, Button, Col } from "reactstrap";
-import Post from "./Post";
+import { Card, CardImg, CardBody, Row, ListGroup, Col, Button } from "reactstrap";
+import { PostContext } from "../../providers/PostProvider";
+import { CommentContext } from "../../providers/CommentProvider"
+import Comment from "../comment/Comment"
 
 const PostDetails = () => {
 
     const { id } = useParams();
     const history = useHistory();
     const { post, getPostById } = useContext(PostContext);
+    const { comments, getAllCommentsForPost } = useContext(CommentContext);
+    console.log("comments", comments)
 
     useEffect(() => {
         getPostById(id);
-    }, [id]);
+    }, []);
+
+    useEffect(() => {
+        getAllCommentsForPost(id)
+    }, []);
 
     return (
         <>
@@ -31,6 +38,7 @@ const PostDetails = () => {
                         <h4>Posted On: {post.createDateTime}</h4>
                     </Col>
 
+
                 </Row>
                 <Row margin="m-4">
                 </Row>
@@ -38,6 +46,27 @@ const PostDetails = () => {
                     <CardImg className="postDetailImg" top src={post.imageLocation} alt={post.title} />
                 </CardBody>
             </Card>
+
+            <Link to={`/comment/add/${id}`}>
+                <Button id="addCommentButton"> Add Comment </Button>
+            </Link>
+
+            <h4>Comments: </h4>
+            {(comments.length > 0) ?
+
+
+                < ListGroup >
+                    {
+                        comments.map(c =>
+
+                            < Comment key={c.id} comment={c} />
+                        )
+                    }
+                </ListGroup>
+                :
+                null
+            }
+
         </>
 
 

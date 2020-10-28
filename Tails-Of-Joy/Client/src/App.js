@@ -7,6 +7,7 @@ import { ApplicationViews } from "./components/ApplicationViews";
 import { UserProfileProvider } from "./providers/UserProfileProvider";
 import { AnimalProvider } from './providers/AnimalProvider';
 import { PostProvider } from './providers/PostProvider';
+import { CommentProvider } from './providers/CommentProvider';
 
 function App() {
   return (
@@ -14,8 +15,10 @@ function App() {
       <UserProfileProvider>
         <AnimalProvider>
           <PostProvider>
-            <Header />
-            <ApplicationViews />
+            <CommentProvider>
+              <Header />
+              <ApplicationViews />
+            </CommentProvider>
           </PostProvider>
         </AnimalProvider>
       </UserProfileProvider>

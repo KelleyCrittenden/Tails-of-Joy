@@ -9,6 +9,7 @@ const AnimalDetails = () => {
     const history = useHistory();
     const { animal, getAnimalById } = useContext(AnimalContext);
 
+
     useEffect(() => {
         getAnimalById(id);
     }, [id]);

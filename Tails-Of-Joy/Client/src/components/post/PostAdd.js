@@ -21,6 +21,7 @@ const PostAdd = () => {
     const newPost = (e) => {
         e.preventDefault();
         addPost(post);
+        console.log("added post", post)
         history.push("/post");
     }
 

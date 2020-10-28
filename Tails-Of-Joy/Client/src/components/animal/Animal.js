@@ -13,11 +13,11 @@ export default function Animal({ animal }) {
                 <h5>{animal.breed}</h5>
                 <p>{animal.title}</p>
 
-                <Button onClick={() => history.push(`/animal/details/${animal.id}`)}></Button>
+                <Button onClick={() => history.push(`/animal/details/${animal.id}`)}>Details</Button>
 
                 <>
-                    <Button onClick={() => history.push(`/animal/edit/${animal.id}`)}></Button>
-                    <Button onClick={() => history.push(`/animal/delete/${animal.id}`)}></Button>
+                    <Button onClick={() => history.push(`/animal/edit/${animal.id}`)}>Edit</Button>
+                    <Button onClick={() => history.push(`/animal/delete/${animal.id}`)}>Delete</Button>
                 </>
 
             </CardBody>

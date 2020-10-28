@@ -39,14 +39,14 @@ CREATE TABLE [UserProfile] (
 
 CREATE TABLE [Animal] (
   [Id] integer PRIMARY KEY IDENTITY,
-  [IsAdoptable] integer NOT NULL DEFAULT 0,
+  [IsAdoptable] bit NOT NULL DEFAULT 1,
   [Name] nvarchar(20) NOT NULL,
   [Breed] nvarchar(50) NOT NULL,
   [Gender] nvarchar(20) NOT NULL,
   [Age] nvarchar(20) NOT NULL,
   [Size] nvarchar(20) NOT NULL,
-  [ChildFriendly] integer NOT NULL DEFAULT 0,
-  [SmallAnimalFriendly] integer NOT NULL DEFAULT 0,
+  [ChildFriendly] bit NOT NULL DEFAULT 1,
+  [SmallAnimalFriendly] bit NOT NULL DEFAULT 1,
   [Title] nvarchar(150) NOT NULL,
   [Content] text NOT NULL,
   [ImageLocation] nvarchar(255) NOT NULL,

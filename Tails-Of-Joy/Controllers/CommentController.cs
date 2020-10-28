@@ -26,7 +26,7 @@ namespace Tails_Of_Joy.Controllers
         }
 
         //this will show the whole list of comments for that specific post
-        [HttpGet("GetAllCommentsByPost/{id}")]
+        [HttpGet("getAllCommentsForPost/{id}")]
         public IActionResult GetAllCommentsByPost(int id)
         {
             return Ok(_commentRepository.GetAllCommentsByPostId(id));
@@ -60,11 +60,7 @@ namespace Tails_Of_Joy.Controllers
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
-            var currentUserProfile = GetCurrentUserProfile();
-            if (currentUserProfile == null)
-            {
-                return Unauthorized();
-            }
+
             _commentRepository.DeleteComment(id);
             return NoContent();
         }

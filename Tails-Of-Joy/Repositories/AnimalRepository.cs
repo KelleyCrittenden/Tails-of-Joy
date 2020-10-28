@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
 using Tails_Of_Joy.Models;
 using Tails_Of_Joy.Utils;
@@ -19,7 +20,7 @@ namespace Tails_Of_Joy.Repositories
                     cmd.CommandText = @"
                                SELECT Id, IsAdoptable, Name, Breed, Gender, Age, Size, ChildFriendly, SmallAnimalFriendly, Title, Content, ImageLocation
                                 FROM Animal
-                                WHERE IsAdoptable = 0
+                                WHERE IsAdoptable = 1
                                 ORDER BY Name ASC";
 
                     var reader = cmd.ExecuteReader();
@@ -31,14 +32,14 @@ namespace Tails_Of_Joy.Repositories
                         animals.Add(new Animal()
                         {
                             Id = reader.GetInt32(reader.GetOrdinal("Id")),
-                            IsAdoptable = reader.GetInt32(reader.GetOrdinal("IsAdoptable")),
+                            IsAdoptable = reader.GetBoolean(reader.GetOrdinal("IsAdoptable")),
                             Name = reader.GetString(reader.GetOrdinal("Name")),
                             Breed = reader.GetString(reader.GetOrdinal("Breed")),
                             Gender = reader.GetString(reader.GetOrdinal("Gender")),
                             Age = reader.GetString(reader.GetOrdinal("Age")),
                             Size = reader.GetString(reader.GetOrdinal("Size")),
-                            ChildFriendly = reader.GetInt32(reader.GetOrdinal("ChildFriendly")),
-                            SmallAnimalFriendly = reader.GetInt32(reader.GetOrdinal("SmallAnimalFriendly")),
+                            ChildFriendly = reader.GetBoolean(reader.GetOrdinal("ChildFriendly")),
+                            SmallAnimalFriendly = reader.GetBoolean(reader.GetOrdinal("SmallAnimalFriendly")),
                             Title = reader.GetString(reader.GetOrdinal("Title")),
                             Content = reader.GetString(reader.GetOrdinal("Content")),
                             ImageLocation = reader.GetString(reader.GetOrdinal("ImageLocation")),
@@ -62,7 +63,7 @@ namespace Tails_Of_Joy.Repositories
                     cmd.CommandText = @"
                                SELECT Id, IsAdoptable, Name, Breed, Gender, Age, Size, ChildFriendly, SmallAnimalFriendly, Title, Content, ImageLocation
                                 FROM Animal
-                                WHERE IsAdoptable = 1
+                                WHERE IsAdoptable = 0
                                 ORDER BY Name ASC";
 
                     var reader = cmd.ExecuteReader();
@@ -74,14 +75,14 @@ namespace Tails_Of_Joy.Repositories
                         animals.Add(new Animal()
                         {
                             Id = reader.GetInt32(reader.GetOrdinal("Id")),
-                            IsAdoptable = reader.GetInt32(reader.GetOrdinal("IsAdoptable")),
+                            IsAdoptable = reader.GetBoolean(reader.GetOrdinal("IsAdoptable")),
                             Name = reader.GetString(reader.GetOrdinal("Name")),
                             Breed = reader.GetString(reader.GetOrdinal("Breed")),
                             Gender = reader.GetString(reader.GetOrdinal("Gender")),
                             Age = reader.GetString(reader.GetOrdinal("Age")),
                             Size = reader.GetString(reader.GetOrdinal("Size")),
-                            ChildFriendly = reader.GetInt32(reader.GetOrdinal("ChildFriendly")),
-                            SmallAnimalFriendly = reader.GetInt32(reader.GetOrdinal("SmallAnimalFriendly")),
+                            ChildFriendly = reader.GetBoolean(reader.GetOrdinal("ChildFriendly")),
+                            SmallAnimalFriendly = reader.GetBoolean(reader.GetOrdinal("SmallAnimalFriendly")),
                             Title = reader.GetString(reader.GetOrdinal("Title")),
                             Content = reader.GetString(reader.GetOrdinal("Content")),
                             ImageLocation = reader.GetString(reader.GetOrdinal("ImageLocation")),
@@ -133,16 +134,18 @@ namespace Tails_Of_Joy.Repositories
                 using (var cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-                        UPDATE Animal
-                        SET IsAdoptable = @isAdoptable
-                        WHERE Id = @id";
-
-                    DbUtils.AddParameter(cmd, "isAdoptable", 1);
+                            UPDATE Animal
+                            SET IsAdoptable = @isAdoptable
+                            Where Id = @id
+                            ";
+                    DbUtils.AddParameter(cmd, "isAdoptable", 0);
                     DbUtils.AddParameter(cmd, "@id", id);
                     cmd.ExecuteNonQuery();
                 }
             }
         }
+
+    
 
         public void Update(Animal animal)
         {
@@ -205,14 +208,14 @@ namespace Tails_Of_Joy.Repositories
                         Animal animal = new Animal()
                         {
                             Id = reader.GetInt32(reader.GetOrdinal("Id")),
-                            IsAdoptable = reader.GetInt32(reader.GetOrdinal("IsAdoptable")),
+                            IsAdoptable = reader.GetBoolean(reader.GetOrdinal("IsAdoptable")),
                             Name = reader.GetString(reader.GetOrdinal("Name")),
                             Breed = reader.GetString(reader.GetOrdinal("Breed")),
                             Gender = reader.GetString(reader.GetOrdinal("Gender")),
                             Age = reader.GetString(reader.GetOrdinal("Age")),
                             Size = reader.GetString(reader.GetOrdinal("Size")),
-                            ChildFriendly = reader.GetInt32(reader.GetOrdinal("ChildFriendly")),
-                            SmallAnimalFriendly = reader.GetInt32(reader.GetOrdinal("SmallAnimalFriendly")),
+                            ChildFriendly = reader.GetBoolean(reader.GetOrdinal("ChildFriendly")),
+                            SmallAnimalFriendly = reader.GetBoolean(reader.GetOrdinal("SmallAnimalFriendly")),
                             Title = reader.GetString(reader.GetOrdinal("Title")),
                             Content = reader.GetString(reader.GetOrdinal("Content")),
                             ImageLocation = reader.GetString(reader.GetOrdinal("ImageLocation")),
