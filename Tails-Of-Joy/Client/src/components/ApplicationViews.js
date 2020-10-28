@@ -16,6 +16,7 @@ import PostDelete from "./post/PostDelete"
 import PostEdit from "./post/PostEdit"
 import CommentAdd from "./comment/CommentAdd"
 import CommentDelete from "./comment/CommentDelete"
+import CommentEdit from "./comment/CommentEdit"
 
 
 
@@ -73,6 +74,10 @@ export function ApplicationViews() {
 
                 <Route exact path="/comment/delete/:id">
                     {isLoggedIn ? <CommentDelete /> : <Redirect to="/login" />}
+                </Route>
+
+                <Route exact path="/comment/edit/:id">
+                    {isLoggedIn ? <CommentEdit /> : <Redirect to="/login" />}
                 </Route>
 
                 <Route path="/login">

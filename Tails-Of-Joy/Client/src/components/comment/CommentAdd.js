@@ -19,7 +19,6 @@ const CommentAdd = () => {
         Content: ""
     })
 
-
     const newComment = (e) => {
         e.preventDefault();
         addComment(comment);
@@ -30,6 +29,10 @@ const CommentAdd = () => {
         const stateToChange = { ...comment };
         stateToChange[e.target.id] = e.target.value;
         setComment(stateToChange);
+    }
+
+    const Cancel = () => {
+        history.push("/post")
     }
 
     return (
@@ -51,7 +54,9 @@ const CommentAdd = () => {
                         variant="custom"
                         type="submit">
                         Save Comment
-                    </Button>
+                    </Button>&nbsp;
+
+<Button onClick={Cancel}>Cancel</Button>
 
                 </FormGroup>
             </Form>
