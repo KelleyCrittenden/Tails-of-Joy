@@ -36,10 +36,10 @@ namespace Tails_Of_Joy.Repositories
                          FROM Post p
                               LEFT JOIN UserProfile u ON p.UserProfileId = u.id
                               LEFT JOIN UserType ut ON u.UserTypeId = ut.id
-                    WHERE IsDeleted = 0";
+                    WHERE p.IsDeleted = 0 AND u.IsDeleted = 0";
 
                     var reader = cmd.ExecuteReader();
-
+                     
                     var posts = new List<Post>();
 
                     while (reader.Read())

@@ -6,10 +6,12 @@ import "firebase/auth";
 export const UserProfileContext = createContext();
 
 export function UserProfileProvider(props) {
-    const apiUrl = "/api/userprofile";
+    const apiUrl = "/api/userProfile";
 
     const userProfile = sessionStorage.getItem("userProfile");
     const [isLoggedIn, setIsLoggedIn] = useState(userProfile != null);
+
+    const [singleUser, setSingleUser] = useState({});
 
     const [isFirebaseReady, setIsFirebaseReady] = useState(false);
 
@@ -69,8 +71,44 @@ export function UserProfileProvider(props) {
             }).then(resp => resp.json()));
     };
 
+    const getUserProfileById = (id) => {
+        return getToken().then((token) => {
+            fetch((`${apiUrl}/q=${id}`), {
+                method: "GET",
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                }
+            }).then(res => res.json()).then(setSingleUser)
+        })
+    };
+
+    const updateUserProfile = (singleUser) => {
+        getToken().then((token) => {
+            fetch(`${apiUrl}/edit/${singleUser.id}`, {
+                method: "PUT",
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(singleUser),
+            })
+        })
+    }
+
+    const deleteUserProfile = (id) => {
+        return getToken().then((token) => {
+            fetch(`/api/userprofile/delete/${id}`, {
+                method: "PUT",
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                    "Content-Type": "application/json"
+                },
+            })
+        })
+    }
+
     return (
-        <UserProfileContext.Provider value={{ userProfile, isLoggedIn, login, logout, register, getToken }}>
+        <UserProfileContext.Provider value={{ userProfile, singleUser, isLoggedIn, login, logout, register, getToken, getUserProfileById, updateUserProfile, deleteUserProfile }}>
             {isFirebaseReady
                 ? props.children
                 : <Spinner className="app-spinner dark" />}

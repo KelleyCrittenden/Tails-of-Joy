@@ -1,6 +1,7 @@
 import { useHistory, useParams, Link } from "react-router-dom";
 import React, { useContext, useEffect, useState } from "react";
 import { Card, CardImg, CardBody, Row, ListGroup, Col, Button } from "reactstrap";
+import { UserProfileContext } from "../../providers/UserProfileProvider";
 import { PostContext } from "../../providers/PostProvider";
 import { CommentContext } from "../../providers/CommentProvider"
 import Comment from "../comment/Comment"
@@ -8,10 +9,9 @@ import Comment from "../comment/Comment"
 const PostDetails = () => {
 
     const { id } = useParams();
-    const history = useHistory();
     const { post, getPostById } = useContext(PostContext);
     const { comments, getAllCommentsForPost } = useContext(CommentContext);
-    console.log("comments", comments)
+    const { userProfile } = useContext(UserProfileContext)
 
     useEffect(() => {
         getPostById(id);
@@ -32,7 +32,7 @@ const PostDetails = () => {
                         <h1>{post.content}</h1>
                     </Col>
                     <Col sm="6">
-                        {/* <h4>Posted By: {post.userProfile.username}</h4> */}
+                        <h6>Posted By: {post.userProfile.firstName}</h6>
                     </Col>
                     <Col sm="6">
                         <h4>Posted On: {post.createDateTime}</h4>
@@ -51,11 +51,11 @@ const PostDetails = () => {
                 <Button id="addCommentButton"> Add Comment </Button>
             </Link>
 
-            <h4>Comments: </h4>
             {(comments.length > 0) ?
 
 
                 < ListGroup >
+                    <h4>Comments: </h4>
                     {
                         comments.map(c =>
 

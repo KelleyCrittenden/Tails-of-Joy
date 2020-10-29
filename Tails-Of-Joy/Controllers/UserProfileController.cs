@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 using Tails_Of_Joy.Models;
 using Tails_Of_Joy.Repositories;
 
@@ -35,6 +36,48 @@ namespace Tails_Of_Joy.Controllers
             _userProfileRepository.Add(userProfile);
             return CreatedAtAction(
                 nameof(GetByFirebaseUserId), new { firebaseUserId = userProfile.FirebaseUserId }, userProfile);
+        }
+
+        [HttpGet("q={id}")]
+        public IActionResult Get(int id)
+        {
+            var userProfile = _userProfileRepository.GetUserProfileById(id);
+            //if (userProfile != null)
+            //{
+            //    NotFound();
+            //}
+            return Ok(userProfile);
+        }
+
+        [HttpPut("edit/{id}")]
+        public IActionResult Put(int id, UserProfile userProfile)
+        {
+            //var currentUserProfile = GetCurrentUserProfile();
+            //if (currentUserProfile == null)
+            //{
+            //    return Unauthorized();
+            //}
+            _userProfileRepository.UpdateUserProfile(userProfile);
+            return NoContent();
+        }
+
+
+        [HttpPut("delete/{id}")]
+        public IActionResult Delete(int id)
+        {
+            var currentUserProfile = GetCurrentUserProfile();
+            if (currentUserProfile == null)
+            {
+                return Unauthorized();
+            }
+            _userProfileRepository.DeleteUserProfile(id);
+            return NoContent();
+        }
+
+        private UserProfile GetCurrentUserProfile()
+        {
+            var firebaseUserId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            return _userProfileRepository.GetByFirebaseUserId(firebaseUserId);
         }
     }
 }

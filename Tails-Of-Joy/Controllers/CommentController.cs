@@ -60,6 +60,11 @@ namespace Tails_Of_Joy.Controllers
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
+            var currentUserProfile = GetCurrentUserProfile();
+            if (currentUserProfile == null)
+            {
+                return Unauthorized();
+            }
 
             _commentRepository.DeleteComment(id);
             return NoContent();
