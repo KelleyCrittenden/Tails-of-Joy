@@ -22,9 +22,9 @@ import UserProfileDelete from "./userProfile/UserProfileDelete"
 import UserProfileEdit from "./userProfile/UserProfileEdit"
 
 export function ApplicationViews() {
-    const { isLoggedIn } = useContext(UserProfileContext);
+    const { isLoggedIn, activeUser } = useContext(UserProfileContext);
 
-    const user = JSON.parse(sessionStorage.getItem("userProfile")).id
+    console.log("active user", activeUser)
 
     return (
         <main>
@@ -39,15 +39,15 @@ export function ApplicationViews() {
                 </Route>
 
                 <Route exact path="/animal/add">
-                    {isLoggedIn && user.userTypeId === 1 ? <AnimalAdd /> : <Redirect to="/login" />}
+                    {isLoggedIn && activeUser.userTypeId === 1 ? <AnimalAdd /> : <Redirect to="/login" />}
                 </Route>
 
                 <Route exact path="/animal/delete/:id">
-                    {isLoggedIn && user.userTypeId === 1 ? <AnimalDelete /> : <Redirect to="/login" />}
+                    {isLoggedIn && activeUser.userTypeId === 1 ? <AnimalDelete /> : <Redirect to="/login" />}
                 </Route>
 
                 <Route exact path="/animal/edit/:id">
-                    {isLoggedIn && user.userTypeId === 1 ? <AnimalEdit /> : <Redirect to="/login" />}
+                    {isLoggedIn && activeUser.userTypeId === 1 ? <AnimalEdit /> : <Redirect to="/login" />}
                 </Route>
 
                 <Route exact path="/post">

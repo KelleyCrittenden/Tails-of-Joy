@@ -5,6 +5,8 @@ import { useHistory } from "react-router-dom";
 
 export default function Animal({ animal }) {
     const history = useHistory();
+    const user = JSON.parse(sessionStorage.getItem("userProfile")).id
+
     return (
         <Card className="m-4" >
             <CardBody>
@@ -14,11 +16,13 @@ export default function Animal({ animal }) {
                 <p>{animal.title}</p>
 
                 <Button onClick={() => history.push(`/animal/details/${animal.id}`)}>Details</Button>
+                {user == 1 ?
+                    <>
+                        <Button onClick={() => history.push(`/animal/edit/${animal.id}`)}>Edit</Button>
+                        <Button onClick={() => history.push(`/animal/delete/${animal.id}`)}>Delete</Button>
+                    </>
+                    : null}
 
-                <>
-                    <Button onClick={() => history.push(`/animal/edit/${animal.id}`)}>Edit</Button>
-                    <Button onClick={() => history.push(`/animal/delete/${animal.id}`)}>Delete</Button>
-                </>
 
             </CardBody>
         </Card>
