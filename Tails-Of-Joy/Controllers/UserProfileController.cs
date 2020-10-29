@@ -42,21 +42,21 @@ namespace Tails_Of_Joy.Controllers
         public IActionResult Get(int id)
         {
             var userProfile = _userProfileRepository.GetUserProfileById(id);
-            if (userProfile != null)
-            {
-                NotFound();
-            }
+            //if (userProfile != null)
+            //{
+            //    NotFound();
+            //}
             return Ok(userProfile);
         }
 
         [HttpPut("edit/{id}")]
         public IActionResult Put(int id, UserProfile userProfile)
         {
-            var currentUserProfile = GetCurrentUserProfile();
-            if (currentUserProfile == null)
-            {
-                return Unauthorized();
-            }
+            //var currentUserProfile = GetCurrentUserProfile();
+            //if (currentUserProfile == null)
+            //{
+            //    return Unauthorized();
+            //}
             _userProfileRepository.UpdateUserProfile(userProfile);
             return NoContent();
         }
