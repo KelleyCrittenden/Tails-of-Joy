@@ -95,9 +95,20 @@ export function UserProfileProvider(props) {
         })
     }
 
+    const deleteUserProfile = (id) => {
+        return getToken().then((token) => {
+            fetch(`/api/userprofile/delete/${id}`, {
+                method: "PUT",
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                    "Content-Type": "application/json"
+                },
+            })
+        })
+    }
 
     return (
-        <UserProfileContext.Provider value={{ userProfile, singleUser, isLoggedIn, login, logout, register, getToken, getUserProfileById, updateUserProfile }}>
+        <UserProfileContext.Provider value={{ userProfile, singleUser, isLoggedIn, login, logout, register, getToken, getUserProfileById, updateUserProfile, deleteUserProfile }}>
             {isFirebaseReady
                 ? props.children
                 : <Spinner className="app-spinner dark" />}

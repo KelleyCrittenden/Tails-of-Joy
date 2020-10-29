@@ -18,10 +18,8 @@ import CommentAdd from "./comment/CommentAdd"
 import CommentDelete from "./comment/CommentDelete"
 import CommentEdit from "./comment/CommentEdit"
 import UserProfileDetails from "./userProfile/UserProfileDetails"
+import UserProfileDelete from "./userProfile/UserProfileDelete"
 import UserProfileEdit from "./userProfile/UserProfileEdit"
-
-
-
 
 export function ApplicationViews() {
     const { isLoggedIn } = useContext(UserProfileContext);
@@ -84,6 +82,10 @@ export function ApplicationViews() {
 
                 <Route exact path="/userprofile/q=:id">
                     {isLoggedIn ? <UserProfileDetails /> : <Redirect to="/login" />}
+                </Route>
+
+                <Route exact path="/userprofile/delete/:id">
+                    {isLoggedIn ? <UserProfileDelete /> : <Redirect to="/login" />}
                 </Route>
 
                 <Route exact path="/userprofile/edit/:id">
