@@ -175,10 +175,11 @@ namespace Tails_Of_Joy.Repositories
                     DbUtils.AddParameter(cmd, "@breed", animal.Breed);
                     DbUtils.AddParameter(cmd, "@gender", animal.Gender);
                     DbUtils.AddParameter(cmd, "@age", animal.Age);
-                    DbUtils.AddParameter(cmd, "@breed", animal.Size);
+                    DbUtils.AddParameter(cmd, "@size", animal.Size);
                     DbUtils.AddParameter(cmd, "@childFriendly", animal.ChildFriendly);
                     DbUtils.AddParameter(cmd, "@smallAnimalFriendly", animal.SmallAnimalFriendly);
                     DbUtils.AddParameter(cmd, "@title", animal.Title);
+                    DbUtils.AddParameter(cmd, "@content", animal.Content);
                     DbUtils.AddParameter(cmd, "@imageLocation", animal.ImageLocation);
                     DbUtils.AddParameter(cmd, "@id", animal.Id);
 

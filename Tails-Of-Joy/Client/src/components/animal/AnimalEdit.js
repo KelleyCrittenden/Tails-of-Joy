@@ -29,6 +29,7 @@ const AnimalEdit = () => {
 
     useEffect(() => {
         setEditedAnimal(animal)
+        console.log(setEditedAnimal, "setEdited Animal")
     }, [animal]);
 
     const Cancel = () => {

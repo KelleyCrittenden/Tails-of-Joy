@@ -24,8 +24,6 @@ import UserProfileEdit from "./userProfile/UserProfileEdit"
 export function ApplicationViews() {
     const { isLoggedIn, activeUser } = useContext(UserProfileContext);
 
-    console.log("active user", activeUser)
-
     return (
         <main>
             <Switch>
