@@ -32,7 +32,7 @@ export default function Header() {
                                     <NavLink tag={RRNavLink} to="/post">Posts</NavLink>
                                 </NavItem>
                                 <NavItem>
-                                    <NavLink tag={RRNavLink} to="/userprofile">My Profile</NavLink>
+                                    <NavLink tag={RRNavLink} to="/myprofile">My Profile</NavLink>
                                 </NavItem>
                                 <NavItem>
                                     <a aria-current="page" className="nav-link"

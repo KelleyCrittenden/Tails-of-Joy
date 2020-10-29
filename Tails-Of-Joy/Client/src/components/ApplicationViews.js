@@ -20,6 +20,7 @@ import CommentEdit from "./comment/CommentEdit"
 import UserProfileDetails from "./userProfile/UserProfileDetails"
 import UserProfileDelete from "./userProfile/UserProfileDelete"
 import UserProfileEdit from "./userProfile/UserProfileEdit"
+import MyProfileDetails from "./userProfile/MyProfileDetails"
 
 export function ApplicationViews() {
     const { isLoggedIn, activeUser } = useContext(UserProfileContext);
@@ -90,6 +91,10 @@ export function ApplicationViews() {
 
                 <Route exact path="/userprofile/edit/:id">
                     {isLoggedIn ? <UserProfileEdit /> : <Redirect to="/login" />}
+                </Route>
+
+                <Route exact path="/myprofile/">
+                    {isLoggedIn ? <MyProfileDetails /> : <Redirect to="/login" />}
                 </Route>
 
                 <Route path="/login">

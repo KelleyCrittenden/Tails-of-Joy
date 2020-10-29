@@ -19,7 +19,6 @@ const AnimalEdit = () => {
     const saveEditedAnimal = (e) => {
         e.preventDefault();
         updateAnimal(editedAnimal)
-        console.log(editedAnimal, "Edited Animal")
         history.push("/animal")
     };
 
@@ -29,8 +28,7 @@ const AnimalEdit = () => {
 
     useEffect(() => {
         setEditedAnimal(animal)
-        console.log(setEditedAnimal, "setEdited Animal")
-    }, [animal]);
+    }, []);
 
     const Cancel = () => {
         history.push("/animal")
