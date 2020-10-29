@@ -9,6 +9,11 @@ export default function AnimlalList() {
     const history = useHistory();
     const { animals, getAllAvailableAnimals } = useContext(AnimalContext)
 
+    const user = JSON.parse(sessionStorage.getItem("userProfile")).id
+
+    console.log(user, "user")
+
+
     const Create = () => {
         history.push("animal/add")
     }
@@ -17,13 +22,18 @@ export default function AnimlalList() {
         getAllAvailableAnimals();
     }, []);
 
+
     return (
         <>
-            <div>
-                <Button onClick={Create}>
-                    Add Animal
+            {user == 1 ?
+                <div>
+                    <Button onClick={Create}>
+                        Add Animal
                 </Button>
-            </div>
+                </div>
+                :
+
+                null}
 
             <section>
                 {animals.map((animal) => (

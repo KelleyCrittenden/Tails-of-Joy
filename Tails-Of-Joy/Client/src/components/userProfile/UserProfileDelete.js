@@ -39,7 +39,6 @@ const ConfirmUserProfileDelete = () => {
 
             <p>Are you sure you want to delete your account?</p>
 
-
             <Button color="danger" id={singleUser.id} onClick={handleDelete}>Delete</Button>&nbsp;
 
             <Button onClick={Cancel}>Cancel</Button>

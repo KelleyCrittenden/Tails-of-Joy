@@ -24,6 +24,8 @@ import UserProfileEdit from "./userProfile/UserProfileEdit"
 export function ApplicationViews() {
     const { isLoggedIn } = useContext(UserProfileContext);
 
+    const user = JSON.parse(sessionStorage.getItem("userProfile")).id
+
     return (
         <main>
             <Switch>
@@ -37,15 +39,15 @@ export function ApplicationViews() {
                 </Route>
 
                 <Route exact path="/animal/add">
-                    {isLoggedIn ? <AnimalAdd /> : <Redirect to="/login" />}
+                    {isLoggedIn && user.userTypeId === 1 ? <AnimalAdd /> : <Redirect to="/login" />}
                 </Route>
 
                 <Route exact path="/animal/delete/:id">
-                    {isLoggedIn ? <AnimalDelete /> : <Redirect to="/login" />}
+                    {isLoggedIn && user.userTypeId === 1 ? <AnimalDelete /> : <Redirect to="/login" />}
                 </Route>
 
                 <Route exact path="/animal/edit/:id">
-                    {isLoggedIn ? <AnimalEdit /> : <Redirect to="/login" />}
+                    {isLoggedIn && user.userTypeId === 1 ? <AnimalEdit /> : <Redirect to="/login" />}
                 </Route>
 
                 <Route exact path="/post">
