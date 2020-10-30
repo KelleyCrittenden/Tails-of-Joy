@@ -218,11 +218,30 @@ namespace Tails_Of_Joy.Repositories
                         WHERE Id = @id";
 
                     DbUtils.AddParameter(cmd, "@id", adoption.Id);
-                    DbUtils.AddParameter(cmd, "isApproved", 2);
+                    DbUtils.AddParameter(cmd, "@isApproved", 2);
 
                     cmd.ExecuteNonQuery();
                 }
              }
+
+            //Update Animal Status to unavialable if Adoption is Approved
+            using (var conn = Connection)
+            {
+                conn.Open();
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"
+                        UPDATE Animal
+                        SET IsAdoptable = @isAdoptable
+                        WHERE Id = @id";
+
+                    
+                    DbUtils.AddParameter(cmd, "@isAdoptable", 0);
+                    DbUtils.AddParameter(cmd, "@id", adoption.AnimalId);
+
+                    cmd.ExecuteNonQuery();
+                }
+            }
         }
 
         public Adoption GetById(int id)

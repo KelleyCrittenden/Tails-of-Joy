@@ -34,7 +34,14 @@ const MyProfileDetails = () => {
 
                     <div>
                         <Button onClick={() => history.push(`/userProfile/edit/${singleUser.id}`)}>Edit</Button>
-                        <Button onClick={() => history.push(`/userProfile/delete/${singleUser.id}`)}>Delete</Button>
+
+                        {currentUser == 2 ?
+
+
+                            <Button onClick={() => history.push(`/userProfile/delete/${singleUser.id}`)}>Delete</Button>
+                            :
+
+                            null}
                     </div>
 
 
