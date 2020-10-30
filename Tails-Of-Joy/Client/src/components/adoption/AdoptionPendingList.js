@@ -4,29 +4,25 @@ import { AdoptionContext } from "../../providers/AdoptionProvider";
 import { Button, ListGroup } from "reactstrap";
 import Adoption from "./Adoption"
 
-export default function AdoptionApprovedList() {
+export default function AdoptionPendingList() {
     const history = useHistory();
-    const { adoptions, getAllApprovedAdoptions } = useContext(AdoptionContext)
+    const { adoptions, getAllPendingAdoptions } = useContext(AdoptionContext)
     const user = JSON.parse(sessionStorage.getItem("userProfile")).id
-
-    console.log(user, "user")
 
     const Create = () => {
         history.push("post/add")
     }
 
     useEffect(() => {
-        getAllApprovedAdoptions();
+        getAllPendingAdoptions();
     }, []);
 
-    console.log(adoptions, "adoptions")
+    console.log(adoptions, "pending adoptions")
 
     return (
         <>
+            asdfasdfasdf
             {(adoptions.length > 0) ?
-
-
-
                 <ListGroup>
                     {adoptions.map((adoption) => (
                         <Adoption key={adoption.id} adoption={adoption} />

@@ -21,7 +21,8 @@ import UserProfileDetails from "./userProfile/UserProfileDetails"
 import UserProfileDelete from "./userProfile/UserProfileDelete"
 import UserProfileEdit from "./userProfile/UserProfileEdit"
 import MyProfileDetails from "./userProfile/MyProfileDetails"
-import AdoptionList from "./adoption/AdoptionList"
+import AdoptionApprovalList from "./adoption/AdoptionApprovedList"
+import AdoptionPendingList from "./adoption/AdoptionPendingList"
 
 export function ApplicationViews() {
     const { isLoggedIn, activeUser } = useContext(UserProfileContext);
@@ -94,12 +95,16 @@ export function ApplicationViews() {
                     {isLoggedIn ? <UserProfileEdit /> : <Redirect to="/login" />}
                 </Route>
 
-                <Route exact path="/myprofile/:id">
+                <Route exact path="/myprofile">
                     {isLoggedIn ? <MyProfileDetails /> : <Redirect to="/login" />}
                 </Route>
 
                 <Route exact path="/adoption">
-                    {isLoggedIn && activeUser.userTypeId === 1 ? <AdoptionList /> : <Redirect to="/login" />}
+                    {isLoggedIn && activeUser.userTypeId === 1 ? <AdoptionApprovalList /> : <Redirect to="/login" />}
+                </Route>
+
+                <Route exact path="/pendingAdoptions">
+                    {isLoggedIn && activeUser.userTypeId === 1 ? <AdoptionPendingList /> : <Redirect to="/login" />}
                 </Route>
 
                 <Route path="/login">

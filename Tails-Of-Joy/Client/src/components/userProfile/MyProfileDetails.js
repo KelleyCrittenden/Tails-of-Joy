@@ -10,13 +10,9 @@ const MyProfileDetails = () => {
     const { singleUser, getUserProfileById } = useContext(UserProfileContext);
     const currentUser = JSON.parse(sessionStorage.getItem('userProfile')).id;
 
-
-
     useEffect(() => {
         getUserProfileById(currentUser);
     }, [currentUser]);
-
-    console.log(singleUser, "current user Id")
 
     return (
         <>

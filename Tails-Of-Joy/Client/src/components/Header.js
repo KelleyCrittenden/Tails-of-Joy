@@ -12,7 +12,7 @@ import {
 import { UserProfileContext } from "../providers/UserProfileProvider";
 
 export default function Header() {
-    const { isLoggedIn, logout } = useContext(UserProfileContext);
+    const { isLoggedIn, logout, activeUser } = useContext(UserProfileContext);
     const [isOpen, setIsOpen] = useState(false);
     const toggle = () => setIsOpen(!isOpen);
 
@@ -37,10 +37,31 @@ export default function Header() {
                                     <NavLink tag={RRNavLink} to="/myprofile">My Profile</NavLink>
                                 </NavItem>
 
+                                {activeUser.userTypeId === 1 ?
+                                    <NavItem>
+                                        <NavLink tag={RRNavLink} to="/adoption">Adoptions</NavLink>
+                                    </NavItem>
+
+                                    : null
+                                }
+
+                                {activeUser.userTypeId === 1 ?
+                                    <NavItem>
+                                        <NavLink tag={RRNavLink} to="/pendingAdoptions">Pending Adoptions</NavLink>
+                                    </NavItem>
+
+                                    : null
+                                }
+
+
+
+
+
                                 <NavItem>
                                     <a aria-current="page" className="nav-link"
                                         style={{ cursor: "pointer" }} onClick={logout}>Logout</a>
                                 </NavItem>
+
                             </>
                         }
                         {!isLoggedIn &&
@@ -53,13 +74,6 @@ export default function Header() {
                                 </NavItem>
                             </>
                         }
-                    </Nav>
-                    <Nav navbar>
-                        {/* <NavItem>
-                            <a aria-current="page" className="nav-link"
-                                href="https://www.youtube.com/watch?v=3N_ywhx6_K0"
-                                target="_new">Grace Hopper on Letterman</a>
-                        </NavItem> */}
                     </Nav>
                 </Collapse>
             </Navbar>

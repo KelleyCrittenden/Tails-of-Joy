@@ -114,7 +114,7 @@ namespace Tails_Of_Joy.Repositories
                 using (var cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-                            SELECT ad.Id, ad.AnimalId, ad.UserProfileId, ad.IsApproved, a.Name, a.ImageLocation
+                            SELECT ad.Id, ad.AnimalId, ad.UserProfileId, ad.IsApproved, a.Name, a.ImageLocation, up.FirstName, up.LastName, up.ImageLocation
                             FROM Adoption ad
                             LEFT JOIN Animal a ON ad.AnimalId = a.Id
                             LEFT JOIN UserProfile up ON ad.UserProfileId = up.Id
@@ -135,6 +135,13 @@ namespace Tails_Of_Joy.Repositories
                             {
                                 Id = reader.GetInt32(reader.GetOrdinal("AnimalId")),
                                 Name = reader.GetString(reader.GetOrdinal("Name")),
+                                ImageLocation = reader.GetString(reader.GetOrdinal("ImageLocation"))
+                            },
+                            UserProfile = new UserProfile
+                            {
+                                Id = reader.GetInt32(reader.GetOrdinal("UserProfileId")),
+                                FirstName = reader.GetString(reader.GetOrdinal("FirstName")),
+                                LastName = reader.GetString(reader.GetOrdinal("LastName")),
                                 ImageLocation = reader.GetString(reader.GetOrdinal("ImageLocation"))
                             }
 
