@@ -26,6 +26,7 @@ namespace Tails_Of_Joy
             services.AddTransient<IAnimalRepository, AnimalRepository>();
             services.AddTransient<ICommentRepository, CommentRepository>();
             services.AddTransient<IPostRepository, PostRepository>();
+            services.AddTransient<IAdoptionRepository, AdoptionRepository>();
 
             var firebaseProjectId = Configuration.GetValue<string>("FirebaseProjectId");
             var googleTokenUrl = $"https://securetoken.google.com/{firebaseProjectId}";

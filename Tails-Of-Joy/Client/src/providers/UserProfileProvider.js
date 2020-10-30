@@ -10,11 +10,8 @@ export function UserProfileProvider(props) {
 
     const userProfile = sessionStorage.getItem("userProfile");
     const [isLoggedIn, setIsLoggedIn] = useState(userProfile != null);
-
     const [singleUser, setSingleUser] = useState({});
-
     const [isFirebaseReady, setIsFirebaseReady] = useState(false);
-
     const activeUser = JSON.parse(userProfile);
 
     useEffect(() => {

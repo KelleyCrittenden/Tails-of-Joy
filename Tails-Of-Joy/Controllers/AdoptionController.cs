@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 using Tails_Of_Joy.Models;
 using Tails_Of_Joy.Repositories;
 
@@ -10,10 +11,14 @@ namespace Tails_Of_Joy.Controllers
     [ApiController]
     public class AdoptionController : ControllerBase
     {
+        private readonly IUserProfileRepository _userProfileRepository;
         private readonly IAdoptionRepository _adoptionRepository;
-        public AdoptionController(IAdoptionRepository adoptionRepository)
+        public AdoptionController(IAdoptionRepository adoptionRepository,
+            IUserProfileRepository userProfileRepository)
         {
+            _userProfileRepository = userProfileRepository;
             _adoptionRepository = adoptionRepository;
+
         }
 
         // Displaying All Adopted Animals Attached to the User
@@ -38,6 +43,11 @@ namespace Tails_Of_Joy.Controllers
         [HttpGet]
         public IActionResult GetAllApproved()
         {
+            var currentUserProfile = GetCurrentUserProfile();
+            if (currentUserProfile == null)
+            {
+                return Unauthorized();
+            }
             return Ok(_adoptionRepository.GetAllApprovedAdoptions());
         }
 
@@ -88,6 +98,13 @@ namespace Tails_Of_Joy.Controllers
         {
             _adoptionRepository.Delete(id);
             return Ok(id);
+        }
+
+
+        private UserProfile GetCurrentUserProfile()
+        {
+            var firebaseUserId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            return _userProfileRepository.GetByFirebaseUserId(firebaseUserId);
         }
     }
 }

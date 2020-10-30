@@ -5,7 +5,7 @@ export const AdoptionContext = createContext();
 
 export const AdoptionProvider = (props) => {
     const [adoption, setAdoption] = useState({});
-    const [adoption, setAdoption] = useState([]);
+    const [adoptions, setAdoptions] = useState([]);
     const { getToken } = useContext(UserProfileContext);
 
     const getAllApprovedAdoptions = () =>
@@ -67,7 +67,7 @@ export const AdoptionProvider = (props) => {
 
     const updateAdoption = (adoption) => {
         getToken().then((token) => {
-            fetch(`/api/adoption/${animal.id}`, {
+            fetch(`/api/adoption/${adoption.id}`, {
                 method: "PUT",
                 headers: {
                     Authoriziation: `Bearer ${token}`,
@@ -90,8 +90,8 @@ export const AdoptionProvider = (props) => {
     }
 
     return (
-        <AnimalContext.Provider value={{ adoption, adoptions, getById, getByUserId, getAllPendingAdoptions, getAllApprovedAdoptions, addAdoption, updateAdoption, deleteAdoption }}>
+        <AdoptionContext.Provider value={{ adoption, adoptions, getById, getByUserId, getAllPendingAdoptions, getAllApprovedAdoptions, addAdoption, updateAdoption, deleteAdoption }}>
             {props.children}
-        </AnimalContext.Provider>
+        </AdoptionContext.Provider>
     );
 };

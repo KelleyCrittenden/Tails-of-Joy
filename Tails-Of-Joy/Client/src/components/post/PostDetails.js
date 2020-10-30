@@ -1,4 +1,4 @@
-import { useHistory, useParams, Link } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import React, { useContext, useEffect, useState } from "react";
 import { Card, CardImg, CardBody, Row, ListGroup, Col, Button } from "reactstrap";
 import { UserProfileContext } from "../../providers/UserProfileProvider";
@@ -58,7 +58,6 @@ const PostDetails = () => {
                     <h4>Comments: </h4>
                     {
                         comments.map(c =>
-
                             < Comment key={c.id} comment={c} />
                         )
                     }
