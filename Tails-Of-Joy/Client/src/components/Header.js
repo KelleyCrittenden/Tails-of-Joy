@@ -39,23 +39,11 @@ export default function Header() {
 
                                 {activeUser.userTypeId === 1 ?
                                     <NavItem>
-                                        <NavLink tag={RRNavLink} to="/adoption">Adoptions</NavLink>
-                                    </NavItem>
-
-                                    : null
-                                }
-
-                                {activeUser.userTypeId === 1 ?
-                                    <NavItem>
                                         <NavLink tag={RRNavLink} to="/pendingAdoptions">Pending Adoptions</NavLink>
                                     </NavItem>
 
                                     : null
                                 }
-
-
-
-
 
                                 <NavItem>
                                     <a aria-current="page" className="nav-link"

@@ -9,10 +9,6 @@ export default function AdoptionPendingList() {
     const { adoptions, getAllPendingAdoptions } = useContext(AdoptionContext)
     const user = JSON.parse(sessionStorage.getItem("userProfile")).id
 
-    const Create = () => {
-        history.push("post/add")
-    }
-
     useEffect(() => {
         getAllPendingAdoptions();
     }, []);
@@ -21,7 +17,7 @@ export default function AdoptionPendingList() {
 
     return (
         <>
-            asdfasdfasdf
+            <h3>Pending Adoptions</h3>
             {(adoptions.length > 0) ?
                 <ListGroup>
                     {adoptions.map((adoption) => (

@@ -10,7 +10,7 @@ import Adoption from "./Adoption"
 const AdoptionApproval = () => {
 
     const [adoptionToApprove, setAdoptionToApprove] = useState({});
-    const { adoption, getById, updateAdoption, deleteAdoption } = useContext(AdoptionContext);
+    const { adoption, getById, deleteAdoption } = useContext(AdoptionContext);
     const { userProfile } = useContext(UserProfileContext)
     const { animal } = useContext(AnimalContext)
     const { id } = useParams();
@@ -19,10 +19,10 @@ const AdoptionApproval = () => {
     const user = JSON.parse(sessionStorage.getItem("userProfile")).id
     adoption.userProfileId = user
 
-    const handleApproval = (e) => {
+    const handleDenial = (e) => {
         e.preventDefault();
-        updateAdoption(adoptionToApprove)
-        history.push("/pendingAdoptions")
+        deleteAdoption(adoptionToApprove.id)
+            .thenhistory.push("/pendingAdoptions")
     };
 
     useEffect(() => {
@@ -41,7 +41,7 @@ const AdoptionApproval = () => {
         <>
             <Col sm="12" md={{ size: 6, offset: 3 }}></Col>
 
-            <p>Are you sure you want to Approve this Adoption?</p>
+            <p>Are you sure you want to Deny this Adoption?</p>
 
             <CardBody>
 
@@ -49,10 +49,10 @@ const AdoptionApproval = () => {
                 <div>
                     <Button
                         className="commentButton"
-                        onClick={handleApproval}
+                        onClick={handleDenial}
                         variant="custom"
                         type="submit">
-                        Approve
+                        Deny
                     </Button>&nbsp;
 
                     <Button onClick={Cancel}>Cancel</Button>

@@ -87,7 +87,7 @@ namespace Tails_Of_Joy.Controllers
                 return BadRequest();
             }
             _adoptionRepository.Update(adoption);
-            return NoContent();
+            return Ok(adoption);
         }
 
 

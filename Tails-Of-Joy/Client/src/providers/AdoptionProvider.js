@@ -52,7 +52,7 @@ export const AdoptionProvider = (props) => {
         })
     };
 
-    const addAdoption = (adoption) => {
+    const addAdoption = (newAdoption) => {
         return getToken().then((token) => {
             fetch(("/api/adoption"), {
                 method: "POST",
@@ -60,7 +60,7 @@ export const AdoptionProvider = (props) => {
                     Authorization: `Bearer ${token}`,
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify(adoption),
+                body: JSON.stringify(newAdoption),
             })
         });
     };

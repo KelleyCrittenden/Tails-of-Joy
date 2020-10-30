@@ -11,9 +11,6 @@ export default function AnimlalList() {
 
     const user = JSON.parse(sessionStorage.getItem("userProfile")).id
 
-    console.log(user, "user")
-
-
     const Create = () => {
         history.push("animal/add")
     }
