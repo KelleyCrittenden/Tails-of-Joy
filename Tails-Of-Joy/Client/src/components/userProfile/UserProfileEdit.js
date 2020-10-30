@@ -27,7 +27,7 @@ const UserProfileEdit = () => {
         e.preventDefault();
         updateUserProfile(editedUserProfile)
         console.log(editedUserProfile, "edited user")
-        history.push("/post")
+        history.push("/myProfile")
     };
 
     useEffect(() => {
@@ -36,7 +36,7 @@ const UserProfileEdit = () => {
     }, [singleUser])
 
     const Cancel = () => {
-        history.push("/post")
+        history.push("/myProfile")
     }
 
     return (

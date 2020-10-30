@@ -11,5 +11,6 @@ namespace Tails_Of_Joy.Repositories
         UserProfile GetByFirebaseUserId(string firebaseUserId);
         UserProfile GetUserProfileById(int id);
         void UpdateUserProfile(UserProfile userProfile);
+        //List<Animal> GetAllAnimalsByAdoptionId(int id);
     }
 }

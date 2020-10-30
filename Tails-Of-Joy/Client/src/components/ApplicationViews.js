@@ -20,9 +20,14 @@ import CommentEdit from "./comment/CommentEdit"
 import UserProfileDetails from "./userProfile/UserProfileDetails"
 import UserProfileDelete from "./userProfile/UserProfileDelete"
 import UserProfileEdit from "./userProfile/UserProfileEdit"
+import MyProfileDetails from "./userProfile/MyProfileDetails"
+import AdoptionPendingList from "./adoption/AdoptionPendingList"
+import AdoptionAdd from "./adoption/AdoptionAdd"
+import AdoptionApproval from "./adoption/AdoptionApproval"
+import AdoptionDenial from "./adoption/AdoptionDenial"
 
 export function ApplicationViews() {
-    const { isLoggedIn } = useContext(UserProfileContext);
+    const { isLoggedIn, activeUser } = useContext(UserProfileContext);
 
     return (
         <main>
@@ -37,15 +42,15 @@ export function ApplicationViews() {
                 </Route>
 
                 <Route exact path="/animal/add">
-                    {isLoggedIn ? <AnimalAdd /> : <Redirect to="/login" />}
+                    {isLoggedIn && activeUser.userTypeId === 1 ? <AnimalAdd /> : <Redirect to="/login" />}
                 </Route>
 
                 <Route exact path="/animal/delete/:id">
-                    {isLoggedIn ? <AnimalDelete /> : <Redirect to="/login" />}
+                    {isLoggedIn && activeUser.userTypeId === 1 ? <AnimalDelete /> : <Redirect to="/login" />}
                 </Route>
 
                 <Route exact path="/animal/edit/:id">
-                    {isLoggedIn ? <AnimalEdit /> : <Redirect to="/login" />}
+                    {isLoggedIn && activeUser.userTypeId === 1 ? <AnimalEdit /> : <Redirect to="/login" />}
                 </Route>
 
                 <Route exact path="/post">
@@ -90,6 +95,26 @@ export function ApplicationViews() {
 
                 <Route exact path="/userprofile/edit/:id">
                     {isLoggedIn ? <UserProfileEdit /> : <Redirect to="/login" />}
+                </Route>
+
+                <Route exact path="/myprofile">
+                    {isLoggedIn ? <MyProfileDetails /> : <Redirect to="/login" />}
+                </Route>
+
+                <Route exact path="/pendingAdoptions">
+                    {isLoggedIn && activeUser.userTypeId === 1 ? <AdoptionPendingList /> : <Redirect to="/login" />}
+                </Route>
+
+                <Route exact path="/createAdoption/:id">
+                    {isLoggedIn ? <AdoptionAdd /> : <Redirect to="/login" />}
+                </Route>
+
+                <Route exact path="/pendingAdoptions/approve/:id">
+                    {isLoggedIn && activeUser.userTypeId === 1 ? <AdoptionApproval /> : <Redirect to="/login" />}
+                </Route>
+
+                <Route exact path="/pendingAdoptions/deny/:id">
+                    {isLoggedIn && activeUser.userTypeId === 1 ? <AdoptionDenial /> : <Redirect to="/login" />}
                 </Route>
 
                 <Route path="/login">

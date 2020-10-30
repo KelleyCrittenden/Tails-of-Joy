@@ -7,7 +7,7 @@ const UserProfileDetails = () => {
 
     const { id } = useParams();
     const history = useHistory();
-    const { userProfile, singleUser, getUserProfileById, updateUserProfile } = useContext(UserProfileContext);
+    const { singleUser, getUserProfileById } = useContext(UserProfileContext);
     const currentUser = JSON.parse(sessionStorage.getItem('userProfile')).id;
 
     useEffect(() => {

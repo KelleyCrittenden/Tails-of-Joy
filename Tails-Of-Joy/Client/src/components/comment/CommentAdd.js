@@ -56,7 +56,7 @@ const CommentAdd = () => {
                         Save Comment
                     </Button>&nbsp;
 
-<Button onClick={Cancel}>Cancel</Button>
+                    <Button onClick={Cancel}>Cancel</Button>
 
                 </FormGroup>
             </Form>

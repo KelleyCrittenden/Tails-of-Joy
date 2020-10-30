@@ -1,5 +1,6 @@
 import { Link, NavLink, useHistory, useParams } from "react-router-dom";
 import { AnimalContext } from "../../providers/AnimalProvider";
+import { AdoptionContext } from "../../providers/AdoptionProvider";
 import React, { useContext, useEffect, useState } from "react";
 import { Card, CardImg, CardBody, Row, Button, Col } from "reactstrap";
 
@@ -8,6 +9,7 @@ const AnimalDetails = () => {
     const { id } = useParams();
     const history = useHistory();
     const { animal, getAnimalById } = useContext(AnimalContext);
+    const { addAdoption, adoption } = useContext(AdoptionContext)
 
 
     useEffect(() => {
@@ -51,6 +53,7 @@ const AnimalDetails = () => {
                 <CardBody>
                     <CardImg className="animalDetailImg" top src={animal.imageLocation} alt={animal.title} />
                 </CardBody>
+                <Button onClick={() => history.push(`/createAdoption/${id}`)}>Apply to Adopt</Button>
             </Card>
         </>
 
