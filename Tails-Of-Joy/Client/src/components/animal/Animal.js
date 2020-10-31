@@ -16,12 +16,6 @@ export default function Animal({ animal }) {
                 <p>{animal.title}</p>
 
                 <Button onClick={() => history.push(`/animal/details/${animal.id}`)}>Details</Button>
-                {user == 1 ?
-                    <>
-                        <Button onClick={() => history.push(`/animal/edit/${animal.id}`)}>Edit</Button>
-                        <Button onClick={() => history.push(`/animal/delete/${animal.id}`)}>Delete</Button>
-                    </>
-                    : null}
 
 
             </CardBody>

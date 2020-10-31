@@ -1,0 +1,8 @@
+.homepage_img{
+    background-image: url("./images/landing_page_background.jpg");
+    background-position: center;
+    background-size: 110%;
+    background-repeat: no-repeat;
+    height: 100vh;
+    box-shadow: 10px 10px 5px grey;
+}

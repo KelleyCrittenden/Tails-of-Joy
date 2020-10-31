@@ -31,9 +31,9 @@ const PostDetails = () => {
                     <Col sm="6">
                         <h1>{post.content}</h1>
                     </Col>
-                    <Col sm="6">
-                        <h6>Posted By: {post.userProfile.firstName}</h6>
-                    </Col>
+                    {/* <Col sm="6">
+                        <h6>Posted By: {post.userProfile.username}</h6>
+                    </Col> */}
                     <Col sm="6">
                         <h4>Posted On: {post.createDateTime}</h4>
                     </Col>

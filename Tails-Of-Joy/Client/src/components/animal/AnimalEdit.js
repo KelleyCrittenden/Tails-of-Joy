@@ -2,6 +2,7 @@ import React, { useContext, useState, useEffect } from "react";
 import { Button, Form, FormGroup, Label, Input, Col } from "reactstrap";
 import { useHistory, useParams } from "react-router-dom"
 import { AnimalContext } from "../../providers/AnimalProvider";
+import Adoption from "../adoption/Adoption";
 
 const AnimalEdit = () => {
 
@@ -19,7 +20,7 @@ const AnimalEdit = () => {
     const saveEditedAnimal = (e) => {
         e.preventDefault();
         updateAnimal(editedAnimal)
-        history.push("/animal")
+        history.push(`/animal/details/${id}`)
     };
 
     useEffect(() => {
@@ -31,22 +32,39 @@ const AnimalEdit = () => {
     }, []);
 
     const Cancel = () => {
-        history.push("/animal")
+        history.push(`/animal/details/${id}`)
     }
 
     return (
 
         <Col sm="12" md={{ size: 6, offset: 3 }}>
             <Form >
+                {animal.isAdoptable === true ?
+                    <FormGroup>
+                        <Label for="isAdoptable">Availble for Adoption: </Label>
+                        <select id="IsAdoptable" onChange={handleFieldChange}>
 
-                <FormGroup>
-                    <Label for="isAdoptable">Availble for Adoption: </Label>
-                    <select id="IsAdoptable" onChange={handleFieldChange}>
-                        <option defaultValue={animal.isAdoptable}></option>
-                        <option value={true}>Yes</option>
-                        <option value={false} >No</option>
-                    </select>
-                </FormGroup>
+                            <option selected>Yes</option>
+                            <option value={true}>Yes</option>
+                            <option value={false} >No</option>
+
+                        </select>
+
+                    </FormGroup>
+                    :
+                    <FormGroup>
+                        <Label for="isAdoptable">Availble for Adoption: </Label>
+                        <select id="IsAdoptable" onChange={handleFieldChange}>
+
+                            <option selected>No</option>
+                            <option value={true}>Yes</option>
+                            <option value={false} >No</option>
+
+                        </select>
+
+                    </FormGroup>
+
+                }
 
                 <FormGroup>
                     <Label for="name">Name: </Label>
@@ -69,7 +87,7 @@ const AnimalEdit = () => {
                 <FormGroup>
                     <Label for="gender">Gender: </Label>
                     <select id="Gender" onChange={handleFieldChange}>
-                        <option defaultValue={animal.gender}></option>
+                        <option selected>{animal.gender}</option>
                         <option value="female">Female</option>
                         <option value="male">Male</option>
                     </select>
@@ -78,7 +96,7 @@ const AnimalEdit = () => {
                 <FormGroup>
                     <Label for="age">Age: </Label>
                     <select id="Age" onChange={handleFieldChange}>
-                        <option defaultValue={animal.age}> </option>
+                        <option selected>{animal.age} </option>
                         <option value="baby">Baby</option>
                         <option value="young">Young</option>
                         <option value="adult">Adult</option>
@@ -89,7 +107,7 @@ const AnimalEdit = () => {
                 <FormGroup>
                     <Label for="size">Size: </Label>
                     <select id="Size" onChange={handleFieldChange}>
-                        <option defaultValue={animal.size}> </option>
+                        <option selected>{animal.size} </option>
                         <option value="small">Small</option>
                         <option value="medium">Medium</option>
                         <option value="large">Large</option>
@@ -97,23 +115,45 @@ const AnimalEdit = () => {
                     </select>
                 </FormGroup>
 
-                <FormGroup>
-                    <Label for="childFriendly">Child Friendly: </Label>
-                    <select id="ChildFriendly" onChange={handleFieldChange}>
-                        <option defaultValue={animal.childFriendly}> </option>
-                        <option value={true}>Yes</option>
-                        <option value={false} >No</option>
-                    </select>
-                </FormGroup>
+                {animal.childFriendly === true ?
+                    <FormGroup>
+                        <Label for="childFriendly">Child Friendly: </Label>
+                        <select id="ChildFriendly" onChange={handleFieldChange}>
+                            <option selected>Yes</option>
+                            <option value={true}>Yes</option>
+                            <option value={false} >No</option>
+                        </select>
+                    </FormGroup>
+                    :
+                    <FormGroup>
+                        <Label for="childFriendly">Child Friendly: </Label>
+                        <select id="ChildFriendly" onChange={handleFieldChange}>
+                            <option selected>No</option>
+                            <option value={true}>Yes</option>
+                            <option value={false} >No</option>
+                        </select>
+                    </FormGroup>
+                }
 
-                <FormGroup>
-                    <Label for="smallAnimalFriendly">Small Animal Friendly: </Label>
-                    <select id="SmallAnimalFriendly" onChange={handleFieldChange}>
-                        <option defaultValue={animal.SmallAnimalFriendly}></option>
-                        <option value={true}>Yes</option>
-                        <option value={false} >No</option>
-                    </select>
-                </FormGroup>
+                {animal.childFriendly === true ?
+                    <FormGroup>
+                        <Label for="smallAnimalFriendly">Small Animal Friendly: </Label>
+                        <select id="SmallAnimalFriendly" onChange={handleFieldChange}>
+                            <option selected>{animal.SmallAnimalFriendly}</option>
+                            <option value={true}>Yes</option>
+                            <option value={false} >No</option>
+                        </select>
+                    </FormGroup>
+                    :
+                    <FormGroup>
+                        <Label for="smallAnimalFriendly">Small Animal Friendly: </Label>
+                        <select id="SmallAnimalFriendly" onChange={handleFieldChange}>
+                            <option selected>No</option>
+                            <option value={true}>Yes</option>
+                            <option value={false} >No</option>
+                        </select>
+                    </FormGroup>
+                }
 
                 <FormGroup>
                     <Label for="title">Title: </Label>
@@ -149,13 +189,13 @@ const AnimalEdit = () => {
                         variant="custom"
                         type="submit">
                         Save Animal
-                </Button>nbsp;
+                </Button>&nbsp;
 
                 <Button onClick={Cancel}>Cancel</Button>
                 </FormGroup>
 
-            </Form>
-        </Col>
+            </Form >
+        </Col >
     )
 }
 

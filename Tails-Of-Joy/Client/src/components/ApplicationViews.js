@@ -25,6 +25,7 @@ import AdoptionPendingList from "./adoption/AdoptionPendingList"
 import AdoptionAdd from "./adoption/AdoptionAdd"
 import AdoptionApproval from "./adoption/AdoptionApproval"
 import AdoptionDenial from "./adoption/AdoptionDenial"
+import Home from "../Home"
 
 export function ApplicationViews() {
     const { isLoggedIn, activeUser } = useContext(UserProfileContext);
@@ -32,6 +33,10 @@ export function ApplicationViews() {
     return (
         <main>
             <Switch>
+
+                <Route exact path="/">
+                    <Home />
+                </Route>
 
                 <Route exact path="/animal">
                     {isLoggedIn ? <AnimalList /> : <Redirect to="/login" />}

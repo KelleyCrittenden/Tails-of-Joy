@@ -10,6 +10,7 @@ const AnimalDetails = () => {
     const history = useHistory();
     const { animal, getAnimalById } = useContext(AnimalContext);
     const { addAdoption, adoption } = useContext(AdoptionContext)
+    const user = JSON.parse(sessionStorage.getItem("userProfile")).id
 
 
     useEffect(() => {
@@ -53,7 +54,19 @@ const AnimalDetails = () => {
                 <CardBody>
                     <CardImg className="animalDetailImg" top src={animal.imageLocation} alt={animal.title} />
                 </CardBody>
-                <Button onClick={() => history.push(`/createAdoption/${id}`)}>Apply to Adopt</Button>
+
+                {user == 1 ?
+                    <>
+                        <Button onClick={() => history.push(`/animal/edit/${animal.id}`)}>Edit</Button>
+                        <Button onClick={() => history.push(`/animal/delete/${animal.id}`)}>Delete</Button>
+                    </>
+                    : null}
+
+                {user == 2 ?
+
+                    <Button onClick={() => history.push(`/createAdoption/${id}`)}>Apply to Adopt</Button>
+                    : null}
+
             </Card>
         </>
 
