@@ -31,7 +31,6 @@ const ConfirmPostDelete = () => {
 
     const Cancel = () => {
         history.push(`/post/details/${id}`)
-        history.push("/post")
     };
 
     return (

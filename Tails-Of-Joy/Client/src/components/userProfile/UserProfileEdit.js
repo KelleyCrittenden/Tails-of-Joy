@@ -27,13 +27,11 @@ const UserProfileEdit = () => {
     const saveUpdatedUserProfile = (e) => {
         e.preventDefault();
         updateUserProfile(editedUserProfile)
-        console.log(editedUserProfile, "edited user")
         history.push("/myProfile")
     };
 
     useEffect(() => {
         setEditedUserProfile(singleUser)
-        console.log(singleUser, "use effect single user")
     }, [singleUser])
 
     const Cancel = () => {

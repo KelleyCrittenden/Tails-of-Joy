@@ -26,15 +26,15 @@ const PostEdit = () => {
     const saveUpdatedPost = (e) => {
         e.preventDefault();
         updatePost(editedPost)
-        history.push(`/post/details/${id}`)
-    };
+        history.push(`/post/details/${editedPost.id}`)
+    }
 
     useEffect(() => {
         setEditedPost(post)
     }, [post])
 
     const Cancel = () => {
-        history.push(`/post/details/${id}`)
+        history.push(`/post/details/${editedPost.id}`)
     }
 
     return (

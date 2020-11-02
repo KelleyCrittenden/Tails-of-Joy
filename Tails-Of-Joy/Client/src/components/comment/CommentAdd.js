@@ -22,7 +22,6 @@ const CommentAdd = (props) => {
 
     const newComment = (e) => {
         e.preventDefault();
-        console.log("comment", comment)
         addComment(comment);
         history.push(`/post/details/${id}`)
     }

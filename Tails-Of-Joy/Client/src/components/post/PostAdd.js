@@ -81,7 +81,7 @@ const PostAdd = () => {
                                 <Input type="textarea"
                                     rows="10"
                                     id="content"
-                                    onChange={e => setTitle(e.target.value)}
+                                    onChange={e => setContent(e.target.value)}
                                     placeholder="Enter Content" />
 
                             </FormGroup>
