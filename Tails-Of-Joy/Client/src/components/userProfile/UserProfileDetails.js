@@ -32,15 +32,11 @@ const UserProfileDetails = () => {
                         <h3>{singleUser.firstName} {singleUser.lastName}</h3>
                     </CardHeader>
 
-                    <Row>
-                        <Col sm="6">
-                            <h3>{singleUser.bio}</h3>
-                        </Col>
-                    </Row>
-                    <Row margin="m-4">
-                    </Row>
                     <CardBody>
-                        <CardImg className="userProfileDetailImg" top src={singleUser.imageLocation} alt={singleUser.username} />
+
+                        <h3>{singleUser.bio}</h3>
+
+
                     </CardBody>
 
                     {(currentUser === singleUser.id) ?
@@ -57,6 +53,8 @@ const UserProfileDetails = () => {
                         </div>
                         :
                         null}
+
+                    <Button onClick={Cancel}>Cancel</Button>
 
                 </Card>
             </div>

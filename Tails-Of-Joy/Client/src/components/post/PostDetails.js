@@ -17,10 +17,12 @@ const PostDetails = () => {
 
     useEffect(() => {
         getPostById(id);
+
     }, []);
 
     useEffect(() => {
         getAllCommentsForPost(id)
+
     }, []);
 
     const Cancel = () => {
@@ -37,12 +39,12 @@ const PostDetails = () => {
             <div className="postDetailsCardContainer">
                 <Card className="m-auto">
                     <CardBody>
-                        <div className="post_Detail_Top_With_Tags">
+                        <div>
                             <div>
                                 <h2>{post.title}</h2>
                                 <h6>{post.createDateTime}</h6>
-                                {/* <Button onClick={() => history.push(`/userProfile/q=${post.userProfile.id}`)}>{post.userProfile.username}'s Profile</Button> */}
-                                {/* <CardSubtitle>By {post.userProfile.username}</CardSubtitle> */}
+                                {/* <Button onClick={() => history.push(`/userProfile/q=${post.userProfile.id}`)}>{post.userProfile.username}'s Profile</Button>
+                                <CardSubtitle>By: {post.userProfile.id}</CardSubtitle> */}
                             </div>
                         </div>
                     </CardBody>

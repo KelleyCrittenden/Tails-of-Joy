@@ -28,6 +28,7 @@ export default function PostList() {
                             <tr>
                                 <th>Title</th>
                                 <th>Date</th>
+                                <th>Posted By</th>
                             </tr>
                         </thead>
 
@@ -41,6 +42,9 @@ export default function PostList() {
                                     <td>
                                         {post.createDateTime}
                                     </td>
+
+                                    <th scope="row"
+                                    ><Link to={`/userProfile/q=${post.userProfile.id}`}>{post.userProfile.username}</Link></th>
                                 </tr>
                             </tbody>
                         )))}
