@@ -17,7 +17,6 @@ export default function AdoptionPendingList() {
 
     return (
         <>
-            <h3>Pending Adoptions</h3>
             {(adoptions.length > 0) ?
                 <ListGroup>
                     {adoptions.map((adoption) => (

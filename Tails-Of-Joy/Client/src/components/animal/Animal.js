@@ -1,5 +1,6 @@
+
 import React from "react";
-import { Card, CardBody, Button } from "reactstrap";
+import { Card, CardBody, Button, CardImg, CardTitle, CardText } from "reactstrap";
 import { useHistory } from "react-router-dom";
 
 
@@ -7,17 +8,27 @@ export default function Animal({ animal }) {
     const history = useHistory();
     const user = JSON.parse(sessionStorage.getItem("userProfile")).id
 
+    const style = { width: "18em" };
+
     return (
-        <Card className="m-4" >
+        <Card style={style}>
+            <CardImg top width="100%"
+                alt="..."
+                //src={require({ animal.ImageLocation })}
+                top
+            ></CardImg>
             <CardBody>
 
-                <h4>{animal.name}</h4>
-                <h5>{animal.breed}</h5>
-                <p>{animal.title}</p>
+                <CardTitle>{animal.name}</CardTitle>
+                <CardText>{animal.title}</CardText>
 
                 <Button onClick={() => history.push(`/animal/details/${animal.id}`)}>Details</Button>
-
-
+                {/* {user == 1 ?
+                    <>
+                        <Button onClick={() => history.push(`/animal/edit/${animal.id}`)}>Edit</Button>
+                        <Button onClick={() => history.push(`/animal/delete/${animal.id}`)}>Delete</Button>
+                    </>
+                    : null} */}
             </CardBody>
         </Card>
     );

@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { PostContext } from "../../providers/PostProvider";
-import { Button } from "reactstrap";
+import { Button, ListGroupItem, ListGroup } from "reactstrap";
 import Post from "./Post"
 
 export default function PostList() {
@@ -22,11 +22,13 @@ export default function PostList() {
                 Add Post
             </Button>
 
-            <section>
-                {posts.map((post) => (
-                    <Post key={post.id} post={post} />
-                ))}
-            </section>
+            <ListGroup>
+                <ListGroupItem>
+                    {posts.map((post) => (
+                        <Post key={post.id} post={post} />
+                    ))}
+                </ListGroupItem>
+            </ListGroup>
         </>
 
     )

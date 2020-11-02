@@ -25,7 +25,7 @@ export default function AnimalDelete() {
     }, [animal])
 
     const Cancel = () => {
-        history.push("/animal")
+        history.push(`/animal/details/${id}`)
     }
 
     return (

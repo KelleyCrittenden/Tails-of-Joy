@@ -2,7 +2,7 @@
 import React, { useContext, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { AnimalContext } from "../../providers/AnimalProvider";
-import { Button } from "reactstrap";
+import { Button, Container, Row, Col, ListGroup, ListGroupItem } from "reactstrap";
 import Animal from "./Animal"
 
 export default function AnimlalList() {
@@ -10,6 +10,7 @@ export default function AnimlalList() {
     const { animals, getAllAvailableAnimals } = useContext(AnimalContext)
 
     const user = JSON.parse(sessionStorage.getItem("userProfile")).id
+
 
     const Create = () => {
         history.push("animal/add")
@@ -31,12 +32,19 @@ export default function AnimlalList() {
                 :
 
                 null}
+            <Container>
+                <Row xs="3">
+                    <Col>
 
-            <section>
-                {animals.map((animal) => (
-                    <Animal key={animal.id} animal={animal} />
-                ))}
-            </section>
+
+                        {animals.map((animal) => (
+                            <Animal key={animal.id} animal={animal} />
+                        ))}
+
+                    </Col>
+                </Row>
+
+            </Container>
 
         </>
     )

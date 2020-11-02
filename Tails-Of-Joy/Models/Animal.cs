@@ -7,6 +7,7 @@ namespace Tails_Of_Joy.Models
 {
     public class Animal
     {
+
         public int Id { get; set; }
         public string Name { get; set; }
         public string Breed { get; set; }

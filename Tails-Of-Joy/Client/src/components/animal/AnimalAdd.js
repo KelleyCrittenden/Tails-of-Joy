@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { AnimalContext } from "../../providers/AnimalProvider";
 import { Button, Form, FormGroup, Label, Input, Col } from "reactstrap";
+import { render } from "@testing-library/react";
 
 
 const AnimalAdd = () => {
@@ -9,44 +10,60 @@ const AnimalAdd = () => {
     const history = useHistory();
     const { addAnimal } = useContext(AnimalContext)
 
-    const [animal, setAnimal] = useState({
-        IsAdoptable: true,
-        Name: "",
-        Breed: "",
-        Gender: "",
-        Age: "",
-        Size: "",
-        ChildFriendly: true,
-        SmallAnimalFriendly: true,
-        Title: "",
-        Content: "",
-        ImageLocation: ""
-    })
+    const [isAdoptable, setIsAdoptable] = useState();
+    const [name, setName] = useState();
+    const [breed, setBreed] = useState();
+    const [gender, setGender] = useState();
+    const [age, setAge] = useState();
+    const [size, setSize] = useState();
+    const [childFriendly, setChildFriendly] = useState();
+    const [smallAnimalFriendly, setSmallAnimalFriendly] = useState();
+    const [title, setTitle] = useState();
+    const [content, setContent] = useState();
+    const [imageLocation, setImageLocation] = useState();
+    const [imageName, setImageName] = useState();
 
     const createNewAnimal = (e) => {
         e.preventDefault();
         const animalToSave = {
-            IsAdoptable: animal.IsAdoptable == `true`,
-            Name: animal.Name,
-            Breed: animal.Breed,
-            Gender: animal.Gender,
-            Age: animal.Age,
-            Size: animal.Size,
-            ChildFriendly: animal.ChildFriendly == `true`,
-            SmallAnimalFriendly: animal.SmallAnimalFriendly == `true`,
-            Title: animal.Title,
-            Content: animal.Content,
-            ImageLocation: animal.ImageLocation
+            isAdoptable: true,
+            name,
+            breed,
+            gender,
+            age,
+            size,
+            childFriendly: true,
+            smallAnimalFriendly: true,
+            title,
+            content,
+            imageLocation
         }
-        addAnimal(animalToSave);
-        console.log("added animal", animalToSave)
-        history.push("/animal");
+        if (animalToSave.IsAdoptable === "" || animalToSave.Name === "" || animalToSave.Breed === "" || animalToSave.Gender === "" || animalToSave.Age === "" || animalToSave.Size === "" || animalToSave.ChildFriendly === "" || animalToSave.SmallAnimalFriendly === "" || animalToSave.Title === "" || animalToSave.Content === "") {
+            alert("Please Fill Out All Fields");
+        } else {
+            addAnimal(animalToSave);
+            console.log(animalToSave, "Edit Animal")
+            history.push("/animal");
+        }
     }
 
-    const handleFieldChange = (e) => {
-        const stateToChange = { ...animal };
-        stateToChange[e.target.id] = e.target.value;
-        setAnimal(stateToChange)
+    const checkUploadResult = (resultEvent) => {
+        if (resultEvent.event === 'success') {
+
+            setImageLocation(resultEvent.info.secure_url)
+            setImageName(resultEvent.info.original_filename + `.${resultEvent.info.original_extension}`)
+
+        }
+    }
+
+    const showWidget = (event) => {
+        let widget = window.cloudinary.createUploadWidget({
+            cloudName: "kelleycrittenden",
+            uploadPreset: "Tails_of_Joy"
+        },
+            (error, result) => { checkUploadResult(result) })
+
+        widget.open()
     }
 
     return (
@@ -55,10 +72,10 @@ const AnimalAdd = () => {
 
                 <FormGroup>
                     <Label for="isAdoptable">Availble for Adoption: </Label>
-                    <select id="IsAdoptable" onChange={handleFieldChange}>
-                        <option>Choose...</option>
+                    <select id="IsAdoptable" onChange={e => setIsAdoptable(e.target.value)} required>
+                        <option value="">Select</option>
                         <option value={true}>Yes</option>
-                        <option value={false} >No</option>
+                        <option value={false}>No</option>
                     </select>
                 </FormGroup>
 
@@ -67,7 +84,7 @@ const AnimalAdd = () => {
                     <Input
                         id="Name"
                         type="text"
-                        onChange={handleFieldChange} />
+                        onChange={e => setName(e.target.value)} />
                 </FormGroup>
 
                 <FormGroup>
@@ -75,13 +92,13 @@ const AnimalAdd = () => {
                     <Input
                         id="Breed"
                         type="text"
-                        onChange={handleFieldChange} />
+                        onChange={e => setBreed(e.target.value)} />
                 </FormGroup>
 
                 <FormGroup>
                     <Label for="gender">Gender: </Label>
-                    <select id="Gender" onChange={handleFieldChange}>
-                        <option>Choose...</option>
+                    <select id="Gender" onChange={e => setGender(e.target.value)} required>
+                        <option value="">Select</option>
                         <option value="female">Female</option>
                         <option value="male">Male</option>
                     </select>
@@ -89,8 +106,8 @@ const AnimalAdd = () => {
 
                 <FormGroup>
                     <Label for="age">Age: </Label>
-                    <select id="Age" onChange={handleFieldChange}>
-                        <option>Choose...</option>
+                    <select id="Age" onChange={e => setAge(e.target.value)} required>
+                        <option value="">Select</option>
                         <option value="young">Baby</option>
                         <option value="young">Young</option>
                         <option value="adult">Adult</option>
@@ -100,8 +117,8 @@ const AnimalAdd = () => {
 
                 <FormGroup>
                     <Label for="size">Size: </Label>
-                    <select id="Size" onChange={handleFieldChange}>
-                        <option>Choose...</option>
+                    <select id="Size" onChange={e => setSize(e.target.value)} required>
+                        <option value="">Select</option>
                         <option value="small">Small</option>
                         <option value="medium">Medium</option>
                         <option value="large">Large</option>
@@ -111,17 +128,15 @@ const AnimalAdd = () => {
 
                 <FormGroup>
                     <Label for="childFriendly">Child Friendly: </Label>
-                    <select id="ChildFriendly" onChange={handleFieldChange}>
-                        <option>Choose...</option>
+                    <select id="ChildFriendly" onChange={e => setChildFriendly(e.target.value)} required>
                         <option value={true}>Yes</option>
-                        <option value={false} >No</option>
+                        <option value={false}>No</option>
                     </select>
                 </FormGroup>
 
                 <FormGroup>
                     <Label for="smallAnimalFriendly">Small Animal Friendly: </Label>
-                    <select id="SmallAnimalFriendly" onChange={handleFieldChange}>
-                        <option>Choose...</option>
+                    <select id="SmallAnimalFriendly" onChange={e => setSmallAnimalFriendly(e.target.value)} required>
                         <option value={true}>Yes</option>
                         <option value={false} >No</option>
                     </select>
@@ -132,7 +147,7 @@ const AnimalAdd = () => {
                     <Input
                         id="Title"
                         type="text"
-                        onChange={handleFieldChange} />
+                        onChange={e => setTitle(e.target.value)} />
                 </FormGroup>
 
                 <FormGroup>
@@ -140,15 +155,14 @@ const AnimalAdd = () => {
                     <Input
                         id="Content"
                         type="text"
-                        onChange={handleFieldChange} />
+                        onChange={e => setContent(e.target.value)} />
                 </FormGroup>
 
                 <FormGroup>
                     <Label for="imageLocation">Image: </Label>
-                    <Input
-                        id="ImageLocation"
-                        type="text"
-                        onChange={handleFieldChange} />
+                    <div>
+                        <Button onClick={showWidget}>Upload Photo</Button> <p>{imageName}</p>
+                    </div>
                 </FormGroup>
 
                 <FormGroup>
@@ -162,7 +176,7 @@ const AnimalAdd = () => {
                 </FormGroup>
 
             </Form>
-        </Col>
+        </Col >
     )
 }
 

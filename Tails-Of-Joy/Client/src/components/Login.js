@@ -20,39 +20,37 @@ export default function Login() {
     };
 
     return (
-        <>
-            <div classname="login_img"></div>
-            <div>
-                <Container className="Login">
-                    <Form className="form" onSubmit={loginSubmit}>
-                        <fieldset>
-                            <Col>
-                                <FormGroup>
-                                    <Label for="email">Email</Label>
-                                    <Input id="email" type="text" onChange={e => setEmail(e.target.value)} />
-                                </FormGroup>
-                            </Col>
-                            <Col>
-                                <FormGroup>
-                                    <Label for="password">Password</Label>
-                                    <Input id="password" type="password" onChange={e => setPassword(e.target.value)} />
-                                </FormGroup>
-                            </Col>
-                            <Col>
-                                <FormGroup>
-                                    <Button>Login</Button>
-                                </FormGroup>
-                            </Col>
+        <div>
+            <Container className="Login">
+                <Form className="form" onSubmit={loginSubmit}>
+                    <fieldset>
+                        <Col>
+                            <FormGroup>
+                                <Label for="email">Email</Label>
+                                <Input id="email" type="text" onChange={e => setEmail(e.target.value)} />
+                            </FormGroup>
+                        </Col>
+                        <Col>
+                            <FormGroup>
+                                <Label for="password">Password</Label>
+                                <Input id="password" type="password" onChange={e => setPassword(e.target.value)} />
+                            </FormGroup>
+                        </Col>
+                        <Col>
+                            <FormGroup>
+                                <Button>Login</Button>
+                            </FormGroup>
+                        </Col>
 
-                            <em>
-                                Not registered? <Link to="register">Register</Link>
-                            </em>
+                        <em>
+                            Not registered? <Link to="register">Register</Link>
+                        </em>
+                    </fieldset>
+                </Form>
+            </Container>
+        </div>
 
-                        </fieldset>
-                    </Form>
-                </Container>
-            </div >
-        </>
+
     );
 
 }

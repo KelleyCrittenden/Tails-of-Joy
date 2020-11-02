@@ -17,6 +17,10 @@ const AnimalDetails = () => {
         getAnimalById(id);
     }, [id]);
 
+    const Cancel = () => {
+        history.push("/animal")
+    }
+
     return (
         <>
             <Card className="m-4">
@@ -66,6 +70,7 @@ const AnimalDetails = () => {
 
                     <Button onClick={() => history.push(`/createAdoption/${id}`)}>Apply to Adopt</Button>
                     : null}
+                <Button onClick={Cancel}>Cancel</Button>
 
             </Card>
         </>

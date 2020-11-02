@@ -36,7 +36,7 @@ const UserProfileEdit = () => {
     }, [singleUser])
 
     const Cancel = () => {
-        history.push("/myProfile")
+        history.push("/post")
     }
 
     return (

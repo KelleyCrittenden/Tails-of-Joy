@@ -22,7 +22,7 @@ const CommentAdd = () => {
     const newComment = (e) => {
         e.preventDefault();
         addComment(comment);
-        history.push("/post")
+        history.push("/post/details/:id")
     }
 
     const handleFieldChange = (e) => {
@@ -32,7 +32,7 @@ const CommentAdd = () => {
     }
 
     const Cancel = () => {
-        history.push("/post")
+        history.push("/post/details/:id")
     }
 
     return (

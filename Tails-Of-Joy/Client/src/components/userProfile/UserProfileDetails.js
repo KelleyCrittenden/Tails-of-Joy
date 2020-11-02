@@ -16,6 +16,10 @@ const UserProfileDetails = () => {
 
     console.log(singleUser, "current user Id")
 
+    const Cancel = () => {
+        history.push("/post")
+    }
+
     return (
         <>
             <Card className="m-4">
@@ -37,7 +41,13 @@ const UserProfileDetails = () => {
 
                     <div>
                         <Button onClick={() => history.push(`/userProfile/edit/${singleUser.id}`)}>Edit</Button>
-                        <Button onClick={() => history.push(`/userProfile/delete/${singleUser.id}`)}>Delete</Button>
+
+                        {currentUser == 2 ?
+                            <Button onClick={() => history.push(`/userProfile/delete/${singleUser.id}`)}>Delete</Button>
+                            :
+                            null}
+                        <Button onClick={Cancel}>Cancel</Button>
+
                     </div>
                     :
                     null}

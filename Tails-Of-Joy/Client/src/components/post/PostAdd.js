@@ -8,27 +8,46 @@ const PostAdd = () => {
     const { addPost } = useContext(PostContext)
     const history = useHistory();
 
-    const [post, setPost] = useState({
-        Title: "",
-        Content: "",
-        ImageLocation: "",
-        userProfileId: ""
-    })
-
-    const user = JSON.parse(sessionStorage.getItem("userProfile")).id
-    post.userProfileId = user
+    const [title, setTitle] = useState();
+    const [content, setContent] = useState();
+    const [imageLocation, setImageLocation] = useState();
+    const [imageName, setImageName] = useState();
+    const [userProfileId, setUserProfileId] = useState();
 
     const newPost = (e) => {
         e.preventDefault();
+        const post = {
+            title,
+            content,
+            imageLocation,
+            userProfileId
+        };
+
+        const user = JSON.parse(sessionStorage.getItem("userProfile")).id
+        post.userProfileId = user
+
+
         addPost(post);
-        console.log("added post", post)
         history.push("/post");
     }
 
-    const handleFieldChange = (e) => {
-        const stateToChange = { ...post };
-        stateToChange[e.target.id] = e.target.value;
-        setPost(stateToChange);
+    const checkUploadResult = (resultEvent) => {
+        if (resultEvent.event === 'success') {
+
+            setImageLocation(resultEvent.info.secure_url)
+            setImageName(resultEvent.info.original_filename + `.${resultEvent.info.original_extension}`)
+
+        }
+    }
+
+    const showWidget = (event) => {
+        let widget = window.cloudinary.createUploadWidget({
+            cloudName: "kelleycrittenden",
+            uploadPreset: "Tails_of_Joy"
+        },
+            (error, result) => { checkUploadResult(result) })
+
+        widget.open()
     }
 
     return (
@@ -37,7 +56,7 @@ const PostAdd = () => {
                 <Label className="postTitleLabel">Title</Label>
                 <Input
                     className="newPost"
-                    onChange={handleFieldChange}
+                    onChange={e => setTitle(e.target.value)}
                     type="text"
                     id="Title"
                     placeholder="Enter Title"
@@ -47,22 +66,18 @@ const PostAdd = () => {
                 <Label className="ContentLabel">Content</Label>
                 <textarea
                     className="newPost"
-                    onChange={handleFieldChange}
+                    onChange={e => setContent(e.target.value)}
                     type="text"
                     id="Content"
                     placeholder="Enter Content"
                 />
-
             </FormGroup>
+
             <FormGroup>
-                <Label className="ImageLocationLabel">Image Url</Label>
-                <Input
-                    className="newPost"
-                    onChange={handleFieldChange}
-                    type="text"
-                    id="ImageLocation"
-                    placeholder="Image Url"
-                />
+                <Label className="ImageLocationLabel">Upload Image</Label>
+                <div>
+                    <Button onClick={showWidget}>Upload Photo</Button> <p>{imageName}</p>
+                </div>
             </FormGroup>
 
             <Button
