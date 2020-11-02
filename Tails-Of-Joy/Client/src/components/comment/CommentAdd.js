@@ -1,10 +1,10 @@
 import React, { useContext, useState } from "react";
 import { useHistory, useParams } from "react-router-dom";
-import { Button, Form, FormGroup, Label } from "reactstrap";
+import { Button, Form, FormGroup, Label, Card, Input, CardBody } from "reactstrap";
 import { CommentContext } from "../../providers/CommentProvider";
 import { PostContext } from "../../providers/PostProvider";
 
-const CommentAdd = () => {
+const CommentAdd = (props) => {
 
     const { addComment } = useContext(CommentContext)
     const { post } = useContext(PostContext)
@@ -12,6 +12,7 @@ const CommentAdd = () => {
     const history = useHistory();
     const user = JSON.parse(sessionStorage.getItem("userProfile")).id
     post.userProfileId = user
+
 
     const [comment, setComment] = useState({
         PostId: parseInt(id),
@@ -21,8 +22,9 @@ const CommentAdd = () => {
 
     const newComment = (e) => {
         e.preventDefault();
+        console.log("comment", comment)
         addComment(comment);
-        history.push("/post/details/:id")
+        history.push(`/post/details/${id}`)
     }
 
     const handleFieldChange = (e) => {
@@ -32,34 +34,44 @@ const CommentAdd = () => {
     }
 
     const Cancel = () => {
-        history.push("/post/details/:id")
+        history.push(`/post/details/${id}`)
+
     }
 
     return (
         <>
-            <Form className="commentForm">
-                <FormGroup>
-                    <Label className="ContentLabel">Conmment</Label>
-                    <textarea
-                        className="newComment"
-                        onChange={handleFieldChange}
-                        type="text"
-                        id="Content"
-                        placeholder="Enter Comment"
-                    />
+            <div className="container pt-4">
+                <div className="row justify-content-center">
+                    <Card className="col-sm-12 col-lg-6">
+                        <CardBody>
+                            <Form className="commentForm">
+                                <FormGroup>
+                                    <Label className="ContentLabel">Conmment</Label>
+                                    <Input
+                                        className="newComment"
+                                        onChange={handleFieldChange}
+                                        type="textarea"
+                                        style={{ height: 200 }}
+                                        id="Content"
+                                        placeholder="Enter Comment"
+                                    />
+                                </FormGroup>
+                            </Form>
 
-                    <Button
-                        className="commentButton"
-                        onClick={newComment}
-                        variant="custom"
-                        type="submit">
-                        Save Comment
+                            <Button
+                                className="commentButton"
+                                onClick={newComment}
+                                variant="custom"
+                                type="submit">
+                                Save Comment
                     </Button>&nbsp;
 
                     <Button onClick={Cancel}>Cancel</Button>
 
-                </FormGroup>
-            </Form>
+                        </CardBody>
+                    </Card>
+                </div>
+            </div>
         </>
     )
 

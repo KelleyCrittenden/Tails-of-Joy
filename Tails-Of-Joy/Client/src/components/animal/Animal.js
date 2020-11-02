@@ -13,9 +13,7 @@ export default function Animal({ animal }) {
     return (
         <Card style={style}>
             <CardImg top width="100%"
-                alt="..."
-                //src={require({ animal.ImageLocation })}
-                top
+                src={animal.imageLocation} alt={animal.name}
             ></CardImg>
             <CardBody>
 

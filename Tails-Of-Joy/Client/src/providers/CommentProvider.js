@@ -40,14 +40,15 @@ export const CommentProvider = (props) => {
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify(newComment),
-            }).then(getAllCommentsForPost)
+            })
         });
     }
 
 
     const updateComment = (comment) => {
+        console.log(comment, "comment provider")
         getToken().then((token) => {
-            fetch(`/api/comment/${comment.id}`, {
+            fetch("/api/comment", {
                 method: "PUT",
                 headers: {
                     Authorization: `Bearer ${token}`,

@@ -23,56 +23,50 @@ const AnimalDetails = () => {
 
     return (
         <>
-            <Card className="m-4">
-                <Row margin="m-4">
-                    <h1 ><strong>{animal.name}</strong></h1>
-                </Row>
-                <Row margin="m-4">
-                    <Col sm="6">
-                        <h1>{animal.breed}</h1>
-                    </Col>
-                    <Col sm="6">
-                        <h1>{animal.gender}</h1>
-                    </Col>
-                    <Col sm="6">
-                        <h1>{animal.age}</h1>
-                    </Col>
-                    <Col sm="6">
-                        <h1>{animal.size}</h1>
-                    </Col>
-                    <Col sm="6">
-                        <h1>{animal.childFriendly}</h1>
-                    </Col>
-                    <Col sm="6">
-                        <h1>{animal.smallAnimalFriendly}</h1>
-                    </Col>
-                </Row>
-                <Row>
-                    <Col sm="6">
-                        <h3>{animal.title}</h3>
-                        <h4>{animal.content}</h4>
-                    </Col>
-                </Row>
-                <Row margin="m-4">
-                </Row>
-                <CardBody>
-                    <CardImg className="animalDetailImg" top src={animal.imageLocation} alt={animal.title} />
-                </CardBody>
+            <div className="animalDetailsCardContainer">
+                <Card className="m-auto">
 
-                {user == 1 ?
-                    <>
-                        <Button onClick={() => history.push(`/animal/edit/${animal.id}`)}>Edit</Button>
-                        <Button onClick={() => history.push(`/animal/delete/${animal.id}`)}>Delete</Button>
-                    </>
-                    : null}
 
-                {user == 2 ?
 
-                    <Button onClick={() => history.push(`/createAdoption/${id}`)}>Apply to Adopt</Button>
-                    : null}
-                <Button onClick={Cancel}>Cancel</Button>
 
-            </Card>
+
+                    <CardImg top src={animal.imageLocation} alt={animal.name} />
+                    <CardBody>
+
+                        <h1 ><strong>{animal.name}</strong></h1>
+                        <div>
+                            <h5>Breed: {animal.breed}</h5>
+
+                            <h5>Gender: {animal.gender}</h5>
+
+                            <h5>Age: {animal.age}</h5>
+
+                            <h5>Size: {animal.size}</h5>
+
+                            <h5>Child Friendly: {animal.childFriendly}</h5>
+
+                            <h5>Small Animal Friendly: {animal.smallAnimalFriendly}</h5>
+                        </div>
+
+                        <h6>{animal.content}</h6>
+
+                        {user == 1 ?
+                            <>
+                                <Button onClick={() => history.push(`/animal/edit/${animal.id}`)}>Edit</Button>
+                                <Button onClick={() => history.push(`/animal/delete/${animal.id}`)}>Delete</Button>
+                            </>
+                            : null}
+
+                        {user == 2 ?
+
+                            <Button style={{ margin: 10 }} onClick={() => history.push(`/createAdoption/${id}`)}>Apply to Adopt</Button>
+                            : null}
+                        <Button onClick={Cancel}>Cancel</Button>
+
+
+                    </CardBody>
+                </Card>
+            </div>
         </>
 
 

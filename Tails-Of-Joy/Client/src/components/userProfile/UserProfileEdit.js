@@ -1,7 +1,8 @@
 import React, { useContext, useState, useEffect } from "react";
 import { UserProfileContext } from "../../providers/UserProfileProvider"
 import { useHistory, useParams } from "react-router-dom"
-import { Button, Form, FormGroup, Label, Input } from "reactstrap";
+import { Button, Form, FormGroup, Label, Input, Card, CardImg } from "reactstrap";
+import "./userProfile.css"
 
 const UserProfileEdit = () => {
 
@@ -36,78 +37,87 @@ const UserProfileEdit = () => {
     }, [singleUser])
 
     const Cancel = () => {
-        history.push("/post")
+        history.push("/myProfile")
     }
 
     return (
-        <Form className="postForm">
-            <FormGroup>
-                <Label className="postUsernameLabel">Username</Label>
-                <Input
-                    className="n"
-                    onChange={handleFieldChange}
-                    type="text"
-                    id="Username"
-                    defaultValue={singleUser.username}
-                />
-            </FormGroup>
-            <FormGroup>
-                <Label className="FirstNameLabel">First Name</Label>
-                <textarea
-                    className="newPost"
-                    onChange={handleFieldChange}
-                    type="text"
-                    id="FirstName"
-                    defaultValue={singleUser.firstName}
-                />
+        <div className="d-flex justify-content-center">
+            <Card style={{ border: "none", width: "30%", height: "30%", margin: "20px" }} className="smallContainer">
+                {/* <CardImg src={singleUser.imageLocation} alt={singleUser.username} className="userdetailsImg" />
+                <i className="fa-user-circle fa-7x" /> */}
+                <div className="form-group">
 
-            </FormGroup>
-            <FormGroup>
-                <Label className="LastNameLabel">Last Name</Label>
-                <textarea
-                    className="newPost"
-                    onChange={handleFieldChange}
-                    type="text"
-                    id="LastName"
-                    defaultValue={singleUser.lastName}
-                />
+                    <Form className="postForm">
+                        <FormGroup>
+                            <Label className="postUsernameLabel">Username</Label>
+                            <Input
+                                className="n"
+                                onChange={handleFieldChange}
+                                type="text"
+                                id="Username"
+                                defaultValue={singleUser.username}
+                            />
+                        </FormGroup>
+                        <FormGroup>
+                            <Label className="FirstNameLabel">First Name</Label>
+                            <Input
+                                className="newPost"
+                                onChange={handleFieldChange}
+                                type="text"
+                                id="FirstName"
+                                defaultValue={singleUser.firstName}
+                            />
 
-            </FormGroup>
+                        </FormGroup>
+                        <FormGroup>
+                            <Label className="LastNameLabel">Last Name</Label>
+                            <Input
+                                className="newPost"
+                                onChange={handleFieldChange}
+                                type="text"
+                                id="LastName"
+                                defaultValue={singleUser.lastName}
+                            />
 
-            <FormGroup>
-                <Label className="LastNameLabel">Bio</Label>
-                <textarea
-                    className="newPost"
-                    onChange={handleFieldChange}
-                    type="text"
-                    id="Bio"
-                    defaultValue={singleUser.bio}
-                />
+                        </FormGroup>
 
-            </FormGroup>
+                        <FormGroup>
+                            <Label className="LastNameLabel">Bio</Label>
+                            <Input
+                                className="newPost"
+                                onChange={handleFieldChange}
+                                type="textarea"
+                                id="Bio"
+                                defaultValue={singleUser.bio}
+                            />
 
-            <FormGroup>
-                <Label className="ImageLocationLabel">Image Url</Label>
-                <Input
-                    className="newPost"
-                    onChange={handleFieldChange}
-                    type="text"
-                    id="ImageLocation"
-                    defaultValue={singleUser.imageLocation}
-                />
-            </FormGroup>
+                        </FormGroup>
 
-            <Button
-                className="postButton"
-                onClick={saveUpdatedUserProfile}
-                variant="custom"
-                type="submit">
-                Save Profile
+                        {/* <FormGroup>
+                        <Label className="ImageLocationLabel">Image Url</Label>
+                        <Input
+                            className="newPost"
+                            onChange={handleFieldChange}
+                            type="text"
+                            id="ImageLocation"
+                            defaultValue={singleUser.imageLocation}
+                        />
+                    </FormGroup> */}
+
+                        <Button
+                            className="postButton"
+                            onClick={saveUpdatedUserProfile}
+                            variant="custom"
+                            type="submit">
+                            Save Profile
                     </Button> &nbsp;
 
             <Button onClick={Cancel}>Cancel</Button>
 
-        </Form>
+                    </Form>
+                </div>
+            </Card>
+        </div>
     )
 
 }

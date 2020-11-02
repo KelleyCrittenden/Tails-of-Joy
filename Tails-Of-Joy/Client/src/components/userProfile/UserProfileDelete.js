@@ -1,7 +1,9 @@
 import React, { useEffect, useContext, useState } from "react";
 import { UserProfileContext } from "../../providers/UserProfileProvider";
 import { useHistory, useParams } from "react-router-dom";
-import { Button, Col, CardBody, CardImg } from 'reactstrap'
+import "./userProfile.css"
+import { Button, Card, CardBody, CardImg } from 'reactstrap'
+
 
 const ConfirmUserProfileDelete = () => {
 
@@ -18,7 +20,7 @@ const ConfirmUserProfileDelete = () => {
     const handleDelete = (e) => {
         e.preventDefault();
         deleteUserProfile(singleUser.id)
-            .then(() => history.push("/post"))
+            .then(() => history.push("/"))
     };
 
     useEffect(() => {
@@ -30,18 +32,21 @@ const ConfirmUserProfileDelete = () => {
     }, [singleUser]);
 
     const Cancel = () => {
-        history.push("/login")
+        history.push("/myProfile")
     };
 
     return (
         <>
-            <Col sm="12" md={{ size: 6, offset: 3 }}></Col>
+            <Card className="userProfileCard">
+                <CardBody>
 
-            <p>Are you sure you want to delete your account?</p>
+                    <p>Are you sure you want to delete your account?</p>
 
-            <Button color="danger" id={singleUser.id} onClick={handleDelete}>Delete</Button>&nbsp;
+                    <Button color="danger" id={singleUser.id} onClick={handleDelete}>Delete</Button>&nbsp;
 
             <Button onClick={Cancel}>Cancel</Button>
+                </CardBody>
+            </Card>
 
 
         </>

@@ -1,7 +1,7 @@
 import React, { useEffect, useContext, useState } from "react";
 import { AdoptionContext } from "../../providers/AdoptionProvider";
 import { useHistory, useParams } from "react-router-dom";
-import { Button, Col, CardBody, CardImg } from 'reactstrap'
+import { Button, Col, CardBody, CardImg, Card } from 'reactstrap'
 import { UserProfileContext } from "../../providers/UserProfileProvider";
 import { AnimalContext } from "../../providers/AnimalProvider"
 import Adoption from "./Adoption"
@@ -37,20 +37,23 @@ const AdoptionAdd = () => {
 
     return (
         <>
-            ADD TEST
-            <Col sm="12" md={{ size: 6, offset: 3 }}></Col>
+            <div className="d-flex justify-content-center">
+                <Card style={{ border: "none", width: "30%", height: "30%", margin: "20px" }} className="smallContainer">
+                    <CardBody>
 
-            <p>Are you sure you want to Adopt this Animal?</p>
-
-            <CardBody>
-                <div>
-                    <Button onClick={Cancel}>Cancel</Button>
+                        <p>Are you sure you want to Adopt this Animal?</p>
 
 
-                    <Button onClick={Submit}>Apply</Button>
-                </div>
+                        <div>
+                            <Button onClick={Cancel}>Cancel</Button>
 
-            </CardBody>
+
+                            <Button onClick={Submit}>Apply</Button>
+                        </div>
+
+                    </CardBody>
+                </Card>
+            </div>
         </>
     )
 

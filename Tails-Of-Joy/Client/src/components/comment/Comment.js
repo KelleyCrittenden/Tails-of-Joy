@@ -3,6 +3,7 @@ import { useHistory } from "react-router-dom";
 import { Card, CardBody } from "reactstrap";
 import { useParams, Link } from "react-router-dom";
 import { Button } from "reactstrap";
+import "./comment.css"
 
 export default function Comment({ comment }) {
 
@@ -14,7 +15,7 @@ export default function Comment({ comment }) {
         <Card style={{ border: "none" }}>
             <div className="commentCard">
                 <CardBody>
-                    {/* <div>{comment.userProfile.username}</div> */}
+                    <div>{comment.userProfile.username}</div>
                     <div>{comment.createDateTime}</div>
                     <div className="commentTextArea">{comment.content}</div>
 
@@ -22,7 +23,7 @@ export default function Comment({ comment }) {
 
                         <div>
                             <Button onClick={() => history.push(`/comment/edit/${comment.id}`)}>Edit</Button>
-                            <Button onClick={() => history.push(`/comment/delete/${comment.id}`)}>Delete</Button>
+                            <Button color="danger" onClick={() => history.push(`/comment/delete/${comment.id}`)}>Delete</Button>
                         </div>
                         :
                         null}

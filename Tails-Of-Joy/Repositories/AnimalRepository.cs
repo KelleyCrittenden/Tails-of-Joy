@@ -18,10 +18,10 @@ namespace Tails_Of_Joy.Repositories
                 using (var cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-                               SELECT Id, IsAdoptable, Name, Breed, Gender, Age, Size, ChildFriendly, SmallAnimalFriendly, Title, Content, ImageLocation
-                                FROM Animal
-                                WHERE IsAdoptable = 1
-                                ORDER BY Name ASC";
+                        SELECT Id, IsAdoptable, Name, Breed, Gender, Age, Size, ChildFriendly, SmallAnimalFriendly, Title, Content, ImageLocation
+                        FROM Animal
+                        WHERE IsAdoptable = 1
+                        ORDER BY Name ASC";
 
                     var reader = cmd.ExecuteReader();
 

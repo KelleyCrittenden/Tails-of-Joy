@@ -1,3 +1,9 @@
+
+.commentButton {
+    margin-left: 1em;
+    margin-top: 2em;
+}
+
 .commentCard {
     background-color:lightgray;   
     border-radius: 1em;
@@ -5,9 +11,12 @@
     margin-top: 1em
 }
 
+.commentTextArea {
+    white-space: pre-wrap;
+}
 
-.deleteAdoptionCard {
+.deleteCommentCard {
     margin: 1em auto;
     margin-top: 30px;
-    width: 100px;
+    width: 500px;
 }

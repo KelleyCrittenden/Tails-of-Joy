@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect } from "react";
 import { CommentContext } from "../../providers/CommentProvider"
 import { useHistory, useParams } from "react-router-dom"
-import { Button, Form, FormGroup, Label, Input } from "reactstrap";
+import { Button, Form, FormGroup, Label, Input, Card, CardBody } from "reactstrap";
 import { PostContext } from "../../providers/PostProvider";
 
 
@@ -16,6 +16,7 @@ const CommentEdit = () => {
     const user = JSON.parse(sessionStorage.getItem("userProfile")).id
     post.userProfileId = user
 
+
     useEffect(() => {
         getCommentById(id)
     }, [])
@@ -28,8 +29,11 @@ const CommentEdit = () => {
 
     const saveUpdatedComment = (e) => {
         e.preventDefault();
+        console.log(id, "id")
         updateComment(editedComment)
-        history.push("/post")
+        { window.location.href = `/post/details/${editedComment.postId}` }
+        console.log(editedComment, "edited comment")
+
     };
 
     useEffect(() => {
@@ -37,36 +41,43 @@ const CommentEdit = () => {
     }, [comment])
 
     const Cancel = () => {
-        history.push("/post")
+        history.push(`/post/details/${comment.postId}`)
     }
 
     return (
-        <Form className="commentEditForm">
-            <Form className="commentForm">
-                <FormGroup>
-                    <Label className="ContentLabel">Conmment</Label>
-                    <textarea
-                        className="newComment"
-                        onChange={handleFieldChange}
-                        type="text"
-                        id="Content"
-                        defaultValue={comment.content}
-                    />
+        <>
+            <div className="container pt-4">
+                <div className="row justify-content-center">
+                    <Card className="col-sm-12 col-lg-6">
+                        <CardBody>
+                            <FormGroup>
+                                <Label className="ContentLabel">Conmment</Label>
+                                <Input
+                                    className="newComment"
+                                    onChange={handleFieldChange}
+                                    type="textarea"
+                                    style={{ height: 200 }}
+                                    id="Content"
+                                    defaultValue={comment.content}
+                                />
 
-                    <Button
-                        className="commentButton"
-                        onClick={saveUpdatedComment}
-                        variant="custom"
-                        type="submit">
-                        Save Comment
+                                <Button
+                                    className="commentButton"
+                                    onClick={saveUpdatedComment}
+                                    variant="custom"
+                                    type="submit">
+                                    Save Comment
                     </Button>
 
-                </FormGroup>
-            </Form>
+                            </FormGroup>
 
-            <Button onClick={Cancel}>Cancel</Button>
 
-        </Form>
+                            <Button onClick={Cancel}>Cancel</Button>
+                        </CardBody>
+                    </Card>
+                </div>
+            </div>
+        </>
     )
 
 }

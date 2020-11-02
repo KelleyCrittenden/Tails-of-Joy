@@ -1,0 +1,14 @@
+.userProfileCard {
+    margin: 1em auto;
+    margin-top: 30px;
+    width: 300px;
+}
+
+.goBackuserButton {
+    width: 8em;
+    margin: 0 auto;
+}
+
+.userdetailsImg {
+    margin: 0 auto;
+}

@@ -1,6 +1,6 @@
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useHistory } from "react-router-dom";
 import React, { useContext, useEffect, useState } from "react";
-import { Card, CardImg, CardBody, Row, ListGroup, Col, Button } from "reactstrap";
+import { Card, CardImg, CardBody, Row, ListGroup, Col, Button, CardSubtitle } from "reactstrap";
 import { UserProfileContext } from "../../providers/UserProfileProvider";
 import { PostContext } from "../../providers/PostProvider";
 import { CommentContext } from "../../providers/CommentProvider"
@@ -9,9 +9,11 @@ import Comment from "../comment/Comment"
 const PostDetails = () => {
 
     const { id } = useParams();
+    const history = useHistory();
     const { post, getPostById } = useContext(PostContext);
     const { comments, getAllCommentsForPost } = useContext(CommentContext);
-    const { userProfile } = useContext(UserProfileContext)
+    const { userProfile } = useContext(UserProfileContext);
+    const currentUser = JSON.parse(sessionStorage.getItem('userProfile')).id;
 
     useEffect(() => {
         getPostById(id);
@@ -21,54 +23,69 @@ const PostDetails = () => {
         getAllCommentsForPost(id)
     }, []);
 
+    const Cancel = () => {
+        history.push("/post")
+    };
+
+    const addCommentButton = () => {
+        history.push(`/comment/add/${id}`)
+    }
+
     return (
         <>
-            <Card className="m-4">
-                <Row margin="m-4">
-                    <h1><strong>{post.title}</strong></h1>
-                </Row>
-                <Row margin="m-4">
-                    <Col sm="6">
-                        <h1>{post.content}</h1>
-                    </Col>
-                    {/* <Col sm="6">
-                        <h6>Posted By: {post.userProfile.username}</h6>
-                    </Col> */}
-                    <Col sm="6">
-                        <h4>Posted On: {post.createDateTime}</h4>
-                    </Col>
+
+            <div className="postDetailsCardContainer">
+                <Card className="m-auto">
+                    <CardBody>
+                        <div className="post_Detail_Top_With_Tags">
+                            <div>
+                                <h2>{post.title}</h2>
+                                <h6>{post.createDateTime}</h6>
+                                {/* <Button onClick={() => history.push(`/userProfile/q=${post.userProfile.id}`)}>{post.userProfile.username}'s Profile</Button> */}
+                                {/* <CardSubtitle>By {post.userProfile.username}</CardSubtitle> */}
+                            </div>
+                        </div>
+                    </CardBody>
+                    <CardImg top />
+
+                    <CardImg top src={post.imageLocation} alt={post.title} />
+                    <p style={{ whiteSpace: "pre-wrap" }}>{post.content}</p>
+                    {(currentUser === post.userProfileId) ?
+
+                        <div>
+                            <Button style={{ margin: 10 }} onClick={() => history.push(`/post/edit/${post.id}`)}>Edit</Button>
+                            <Button style={{ margin: 10 }} onClick={() => history.push(`/post/delete/${post.id}`)}>Delete</Button>
+                        </div>
+                        :
+                        null}
+                    <Button style={{ margin: 10 }} onClick={Cancel}>Cancel</Button>
 
 
-                </Row>
-                <Row margin="m-4">
-                </Row>
-                <CardBody>
-                    <CardImg className="postDetailImg" top src={post.imageLocation} alt={post.title} />
-                </CardBody>
-            </Card>
-
-            <Link to={`/comment/add/${id}`}>
-                <Button id="addCommentButton"> Add Comment </Button>
-            </Link>
-
-            {(comments.length > 0) ?
+                    <Button id="addCommentButton" onClick={addCommentButton}> Add Comment </Button>
 
 
-                < ListGroup >
-                    <h4>Comments: </h4>
-                    {
-                        comments.map(c =>
-                            < Comment key={c.id} comment={c} />
-                        )
+                    {(comments.length > 0) ?
+
+
+                        < ListGroup >
+                            <h4>Comments: </h4>
+                            {
+                                comments.map(c =>
+                                    < Comment key={c.id} comment={c} />
+                                )
+                            }
+                        </ListGroup>
+                        :
+                        null
                     }
-                </ListGroup>
-                :
-                null
-            }
 
+
+
+
+                </Card>
+
+            </div>
         </>
-
-
     );
 }
 

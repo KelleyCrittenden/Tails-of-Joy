@@ -20,5 +20,6 @@ namespace Tails_Of_Joy.Models
         public bool SmallAnimalFriendly { get; set; }
         public string Title { get; set; }
         public string Content { get; set; }
+      public Adoption Adoption { get; set; }
     }
 }

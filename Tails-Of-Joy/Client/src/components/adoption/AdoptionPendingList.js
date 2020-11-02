@@ -13,8 +13,6 @@ export default function AdoptionPendingList() {
         getAllPendingAdoptions();
     }, []);
 
-    console.log(adoptions, "pending adoptions")
-
     return (
         <>
             {(adoptions.length > 0) ?

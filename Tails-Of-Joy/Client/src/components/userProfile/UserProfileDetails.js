@@ -1,7 +1,7 @@
 import { useHistory, useParams } from "react-router-dom";
 import { UserProfileContext } from "../../providers/UserProfileProvider";
 import React, { useContext, useEffect } from "react";
-import { Card, CardImg, CardBody, Row, Col, Button } from "reactstrap";
+import { Card, CardImg, CardBody, Row, Col, Button, CardHeader } from "reactstrap";
 
 const UserProfileDetails = () => {
 
@@ -22,37 +22,44 @@ const UserProfileDetails = () => {
 
     return (
         <>
-            <Card className="m-4">
-                <Row margin="m-4">
-                    <h1 ><strong>{singleUser.firstName}{singleUser.lastName}</strong></h1>
-                </Row>
-                <Row>
-                    <Col sm="6">
-                        <h3>{singleUser.bio}</h3>
-                    </Col>
-                </Row>
-                <Row margin="m-4">
-                </Row>
-                <CardBody>
-                    <CardImg className="userProfileDetailImg" top src={singleUser.imageLocation} alt={singleUser.username} />
-                </CardBody>
+            <div className="d-flex justify-content-center">
+                <Card style={{ border: "none", width: "30%", height: "30%", margin: "20px" }} className="smallContainer">
 
-                {(currentUser === singleUser.id) ?
+                    <CardImg src={singleUser.imageLocation} alt={singleUser.username} className="userdetailsImg" />
+                    <i className="fa-user-circle fa-7x" />
 
-                    <div>
-                        <Button onClick={() => history.push(`/userProfile/edit/${singleUser.id}`)}>Edit</Button>
+                    <CardHeader>
+                        <h3>{singleUser.firstName} {singleUser.lastName}</h3>
+                    </CardHeader>
 
-                        {currentUser == 2 ?
-                            <Button onClick={() => history.push(`/userProfile/delete/${singleUser.id}`)}>Delete</Button>
-                            :
-                            null}
-                        <Button onClick={Cancel}>Cancel</Button>
+                    <Row>
+                        <Col sm="6">
+                            <h3>{singleUser.bio}</h3>
+                        </Col>
+                    </Row>
+                    <Row margin="m-4">
+                    </Row>
+                    <CardBody>
+                        <CardImg className="userProfileDetailImg" top src={singleUser.imageLocation} alt={singleUser.username} />
+                    </CardBody>
 
-                    </div>
-                    :
-                    null}
+                    {(currentUser === singleUser.id) ?
 
-            </Card>
+                        <div>
+                            <Button onClick={() => history.push(`/userProfile/edit/${singleUser.id}`)}>Edit</Button>
+
+                            {currentUser == 2 ?
+                                <Button onClick={() => history.push(`/userProfile/delete/${singleUser.id}`)}>Delete</Button>
+                                :
+                                null}
+                            <Button onClick={Cancel}>Cancel</Button>
+
+                        </div>
+                        :
+                        null}
+
+                </Card>
+            </div>
         </>
 
 

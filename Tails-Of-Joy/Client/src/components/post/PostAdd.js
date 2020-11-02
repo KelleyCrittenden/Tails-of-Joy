@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import { useHistory } from "react-router-dom";
-import { Form, FormGroup, Label, Input, Button } from "reactstrap";
+import { Form, FormGroup, Label, Input, Button, Card, CardBody } from "reactstrap";
 import { PostContext } from "../../providers/PostProvider";
 
 const PostAdd = () => {
@@ -26,9 +26,14 @@ const PostAdd = () => {
         const user = JSON.parse(sessionStorage.getItem("userProfile")).id
         post.userProfileId = user
 
+        if (post.title === "" || post.content === "" || post.imageLocation === "") {
+            alert("Please Fill Out All Fields");
+        } else {
 
-        addPost(post);
-        history.push("/post");
+            addPost(post);
+            console.log(post, "added post")
+            history.push("/post");
+        }
     }
 
     const checkUploadResult = (resultEvent) => {
@@ -50,45 +55,60 @@ const PostAdd = () => {
         widget.open()
     }
 
+    const Cancel = () => {
+        history.push("/post")
+    }
+
     return (
-        <Form className="postForm" onSubmit={newPost}>
-            <FormGroup>
-                <Label className="postTitleLabel">Title</Label>
-                <Input
-                    className="newPost"
-                    onChange={e => setTitle(e.target.value)}
-                    type="text"
-                    id="Title"
-                    placeholder="Enter Title"
-                />
-            </FormGroup>
-            <FormGroup>
-                <Label className="ContentLabel">Content</Label>
-                <textarea
-                    className="newPost"
-                    onChange={e => setContent(e.target.value)}
-                    type="text"
-                    id="Content"
-                    placeholder="Enter Content"
-                />
-            </FormGroup>
+        <div className="container pt-4">
+            <div className="row justify-content-center">
+                <Card className="col-sm-12 col-lg-6">
+                    <CardBody>
+                        <Form encType="multipart/form-data">
+                            <FormGroup>
+                                <Label className="postTitleLabel">Title</Label>
+                                <Input
+                                    className="newPost"
+                                    onChange={e => setTitle(e.target.value)}
+                                    type="text"
+                                    id="Title"
+                                    placeholder="Enter Title"
+                                />
+                            </FormGroup>
+                            <FormGroup>
+                                <Label className="ContentLabel">Content</Label>
 
-            <FormGroup>
-                <Label className="ImageLocationLabel">Upload Image</Label>
-                <div>
-                    <Button onClick={showWidget}>Upload Photo</Button> <p>{imageName}</p>
-                </div>
-            </FormGroup>
+                                <Input type="textarea"
+                                    rows="10"
+                                    id="content"
+                                    onChange={e => setTitle(e.target.value)}
+                                    placeholder="Enter Content" />
 
-            <Button
-                className="postButton"
-                onClick={newPost}
-                variant="custom"
-                type="submit">
-                Save Post
-            </Button>
+                            </FormGroup>
 
-        </Form>
+                            <FormGroup>
+                                <Label className="ImageLocationLabel">Upload Image</Label>
+                                <div>
+                                    <Button onClick={showWidget}>Upload Photo</Button> <p>{imageName}</p>
+                                </div>
+                            </FormGroup>
+
+                            <Button
+                                className="postButton"
+                                onClick={newPost}
+                                variant="custom"
+                                type="submit">
+                                Save Post
+            </Button>&nbsp;
+
+            <Button onClick={Cancel}>Cancel</Button>
+
+                        </Form>
+
+                    </CardBody>
+                </Card>
+            </div>
+        </div>
     )
 }
 export default PostAdd

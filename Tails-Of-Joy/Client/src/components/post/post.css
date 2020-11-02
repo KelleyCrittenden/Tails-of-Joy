@@ -1,0 +1,16 @@
+.postTable {
+    margin-top: 30px;
+    padding: 20px;
+    border: solid;
+    border-radius: 10px;
+    border-width: 1px;
+    border-color: grey;
+    width: 50%;
+    background-color:white;
+    opacity: .9;
+}
+
+.postDetailsCardContainer {
+    width: 70%;
+    margin: 0 auto;
+}

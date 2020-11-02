@@ -20,6 +20,7 @@ export const PostProvider = (props) => {
         });
 
     const getPostById = (id) => {
+        console.log("post Id", id)
         return getToken().then((token) => {
             fetch((`/api/post/${id}`), {
                 mmethod: "GET",

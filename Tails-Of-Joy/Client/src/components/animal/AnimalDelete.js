@@ -1,7 +1,7 @@
 import { AnimalContext } from "../../providers/AnimalProvider";
 import React, { useEffect, useContext, useState } from "react";
 import { useHistory, useParams } from "react-router-dom"
-import { Button, CardBody, Col } from 'reactstrap'
+import { Button, CardBody, Card, CardImg, Col } from 'reactstrap'
 
 export default function AnimalDelete() {
 
@@ -30,22 +30,28 @@ export default function AnimalDelete() {
 
     return (
         <>
-            <Col sm="12" md={{ size: 6, offset: 3 }}></Col>
+            <div className="d-flex justify-content-center">
+                <Card style={{ border: "none", width: "30%", height: "30%", margin: "20px" }} className="smallContainer">
+                    <CardBody>
+
+                        <p>Are you sure you want to delete this Animal?</p>
 
 
-            <p>Are you sure you want to delete this Animal?</p>
 
 
-            <Button id={animal.id} onClick={handleDeleteAnimal}>Delete</Button>&nbsp;
+                        <h4>{animal.name}</h4>
+                        <h5>{animal.breed}</h5>
+                        <p>{animal.title}</p>
+                        <CardImg top src={animal.imageLocation} alt={animal.name} />
 
-            <Button onClick={Cancel}>Cancel</Button>
-            <CardBody>
 
-                <h4>{animal.name}</h4>
-                <h5>{animal.breed}</h5>
-                <p>{animal.title}</p>
+                        <Button color="danger" id={animal.id} onClick={handleDeleteAnimal}>Delete</Button>&nbsp;
 
-            </CardBody>
+<Button onClick={Cancel}>Cancel</Button>
+                    </CardBody>
+                </Card>
+            </div>
+
 
         </>
 
