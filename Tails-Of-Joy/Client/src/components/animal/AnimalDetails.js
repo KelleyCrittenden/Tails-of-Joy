@@ -25,11 +25,6 @@ const AnimalDetails = () => {
         <>
             <div className="animalDetailsCardContainer">
                 <Card className="m-auto">
-
-
-
-
-
                     <CardImg top src={animal.imageLocation} alt={animal.name} />
                     <CardBody>
 
@@ -61,7 +56,16 @@ const AnimalDetails = () => {
 
                             <Button style={{ margin: 10 }} onClick={() => history.push(`/createAdoption/${id}`)}>Apply to Adopt</Button>
                             : null}
+
+                        {animal.isAdoptable == 0 ?
+                            <Button color="danger" style={{ margin: 10 }} onClick={() => history.push(`/animal/reactivate/${animal.id}`)}>Reactivate</Button>
+                            :
+                            null
+                        }
+
                         <Button onClick={Cancel}>Cancel</Button>
+
+
 
 
                     </CardBody>

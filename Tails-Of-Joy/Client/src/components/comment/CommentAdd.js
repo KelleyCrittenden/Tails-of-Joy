@@ -63,9 +63,9 @@ const CommentAdd = (props) => {
                                 variant="custom"
                                 type="submit">
                                 Save Comment
-                    </Button>&nbsp;
+                            </Button>&nbsp;
 
-                    <Button onClick={Cancel}>Cancel</Button>
+                            <Button onClick={Cancel}>Cancel</Button>
 
                         </CardBody>
                     </Card>

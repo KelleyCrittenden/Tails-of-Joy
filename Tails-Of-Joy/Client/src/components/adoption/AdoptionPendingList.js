@@ -15,15 +15,17 @@ export default function AdoptionPendingList() {
 
     return (
         <>
-            {(adoptions.length > 0) ?
-                <ListGroup>
-                    {adoptions.map((adoption) => (
-                        <Adoption key={adoption.id} adoption={adoption} />
-                    ))}
-                </ListGroup>
-                :
-                null
-            }
+            <div className="animal-container-cards">
+                {(adoptions.length > 0) ?
+                    <ListGroup>
+                        {adoptions.map((adoption) => (
+                            <Adoption key={adoption.id} adoption={adoption} />
+                        ))}
+                    </ListGroup>
+                    :
+                    null
+                }
+            </div>
         </>
 
     )

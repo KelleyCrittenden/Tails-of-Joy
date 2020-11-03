@@ -1,16 +1,15 @@
-.postTable {
-    margin-top: 30px;
-    padding: 20px;
-    border: solid;
-    border-radius: 10px;
-    border-width: 1px;
-    border-color: grey;
-    width: 50%;
-    background-color:white;
-    opacity: .9;
+.animalDetailsCardContainer {
+    width: 40%;
+    margin: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
-.animalDetailsCardContainer {
-    width: 50%;
-    margin: 0 auto;
-}
+.animal-container-cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-content: space-around;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }

@@ -29,8 +29,6 @@ const AdoptionAdd = () => {
         });
     };
 
-    console.log(adoption, "new adoption")
-
     const Cancel = () => {
         history.push(`/animal/details/${id}`)
     }

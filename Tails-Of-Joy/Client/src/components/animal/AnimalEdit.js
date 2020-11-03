@@ -2,7 +2,6 @@ import React, { useContext, useState, useEffect } from "react";
 import { Button, Form, Card, CardBody, FormGroup, Label, Input, Col } from "reactstrap";
 import { useHistory, useParams } from "react-router-dom"
 import { AnimalContext } from "../../providers/AnimalProvider";
-import Adoption from "../adoption/Adoption";
 
 const AnimalEdit = () => {
 

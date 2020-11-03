@@ -29,10 +29,8 @@ const CommentEdit = () => {
 
     const saveUpdatedComment = (e) => {
         e.preventDefault();
-        console.log(id, "id")
         updateComment(editedComment)
-        { window.location.href = `/post/details/${editedComment.postId}` }
-        console.log(editedComment, "edited comment")
+        history.push(`/post/details/${editedComment.postId}`)
 
     };
 

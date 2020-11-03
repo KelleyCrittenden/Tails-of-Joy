@@ -18,9 +18,10 @@ namespace Tails_Of_Joy.Repositories
                 using (var cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-                        SELECT Id, IsAdoptable, Name, Breed, Gender, Age, Size, ChildFriendly, SmallAnimalFriendly, Title, Content, ImageLocation
+                        SELECT Animal.Id, IsAdoptable, Name, Breed, Gender, Age, Size, ChildFriendly, SmallAnimalFriendly, Title, Content, ImageLocation, Adoption.Id, Adoption.AnimalId, 
                         FROM Animal
-                        WHERE IsAdoptable = 1
+                        LEFT JOIN Adoption ON Adoption.AnimalId = Animal.Id
+                        WHERE IsAdoptable = 1 AND AnimalId != Animal.Id
                         ORDER BY Name ASC";
 
                     var reader = cmd.ExecuteReader();
@@ -52,6 +53,50 @@ namespace Tails_Of_Joy.Repositories
                 }
             }
         }
+
+        public List<Animal> GetAllUnavailable()
+        {
+            using (var conn = Connection)
+            {
+                conn.Open();
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"
+                        SELECT Id, IsAdoptable, Name, Breed, Gender, Age, Size, ChildFriendly, SmallAnimalFriendly, Title, Content, ImageLocation
+                        FROM Animal
+                        WHERE IsAdoptable = 0
+                        ORDER BY Name ASC";
+
+                    var reader = cmd.ExecuteReader();
+
+                    var animals = new List<Animal>();
+
+                    while (reader.Read())
+                    {
+                        animals.Add(new Animal()
+                        {
+                            Id = reader.GetInt32(reader.GetOrdinal("Id")),
+                            IsAdoptable = reader.GetBoolean(reader.GetOrdinal("IsAdoptable")),
+                            Name = reader.GetString(reader.GetOrdinal("Name")),
+                            Breed = reader.GetString(reader.GetOrdinal("Breed")),
+                            Gender = reader.GetString(reader.GetOrdinal("Gender")),
+                            Age = reader.GetString(reader.GetOrdinal("Age")),
+                            Size = reader.GetString(reader.GetOrdinal("Size")),
+                            ChildFriendly = reader.GetBoolean(reader.GetOrdinal("ChildFriendly")),
+                            SmallAnimalFriendly = reader.GetBoolean(reader.GetOrdinal("SmallAnimalFriendly")),
+                            Title = reader.GetString(reader.GetOrdinal("Title")),
+                            Content = reader.GetString(reader.GetOrdinal("Content")),
+                            ImageLocation = reader.GetString(reader.GetOrdinal("ImageLocation")),
+                        });
+
+                    }
+
+                    reader.Close();
+                    return animals;
+                }
+            }
+        }
+
 
         public List<Animal> GetAllAdoptedAnimals()
         {
@@ -226,6 +271,26 @@ namespace Tails_Of_Joy.Repositories
                     }
                     reader.Close();
                     return null;
+                }
+            }
+        }
+
+        //Updated Animal Database Column to change animal to being available to adopt
+        public void Reactivate(int id)
+        {
+            using (var conn = Connection)
+            {
+                conn.Open();
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"
+                            UPDATE Animal
+                            SET IsAdoptable = @isAdoptable
+                            Where Id = @id
+                            ";
+                    DbUtils.AddParameter(cmd, "isAdoptable", 1);
+                    DbUtils.AddParameter(cmd, "@id", id);
+                    cmd.ExecuteNonQuery();
                 }
             }
         }

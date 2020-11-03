@@ -22,7 +22,7 @@ export default function PostList() {
                 <div className="row justify-content-left">
                     <Button onClick={Create}>
                         Add Post
-            </Button>
+                    </Button>
                     <Table className="postTable" striped>
                         <thead>
                             <tr>
@@ -49,17 +49,6 @@ export default function PostList() {
                             </tbody>
                         )))}
                     </Table>
-
-
-
-                    {/* <ListGroup>
-                        <ListGroupItem>
-                            {posts.map((post) => (
-                                <Post key={post.id} post={post} />
-                            ))}
-                        </ListGroupItem>
-                    </ListGroup> */}
-
                 </div>
             </div>
         </>

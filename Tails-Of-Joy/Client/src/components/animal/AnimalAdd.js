@@ -41,8 +41,8 @@ const AnimalAdd = () => {
         if (animalToSave.IsAdoptable === "" || animalToSave.Name === "" || animalToSave.Breed === "" || animalToSave.Gender === "" || animalToSave.Age === "" || animalToSave.Size === "" || animalToSave.ChildFriendly === "" || animalToSave.SmallAnimalFriendly === "" || animalToSave.Title === "" || animalToSave.Content === "") {
             alert("Please Fill Out All Fields");
         } else {
-            addAnimal(animalToSave);
-            history.push("/animal");
+            addAnimal(animalToSave)
+                .then(() => history.push("/animal"))
         }
     }
 

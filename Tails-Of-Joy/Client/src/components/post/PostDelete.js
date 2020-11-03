@@ -42,7 +42,6 @@ const ConfirmPostDelete = () => {
 
                     <h4>{post.title}</h4>
                     <h5>{post.content}</h5>
-                    {/* <h6>Posted By: {post.userProfile.userName}</h6> */}
                     <CardImg top src={post.imageLocation} alt={post.title} />
 
                     <Button color="danger" id={post.id} onClick={handleDelete}>Delete</Button>&nbsp;

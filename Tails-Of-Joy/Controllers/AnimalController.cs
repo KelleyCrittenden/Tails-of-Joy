@@ -34,6 +34,13 @@ namespace Tails_Of_Joy.Controllers
         }
 
 
+        [HttpGet("unavailable")]
+        public IActionResult GetAllUnavailable()
+        {
+            return Ok(_animalRepository.GetAllUnavailable());
+        }
+
+
 
         //Displaying details of one Animal
         // GET api/<AnimalController>/5
@@ -72,13 +79,22 @@ namespace Tails_Of_Joy.Controllers
             return NoContent();
         }
 
-
         // Updating Animal from Available to Adopted
         // DELETE api/<AnimalController>/5
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
             _animalRepository.Delete(id);
+            return Ok(id);
+        }
+
+
+        // Updating Animal from Unavailable to Available
+        // DELETE api/<AnimalController>/5
+        [HttpDelete("reactivate/{id}")]
+        public IActionResult Reactivate(int id)
+        {
+            _animalRepository.Reactivate(id);
             return Ok(id);
         }
     }
