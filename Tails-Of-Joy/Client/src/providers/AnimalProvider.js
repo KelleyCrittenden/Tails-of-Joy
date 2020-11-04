@@ -19,6 +19,18 @@ export const AnimalProvider = (props) => {
                 .then(setAnimals);
         });
 
+    const getAllUnavailable = () =>
+        getToken().then((token) => {
+            fetch(("/api/animal/unavailable"), {
+                method: "GET",
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            }).then((res) => res.json())
+                .then(setAnimals);
+        });
+
+
     const getAnimalById = (id) => {
         return getToken().then((token) => {
             fetch((`/api/animal/${id}`), {
@@ -68,8 +80,20 @@ export const AnimalProvider = (props) => {
         })
     }
 
+    const reactivateAnimal = (animalId) => {
+        return getToken().then((token) => {
+            fetch(`/api/animal/reactivate/${animalId}`, {
+                method: "DELETE",
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            })
+        })
+    }
+
+
     return (
-        <AnimalContext.Provider value={{ animal, animals, getAllAvailableAnimals, getAnimalById, addAnimal, updateAnimal, deleteAnimal }}>
+        <AnimalContext.Provider value={{ animal, animals, getAllAvailableAnimals, getAllUnavailable, getAnimalById, addAnimal, updateAnimal, deleteAnimal, reactivateAnimal }}>
             {props.children}
         </AnimalContext.Provider>
     );

@@ -1,0 +1,16 @@
+.bioDetailsCardContainer {
+    width: 70%;
+    margin: 0 auto;
+}
+
+.bioTextarea {
+    overflow-y: scroll;
+    height: 300px;
+    margin-bottom: 32px;
+}
+
+.userProfileCard {
+    display: flex;
+    width: 640px;
+    margin: auto;
+}

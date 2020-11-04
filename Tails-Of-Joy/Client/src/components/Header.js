@@ -17,54 +17,64 @@ export default function Header() {
     const toggle = () => setIsOpen(!isOpen);
 
     return (
-        <div>
-            <Navbar color="dark" dark expand="md">
-                <NavbarBrand tag={RRNavLink} to="/">Tails of Joy</NavbarBrand>
-                <NavbarToggler onClick={toggle} />
-                <Collapse isOpen={isOpen} navbar>
-                    <Nav className="mr-auto" navbar>
-                        {isLoggedIn &&
-                            <>
-                                <NavItem>
-                                    <NavLink tag={RRNavLink} to="/animal">Animals</NavLink>
-                                </NavItem>
-
-                                <NavItem>
-                                    <NavLink tag={RRNavLink} to="/post">Posts</NavLink>
-                                </NavItem>
-
-                                <NavItem>
-                                    <NavLink tag={RRNavLink} to="/myprofile">My Profile</NavLink>
-                                </NavItem>
-
-                                {activeUser.userTypeId === 1 ?
+        <>
+            <div>
+                <Navbar color="dark" dark expand="md">
+                    <NavbarBrand tag={RRNavLink} to="/">Tails of Joy</NavbarBrand>
+                    <NavbarToggler onClick={toggle} />
+                    <Collapse isOpen={isOpen} navbar>
+                        <Nav className="mr-auto" navbar>
+                            {isLoggedIn &&
+                                <>
                                     <NavItem>
-                                        <NavLink tag={RRNavLink} to="/pendingAdoptions">Pending Adoptions</NavLink>
+                                        <NavLink tag={RRNavLink} to="/animal">Dogs</NavLink>
                                     </NavItem>
 
-                                    : null
-                                }
+                                    <NavItem>
+                                        <NavLink tag={RRNavLink} to="/post">Tails</NavLink>
+                                    </NavItem>
 
-                                <NavItem>
-                                    <a aria-current="page" className="nav-link"
-                                        style={{ cursor: "pointer" }} onClick={logout}>Logout</a>
-                                </NavItem>
+                                    <NavItem>
+                                        <NavLink tag={RRNavLink} to="/myprofile">My Profile</NavLink>
+                                    </NavItem>
 
-                            </>
-                        }
-                        {!isLoggedIn &&
-                            <>
-                                <NavItem>
-                                    <NavLink tag={RRNavLink} to="/login">Login</NavLink>
-                                </NavItem>
-                                <NavItem>
-                                    <NavLink tag={RRNavLink} to="/register">Register</NavLink>
-                                </NavItem>
-                            </>
-                        }
-                    </Nav>
-                </Collapse>
-            </Navbar>
-        </div>
+                                    {activeUser.userTypeId === 1 ?
+                                        <NavItem>
+                                            <NavLink tag={RRNavLink} to="/pendingAdoptions">Adoptions</NavLink>
+                                        </NavItem>
+                                        : null
+                                    }
+
+
+                                    {activeUser.userTypeId === 1 ?
+                                        <NavItem>
+                                            <NavLink tag={RRNavLink} to="/unavailableAnimals">Unavailable Dogs</NavLink>
+                                        </NavItem>
+                                        : null
+                                    }
+
+
+                                    <NavItem>
+                                        <a aria-current="page" className="nav-link"
+                                            style={{ cursor: "pointer" }} onClick={logout}>Logout</a>
+                                    </NavItem>
+
+                                </>
+                            }
+                            {!isLoggedIn &&
+                                <>
+                                    <NavItem>
+                                        <NavLink tag={RRNavLink} to="/login">Login</NavLink>
+                                    </NavItem>
+                                    <NavItem>
+                                        <NavLink tag={RRNavLink} to="/register">Register</NavLink>
+                                    </NavItem>
+                                </>
+                            }
+                        </Nav>
+                    </Collapse>
+                </Navbar>
+            </div>
+        </>
     );
 }

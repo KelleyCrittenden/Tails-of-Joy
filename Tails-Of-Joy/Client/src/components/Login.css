@@ -1,0 +1,18 @@
+body {
+    background-image: linear-gradient(to right, white, darkgrey);
+    background-position: center;
+    background-size: 110%;
+    height: 100vh;
+}
+
+.Login {
+    margin-top: 30px;
+    padding: 20px;
+    border: solid;
+    border-radius: 10px;
+    border-width: 1px;
+    border-color: grey;
+    width: 50%;
+    background-color:white;
+    max-width: 10px;
+}

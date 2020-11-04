@@ -1,0 +1,26 @@
+.adoptionCard {
+    background-color:lightgray;   
+    border-radius: 1em;
+    border-color:lightgray;
+    margin-top: 1em;
+}
+
+
+.deleteAdoptionCard {
+    margin: 1em auto;
+    margin-top: 30px;
+    width: 100px;
+}
+
+ 
+.adoptionTable {
+    margin-top: 30px;
+    padding: 20px;
+    border: solid;
+    border-radius: 10px;
+    border-width: 1px;
+    border-color:white;
+    width: 50%;
+    background-color: white;
+}
+

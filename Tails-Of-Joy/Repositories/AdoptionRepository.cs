@@ -181,7 +181,25 @@ namespace Tails_Of_Joy.Repositories
                     adoption.Id = (int)cmd.ExecuteScalar();
                 }
             }
-        }
+                //removing Animal From Available List While Adoption is Pending
+                using (var conn = Connection)
+                {
+                    conn.Open();
+                    using (var cmd = conn.CreateCommand())
+                    {
+                        cmd.CommandText = @"
+                        UPDATE Animal
+                        SET IsAdoptable = @isAdoptable
+                        WHERE Id = @id";
+
+
+                        DbUtils.AddParameter(cmd, "@isAdoptable", 0);
+                        DbUtils.AddParameter(cmd, "@id", adoption.AnimalId);
+
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+            }
 
         // Changing IsApproved to 1 = Not Approved
         public void Delete(int id)
@@ -202,7 +220,27 @@ namespace Tails_Of_Joy.Repositories
                     cmd.ExecuteNonQuery();
                 }
             }
+            //removing Animal From Pending List and making it available for adoption
+            using (var conn = Connection)
+            {
+                conn.Open();
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"
+                        UPDATE Animal
+                        SET IsAdoptable = @isAdoptable
+                        WHERE Id = @id";
+
+
+                    DbUtils.AddParameter(cmd, "@isAdoptable", 1);
+                    //DbUtils.AddParameter(cmd, "@id", adoption.AnimalId);
+
+                    cmd.ExecuteNonQuery();
+                }
+            }
         }
+
+
 
         // Changing IsApproved to 2 = Is Approved
         public void Update(Adoption adoption)
@@ -224,7 +262,7 @@ namespace Tails_Of_Joy.Repositories
                 }
              }
 
-            //Update Animal Status to unavialable if Adoption is Approved
+            //Update Animal Status to unavailable if Adoption is Approved
             using (var conn = Connection)
             {
                 conn.Open();

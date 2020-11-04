@@ -1,7 +1,7 @@
 import { useHistory, useParams } from "react-router-dom";
 import { UserProfileContext } from "../../providers/UserProfileProvider";
 import React, { useContext, useEffect } from "react";
-import { Card, CardImg, CardBody, Row, Col, Button } from "reactstrap";
+import { Card, CardImg, CardBody, Button, CardHeader } from "reactstrap";
 
 const MyProfileDetails = () => {
 
@@ -15,38 +15,38 @@ const MyProfileDetails = () => {
     }, [currentUser]);
 
     return (
+
+
         <>
             {(currentUser === singleUser.id) ?
-                <Card className="m-4">
-                    <Row margin="m-4">
-                        <h1 ><strong>{singleUser.firstName}{singleUser.lastName}</strong></h1>
-                    </Row>
-                    <Row>
-                        <Col sm="6">
-                            <h3>{singleUser.bio}</h3>
-                        </Col>
-                    </Row>
-                    <Row margin="m-4">
-                    </Row>
-                    <CardBody>
-                        <CardImg className="userProfileDetailImg" top src={singleUser.imageLocation} alt={singleUser.username} />
-                    </CardBody>
+                <div className="animalDetailsCardContainer">
+                    <Card className="m-auto d-flex flex-row mt-4">
+                        <CardImg className="animalDetailImg w-50" src={singleUser.imageLocation} alt={singleUser.username} />
+                        <CardBody>
 
-                    <div>
-                        <Button onClick={() => history.push(`/userProfile/edit/${singleUser.id}`)}>Edit</Button>
+                            <h2>{singleUser.firstName} {singleUser.lastName}</h2>
+                            <div>
+                                <div>
+                                    <p>Username: {singleUser.username}</p>
+                                </div>
+                            </div>
 
-                        {currentUser == 2 ?
+                            <p className="bioTextarea" style={{ whiteSpace: "pre-wrap" }}>{singleUser.bio}</p>
+                            <Button onClick={() => history.push(`/userProfile/edit/${singleUser.id}`)}>Edit</Button>&nbsp;
 
+                            {currentUser == 2 ?
 
-                            <Button onClick={() => history.push(`/userProfile/delete/${singleUser.id}`)}>Delete</Button>
-                            :
+                                <Button color="danger" onClick={() => history.push(`/userProfile/delete/${singleUser.id}`)}>Delete</Button>
+                                :
 
-                            null}
-                    </div>
+                                null}
 
-
-                </Card>
+                        </CardBody>
+                    </Card>
+                </div>
                 :
+
+
                 null}
         </>
 

@@ -6,32 +6,21 @@ import { Button, Container, Row, Col, ListGroup, ListGroupItem } from "reactstra
 import Animal from "./Animal"
 import "./animal.css"
 
-export default function AnimlalList() {
+export default function UnavailableList() {
     const history = useHistory();
-    const { animals, getAllAvailableAnimals } = useContext(AnimalContext)
+    const { animals, getAllUnavailable } = useContext(AnimalContext)
+
     const user = JSON.parse(sessionStorage.getItem("userProfile")).id
 
-    const Create = () => {
-        history.push("animal/add")
-    }
-
     useEffect(() => {
-        getAllAvailableAnimals();
+        getAllUnavailable();
+        console.log(animals, "Unavailable")
     }, []);
 
 
     return (
         <>
-            <div className="ListContainer mb-5 p-2">
-
-                <div>
-                    {user == 1 ?
-                        <div>
-                            <Button color="success" className="btn" onClick={Create}>Add Dog</Button>
-                        </div>
-                        :
-                        null}
-                </div>
+            <div className="ListContainer">
                 <div className="animal-container-cards">
 
                     {animals.map((animal) => (

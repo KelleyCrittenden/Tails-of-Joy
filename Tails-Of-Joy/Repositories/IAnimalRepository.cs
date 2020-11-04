@@ -9,8 +9,9 @@ namespace Tails_Of_Joy.Repositories
         void Delete(int id);
         List<Animal> GetAllAdoptedAnimals();
         List<Animal> GetAllAvailableAnimals();
-        //List<Animal> GetAllAnimalsByAdoptionId(int id);
+        List<Animal> GetAllUnavailable();
         Animal GetById(int id);
         void Update(Animal animal);
+        void Reactivate(int id);
     }
 }

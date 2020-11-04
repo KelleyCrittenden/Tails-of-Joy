@@ -1,7 +1,8 @@
 import { useHistory, useParams } from "react-router-dom";
 import { UserProfileContext } from "../../providers/UserProfileProvider";
 import React, { useContext, useEffect } from "react";
-import { Card, CardImg, CardBody, Row, Col, Button } from "reactstrap";
+import { Card, CardImg, CardBody, Row, Col, Button, CardHeader } from "reactstrap";
+import "./userProfile.css"
 
 const UserProfileDetails = () => {
 
@@ -16,33 +17,44 @@ const UserProfileDetails = () => {
 
     console.log(singleUser, "current user Id")
 
+    const Cancel = () => {
+        history.push("/post")
+    }
+
     return (
         <>
-            <Card className="m-4">
-                <Row margin="m-4">
-                    <h1 ><strong>{singleUser.firstName}{singleUser.lastName}</strong></h1>
-                </Row>
-                <Row>
-                    <Col sm="6">
-                        <h3>{singleUser.bio}</h3>
-                    </Col>
-                </Row>
-                <Row margin="m-4">
-                </Row>
-                <CardBody>
-                    <CardImg className="userProfileDetailImg" top src={singleUser.imageLocation} alt={singleUser.username} />
-                </CardBody>
+            <div className="DetailsCardContainer">
+                <Card className="m-auto d-flex flex-row mt-4">
+                    <CardImg className="animalDetailImg w-50" src={singleUser.imageLocation} alt={singleUser.username} />
+                    <CardBody>
 
-                {(currentUser === singleUser.id) ?
 
-                    <div>
-                        <Button onClick={() => history.push(`/userProfile/edit/${singleUser.id}`)}>Edit</Button>
-                        <Button onClick={() => history.push(`/userProfile/delete/${singleUser.id}`)}>Delete</Button>
-                    </div>
-                    :
-                    null}
+                        <h2>{singleUser.firstName} {singleUser.lastName}</h2>
+                        <div>
+                            <div>
+                                <p>Username: {singleUser.username}</p>
+                            </div>
+                        </div>
 
-            </Card>
+
+                        <p className="bioTextarea" style={{ whiteSpace: "pre-wrap" }}>{singleUser.bio}</p>
+                        <Button style={{ margin: 2 }} onClick={Cancel}>Back</Button>
+
+                        {(currentUser === singleUser.id) ?
+
+                            <>
+                                <Button style={{ margin: 2 }} onClick={() => history.push(`/userProfile/edit/${singleUser.id}`)}>Edit</Button>
+
+                                {currentUser == 2 ?
+                                    <Button color="danger" style={{ margin: 2 }} onClick={() => history.push(`/userProfile/delete/${singleUser.id}`)}>Delete</Button>
+                                    :
+                                    null}
+                            </>
+                            :
+                            null}
+                    </CardBody>
+                </Card>
+            </div>
         </>
 
 

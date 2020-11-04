@@ -54,33 +54,29 @@ namespace Tails_Of_Joy.Controllers
                 return Unauthorized();
             }
             _commentRepository.AddComment(comment);
-            return CreatedAtAction("Get", new { id = comment.Id }, comment);
+            return NoContent();
         }
 
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
-            var currentUserProfile = GetCurrentUserProfile();
-            if (currentUserProfile == null)
-            {
-                return Unauthorized();
-            }
+            //var currentUserProfile = GetCurrentUserProfile();
+            //if (currentUserProfile == null)
+            //{
+            //    return Unauthorized();
+            //}
 
             _commentRepository.DeleteComment(id);
             return NoContent();
         }
 
-        [HttpPut("{id}")]
-        public IActionResult Put(int id, Comment comment)
+        [HttpPut]
+        public IActionResult Put(Comment comment)
         {
             var currentUserProfile = GetCurrentUserProfile();
             if (currentUserProfile == null)
             {
                 return Unauthorized();
-            }
-            if (id != comment.Id)
-            {
-                return BadRequest();
             }
             _commentRepository.UpdateComment(comment);
             return NoContent();

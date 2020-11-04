@@ -192,11 +192,9 @@ namespace Tails_Of_Joy.Repositories
                 {
                     cmd.CommandText = @"
                             UPDATE Comment
-                            SET  UserProfileId = @userProfileId, 
-                                 Content = @Content
+                            SET Content = @Content
                             WHERE Id = @id";
 
-                    cmd.Parameters.AddWithValue("@userProfileId", comment.UserProfileId);
                     cmd.Parameters.AddWithValue("@content", comment.Content);
                     cmd.Parameters.AddWithValue("@id", comment.Id);
 

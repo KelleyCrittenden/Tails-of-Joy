@@ -1,7 +1,9 @@
 import React, { useEffect, useContext, useState } from "react";
 import { PostContext } from "../../providers/PostProvider";
 import { useHistory, useParams } from "react-router-dom";
-import { Button, Col, CardBody, CardImg } from 'reactstrap'
+import { Button, Col, CardBody, CardImg, Card } from 'reactstrap'
+import DayJS from 'react-dayjs';
+import "./post.css"
 
 const ConfirmPostDelete = () => {
 
@@ -30,28 +32,26 @@ const ConfirmPostDelete = () => {
     }, [post]);
 
     const Cancel = () => {
-        history.push("/post")
+        history.push(`/post/details/${id}`)
     };
 
     return (
         <>
-            <Col sm="12" md={{ size: 6, offset: 3 }}></Col>
+            <div className="d-flex justify-content-center">
+                <Card style={{ width: "55%", height: "50%", margin: "20px" }} className="smallContainer">
+                    <CardBody>
 
-            <p>Are you sure you want to delete this post?</p>
+                        <h3 align="center">Are you sure you want to delete your post?</h3>
+                        <h5>{post.title}</h5>
+                        <p>Posted: <DayJS format="MMM D, YY h:mm A">{post.createDateTime}</DayJS></p>
+                        <p className="postTextarea" style={{ whiteSpace: "pre-wrap" }}>{post.content}</p>
 
+                        <Button style={{ margin: 2 }} color="danger" id={post.id} onClick={handleDelete}>Remove</Button>&nbsp;
+                        <Button style={{ margin: 2 }} onClick={Cancel}>Cancel</Button>
 
-            <Button id={post.id} onClick={handleDelete}>Delete</Button>&nbsp;
-
-            <Button onClick={Cancel}>Cancel</Button>
-
-            <CardBody>
-
-                <h4>{post.title}</h4>
-                <h5>{post.content}</h5>
-                {/* <h6>Posted By: {post.userProfile.userName}</h6> */}
-                <CardImg top src={post.imageLocation} alt={post.title} />
-
-            </CardBody>
+                    </CardBody>
+                </Card>
+            </div>
         </>
     )
 

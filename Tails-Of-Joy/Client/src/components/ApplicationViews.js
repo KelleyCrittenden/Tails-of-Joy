@@ -7,8 +7,10 @@ import Register from "./Register";
 import AnimalList from "./animal/AnimalList"
 import AnimalDetails from "./animal/AnimalDetails"
 import AnimalAdd from "./animal/AnimalAdd"
-import AnimalDelete from "./animal/AnimalDelete";
+import AnimalDelete from "./animal/AnimalDelete"
 import AnimalEdit from "./animal/AnimalEdit"
+import UnavailableList from "./animal/UnavailableList"
+import AnimalReactivate from "./animal/AnimalReactivate"
 import PostList from "./post/PostList"
 import PostDetails from "./post/PostDetails"
 import PostAdd from "./post/PostAdd"
@@ -30,8 +32,12 @@ export function ApplicationViews() {
     const { isLoggedIn, activeUser } = useContext(UserProfileContext);
 
     return (
-        <main>
+        <main className="container mt-3">
             <Switch>
+
+                <Route exact path="/">
+                    {isLoggedIn ? <AnimalList /> : <Redirect to="/login" />}
+                </Route>
 
                 <Route exact path="/animal">
                     {isLoggedIn ? <AnimalList /> : <Redirect to="/login" />}
@@ -51,6 +57,14 @@ export function ApplicationViews() {
 
                 <Route exact path="/animal/edit/:id">
                     {isLoggedIn && activeUser.userTypeId === 1 ? <AnimalEdit /> : <Redirect to="/login" />}
+                </Route>
+
+                <Route exact path="/unavailableAnimals">
+                    {isLoggedIn && activeUser.userTypeId === 1 ? <UnavailableList /> : <Redirect to="/login" />}
+                </Route>
+
+                <Route exact path="/animal/reactivate/:id">
+                    {isLoggedIn && activeUser.userTypeId === 1 ? <AnimalReactivate /> : <Redirect to="/login" />}
                 </Route>
 
                 <Route exact path="/post">

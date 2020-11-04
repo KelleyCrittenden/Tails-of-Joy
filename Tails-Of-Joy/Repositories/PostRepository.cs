@@ -36,7 +36,8 @@ namespace Tails_Of_Joy.Repositories
                          FROM Post p
                               LEFT JOIN UserProfile u ON p.UserProfileId = u.id
                               LEFT JOIN UserType ut ON u.UserTypeId = ut.id
-                    WHERE p.IsDeleted = 0 AND u.IsDeleted = 0";
+                    WHERE p.IsDeleted = 0 AND u.IsDeleted = 0
+                    ORDER BY CreateDateTime DESC";
 
                     var reader = cmd.ExecuteReader();
                      

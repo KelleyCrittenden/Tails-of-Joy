@@ -7,12 +7,12 @@ export default function AnimalDelete() {
 
     const history = useHistory();
     const { id } = useParams();
-    const { animal, deleteAnimal, getAnimalById } = useContext(AnimalContext)
-    const [animalToDelete, setAnimalToDelete] = useState({});
+    const { animal, reactivateAnimal, getAnimalById } = useContext(AnimalContext)
+    const [animalToReactivate, setAnimalToReactivate] = useState({});
 
-    const handleDeleteAnimal = (e) => {
+    const handleReactivateAnimal = (e) => {
         e.preventDefault();
-        deleteAnimal(animalToDelete.id)
+        reactivateAnimal(animalToReactivate.id)
             .then(() => history.push("/animal"))
     };
 
@@ -21,7 +21,7 @@ export default function AnimalDelete() {
     }, []);
 
     useEffect(() => {
-        setAnimalToDelete(animal)
+        setAnimalToReactivate(animal)
     }, [animal])
 
     const Cancel = () => {
@@ -34,10 +34,10 @@ export default function AnimalDelete() {
                 <Card style={{ border: "none", width: "50%", height: "50%", margin: "20px" }} className="smallContainer">
                     <CardBody>
 
-                        <h5 align="center">Are you sure you want to make {animal.name} unavailable?</h5>
+                        <h5 align="center">Are you sure you want to make {animal.name} available?</h5>
                         <CardImg top src={animal.imageLocation} alt={animal.name} />
 
-                        <Button style={{ margin: 2 }} color="danger" id={animal.id} onClick={handleDeleteAnimal}>Remove</Button>&nbsp;
+                        <Button style={{ margin: 2 }} color="success" id={animal.id} onClick={reactivateAnimal}>Reactivate</Button>&nbsp;
                         <Button style={{ margin: 2 }} onClick={Cancel}>Cancel</Button>
 
                     </CardBody>

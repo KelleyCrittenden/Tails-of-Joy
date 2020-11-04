@@ -1,0 +1,29 @@
+ 
+.postTable {
+    margin-top: 30px;
+    padding: 20px;
+    border: solid;
+    border-radius: 10px;
+    border-width: 1px;
+    border-color:white;
+    width: 50%;
+    opacity: 100%;
+    background-color: white;
+}
+
+.postDetailsCardContainer {
+    width: 70%;
+    margin: 0 auto;
+}
+
+.postTextarea {
+    overflow-y: scroll;
+    height: 300px;
+    margin-bottom: 32px;
+}
+
+.postImage {
+    width: 100%;
+     height: 200px;
+     object-fit: cover;
+ }

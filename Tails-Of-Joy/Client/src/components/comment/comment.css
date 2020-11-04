@@ -1,0 +1,21 @@
+.commentCard {
+    border-radius: .5em;
+    border-color: white;
+    margin-top: 1em;
+    background-color: #F5F5F5;
+}
+
+.commentTextArea {
+    white-space: pre-wrap;
+}
+
+.deleteCommentCard {
+    margin: 1em auto;
+    margin-top: 30px;
+    width: 500px;
+}
+
+.textarea {
+    overflow-y: scroll;
+    height: 150px;
+}

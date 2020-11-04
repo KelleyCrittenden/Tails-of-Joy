@@ -1,7 +1,7 @@
 import React, { useEffect, useContext, useState } from "react";
 import { AdoptionContext } from "../../providers/AdoptionProvider";
 import { useHistory, useParams } from "react-router-dom";
-import { Button, Col, CardBody, CardImg } from 'reactstrap'
+import { Button, Col, CardBody, CardImg, Card } from 'reactstrap'
 import { UserProfileContext } from "../../providers/UserProfileProvider";
 import { AnimalContext } from "../../providers/AnimalProvider"
 import Adoption from "./Adoption"
@@ -22,7 +22,7 @@ const AdoptionApproval = () => {
     const handleDenial = (e) => {
         e.preventDefault();
         deleteAdoption(adoptionToApprove.id)
-            .thenhistory.push("/pendingAdoptions")
+        history.push("/pendingAdoptions")
     };
 
     useEffect(() => {
@@ -39,26 +39,27 @@ const AdoptionApproval = () => {
 
     return (
         <>
-            <Col sm="12" md={{ size: 6, offset: 3 }}></Col>
+            <div className="d-flex justify-content-center">
+                <Card style={{ width: "65%", height: "30%", margin: "20px" }} className="smallContainer">
+                    <CardBody>
 
-            <p>Are you sure you want to Deny this Adoption?</p>
+                        <h3>Are you sure you want to Deny this Adoption?</h3>
 
-            <CardBody>
-
-
-                <div>
-                    <Button
-                        className="commentButton"
-                        onClick={handleDenial}
-                        variant="custom"
-                        type="submit">
-                        Deny
+                        <Button
+                            color="danger"
+                            className="commentButton"
+                            onClick={handleDenial}
+                            variant="custom"
+                            type="submit">
+                            Deny
                     </Button>&nbsp;
 
-                    <Button onClick={Cancel}>Cancel</Button>
-                </div>
+                    <Button onClick={Cancel}>Back</Button>
 
-            </CardBody>
+
+                    </CardBody>
+                </Card>
+            </div>
         </>
     )
 
