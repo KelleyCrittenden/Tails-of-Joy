@@ -2,6 +2,7 @@ import React, { useContext, useEffect } from "react";
 import { useHistory, Link } from "react-router-dom";
 import { PostContext } from "../../providers/PostProvider";
 import { Button, ListGroupItem, ListGroup, Table } from "reactstrap";
+import DayJS from 'react-dayjs';
 import "./post.css";
 
 export default function PostList() {
@@ -20,31 +21,30 @@ export default function PostList() {
         <>
             <div className="container">
                 <div className="row justify-content-left">
-                    <Button onClick={Create}>
+                    <Button color="success" onClick={Create}>
                         Add Post
                     </Button>
-                    <Table className="postTable" striped>
+                    <Table hover className="postTable" striped>
                         <thead>
                             <tr>
-                                <th>Title</th>
-                                <th>Date</th>
-                                <th>Posted By</th>
+                                <th><h4>Title</h4></th>
+                                <th><h4>Posted</h4></th>
+                                <th><h4>Author</h4></th>
                             </tr>
                         </thead>
 
                         {posts.map((post => (
-                            <tbody key={post.id}>
+                            <tbody className="postTable" key={post.id}>
                                 <tr>
                                     <th scope="row">
-                                        <Link to={`/post/details/${post.id}`}>{post.title}</Link>
-
+                                        <Link style={{ color: '#343A40' }} to={`/post/details/${post.id}`}>{post.title}</Link>
                                     </th>
                                     <td>
-                                        {post.createDateTime}
+                                        <p><DayJS format="MMM D, YY h:mm A">{post.createDateTime}</DayJS></p>
                                     </td>
-
-                                    <th scope="row"
-                                    ><Link to={`/userProfile/q=${post.userProfile.id}`}>{post.userProfile.username}</Link></th>
+                                    <th scope="row">
+                                        <Link style={{ color: '#343A40' }} to={`/userProfile/q=${post.userProfile.id}`}>{post.userProfile.username}</Link>
+                                    </th>
                                 </tr>
                             </tbody>
                         )))}

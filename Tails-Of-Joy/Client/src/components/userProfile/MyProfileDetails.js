@@ -15,43 +15,39 @@ const MyProfileDetails = () => {
     }, [currentUser]);
 
     return (
+
+
         <>
             {(currentUser === singleUser.id) ?
-                <div className="d-flex justify-content-center">
-                    <Card style={{ border: "none", width: "30%", height: "30%", margin: "20px" }} className="smallContainer">
-
-                        <CardImg src={singleUser.imageLocation} alt={singleUser.username} className="userdetailsImg" />
-                        <i className="fa-user-circle fa-7x" />
-
-                        <CardHeader>
-                            <h5>{singleUser.firstName} {singleUser.lastName}</h5>
-                        </CardHeader>
+                <div className="animalDetailsCardContainer">
+                    <Card className="m-auto d-flex flex-row mt-4">
+                        <CardImg className="animalDetailImg w-50" src={singleUser.imageLocation} alt={singleUser.username} />
                         <CardBody>
-                            <div>Username: {singleUser.username}</div>
-                            <div>Email: {singleUser.email}</div>
-                            <div>Bio: {singleUser.bio}</div>
-                        </CardBody>
 
+                            <h2>{singleUser.firstName} {singleUser.lastName}</h2>
+                            <div>
+                                <div>
+                                    <p>Username: {singleUser.username}</p>
+                                </div>
+                            </div>
 
-                        <div>
-                            <Button onClick={() => history.push(`/userProfile/edit/${singleUser.id}`)}>Edit</Button>
+                            <p className="bioTextarea" style={{ whiteSpace: "pre-wrap" }}>{singleUser.bio}</p>
+                            <Button onClick={() => history.push(`/userProfile/edit/${singleUser.id}`)}>Edit</Button>&nbsp;
 
                             {currentUser == 2 ?
 
-
-                                <Button onClick={() => history.push(`/userProfile/delete/${singleUser.id}`)}>Delete</Button>
+                                <Button color="danger" onClick={() => history.push(`/userProfile/delete/${singleUser.id}`)}>Delete</Button>
                                 :
 
                                 null}
-                        </div>
 
-
+                        </CardBody>
                     </Card>
-
                 </div>
                 :
-                null}
 
+
+                null}
         </>
 
 

@@ -43,6 +43,7 @@ const PostEdit = () => {
                 <Card className="col-sm-12 col-lg-6">
                     <CardBody>
                         <Form>
+
                             <FormGroup>
                                 <Label className="postTitleLabel">Title</Label>
                                 <Input
@@ -53,35 +54,25 @@ const PostEdit = () => {
                                     defaultValue={editedPost.title}
                                 />
                             </FormGroup>
+
                             <FormGroup>
                                 <Label className="ContentLabel">Content</Label>
                                 <Input
                                     className="newPost"
                                     onChange={handleFieldChange}
                                     type="textarea"
-                                    rows="10"
+                                    rows="7"
                                     id="Content"
                                     defaultValue={editedPost.content}
                                 />
-
                             </FormGroup>
-                            {/* <FormGroup>
-                                <Label className="ImageLocationLabel">Image Url</Label>
-                                <Input
-                                    className="newPost"
-                                    onChange={handleFieldChange}
-                                    type="text"
-                                    id="ImageLocation"
-                                    defaultValue={editedPost.imageLocation}
-                                />
-                            </FormGroup> */}
 
                             <Button
                                 className="postButton"
                                 onClick={saveUpdatedPost}
                                 variant="custom"
                                 type="submit">
-                                Save Post
+                                Save
                             </Button> &nbsp;
 
                             <Button onClick={Cancel}>Cancel</Button>

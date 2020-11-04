@@ -3,6 +3,7 @@ import { AnimalContext } from "../../providers/AnimalProvider";
 import { AdoptionContext } from "../../providers/AdoptionProvider";
 import React, { useContext, useEffect, useState } from "react";
 import { Card, CardImg, CardBody, Row, Button, Col } from "reactstrap";
+import "./animal.css"
 
 const AnimalDetails = () => {
 
@@ -24,49 +25,59 @@ const AnimalDetails = () => {
     return (
         <>
             <div className="animalDetailsCardContainer">
-                <Card className="m-auto">
-                    <CardImg top src={animal.imageLocation} alt={animal.name} />
+                <Card className="m-auto d-flex flex-row mt-4">
+                    <CardImg className="animalDetailImg w-50" src={animal.imageLocation} alt={animal.name} />
                     <CardBody>
 
-                        <h1 ><strong>{animal.name}</strong></h1>
+                        <h4>{animal.name}</h4>
                         <div>
-                            <h5>Breed: {animal.breed}</h5>
+                            <p>Breed: {animal.breed}</p>
 
-                            <h5>Gender: {animal.gender}</h5>
+                            <p>Gender: {animal.gender}</p>
+                            <p>Age: {animal.age}</p>
 
-                            <h5>Age: {animal.age}</h5>
+                            <p>Size: {animal.size}</p>
 
-                            <h5>Size: {animal.size}</h5>
+                            {animal.childFriendly === true ?
+                                <p>Child Friendly: Yes </p>
+                                :
+                                <p>Child Friendly: No </p>}
 
-                            <h5>Child Friendly: {animal.childFriendly}</h5>
-
-                            <h5>Small Animal Friendly: {animal.smallAnimalFriendly}</h5>
+                            {animal.smallAnimalFriendly === true ?
+                                <p>Small Animal Friendly: Yes </p>
+                                :
+                                <p>Small Animal Friendly: No</p>}
                         </div>
 
-                        <h6>{animal.content}</h6>
+                        <p className="animalTextarea">{animal.content}</p>
 
-                        {user == 1 ?
+                        {animal.isAdoptable == 1 && user == 1 ?
                             <>
-                                <Button onClick={() => history.push(`/animal/edit/${animal.id}`)}>Edit</Button>
-                                <Button onClick={() => history.push(`/animal/delete/${animal.id}`)}>Delete</Button>
+
+                                <Button color="danger" onClick={() => history.push(`/animal/delete/${animal.id}`)}>Remove</Button>&nbsp;
+                                <Button onClick={() => history.push(`/animal/edit/${animal.id}`)}>Edit</Button>&nbsp;
+                            </>
+                            : null}
+
+
+                        {animal.isAdoptable == 0 && user == 1 ?
+                            <>
+                                <Button onClick={() => history.push(`/animal/edit/${animal.id}`)}>Edit</Button>&nbsp;
                             </>
                             : null}
 
                         {user == 2 ?
 
-                            <Button style={{ margin: 10 }} onClick={() => history.push(`/createAdoption/${id}`)}>Apply to Adopt</Button>
+                            <Button onClick={() => history.push(`/createAdoption/${id}`)}>Apply to Adopt</Button>
                             : null}
 
                         {animal.isAdoptable == 0 ?
-                            <Button color="danger" style={{ margin: 10 }} onClick={() => history.push(`/animal/reactivate/${animal.id}`)}>Reactivate</Button>
+                            <Button color="danger" onClick={() => history.push(`/animal/reactivate/${animal.id}`)}>Reactivate</Button>
                             :
                             null
                         }
 
-                        <Button onClick={Cancel}>Cancel</Button>
-
-
-
+                        &nbsp;<Button onClick={Cancel}>Back</Button>
 
                     </CardBody>
                 </Card>

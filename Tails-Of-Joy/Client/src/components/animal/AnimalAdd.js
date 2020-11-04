@@ -160,7 +160,8 @@ const AnimalAdd = () => {
                                 <Label for="content">Description: </Label>
                                 <Input
                                     id="Content"
-                                    type="text"
+                                    type="textarea"
+                                    rows="10"
                                     onChange={e => setContent(e.target.value)} />
                             </FormGroup>
 
@@ -177,8 +178,8 @@ const AnimalAdd = () => {
                             onClick={createNewAnimal}
                             variant="custom"
                             type="submit">
-                            Save Animal
-                    </Button>
+                            Save
+                    </Button>&nbsp;
 
 
                         <Button onClick={Cancel}>Cancel</Button>

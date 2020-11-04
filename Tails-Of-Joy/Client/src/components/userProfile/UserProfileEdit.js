@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect } from "react";
 import { UserProfileContext } from "../../providers/UserProfileProvider"
 import { useHistory, useParams } from "react-router-dom"
-import { Button, Form, FormGroup, Label, Input, Card, CardImg } from "reactstrap";
+import { Button, Form, FormGroup, Label, Input, Card, CardImg, CardBody } from "reactstrap";
 import "./userProfile.css"
 
 const UserProfileEdit = () => {
@@ -39,82 +39,70 @@ const UserProfileEdit = () => {
     }
 
     return (
-        <div className="d-flex justify-content-center">
-            <Card style={{ border: "none", width: "30%", height: "30%", margin: "20px" }} className="smallContainer">
-                {/* <CardImg src={singleUser.imageLocation} alt={singleUser.username} className="userdetailsImg" />
-                <i className="fa-user-circle fa-7x" /> */}
-                <div className="form-group">
+        <div className="container pt-4">
+            <div className="row justify-content-center">
+                <Card className="col-sm-12 col-lg-6">
+                    <CardBody>
+                        <Form>
+                            <FormGroup>
+                                <Label className="postUsernameLabel">Username</Label>
+                                <Input
+                                    className="n"
+                                    onChange={handleFieldChange}
+                                    type="text"
+                                    id="Username"
+                                    defaultValue={singleUser.username}
+                                />
+                            </FormGroup>
+                            <FormGroup>
+                                <Label className="FirstNameLabel">First Name</Label>
+                                <Input
+                                    className="newPost"
+                                    onChange={handleFieldChange}
+                                    type="text"
+                                    id="FirstName"
+                                    defaultValue={singleUser.firstName}
+                                />
 
-                    <Form className="postForm">
-                        <FormGroup>
-                            <Label className="postUsernameLabel">Username</Label>
-                            <Input
-                                className="n"
-                                onChange={handleFieldChange}
-                                type="text"
-                                id="Username"
-                                defaultValue={singleUser.username}
-                            />
-                        </FormGroup>
-                        <FormGroup>
-                            <Label className="FirstNameLabel">First Name</Label>
-                            <Input
-                                className="newPost"
-                                onChange={handleFieldChange}
-                                type="text"
-                                id="FirstName"
-                                defaultValue={singleUser.firstName}
-                            />
+                            </FormGroup>
+                            <FormGroup>
+                                <Label className="LastNameLabel">Last Name</Label>
+                                <Input
+                                    className="newPost"
+                                    onChange={handleFieldChange}
+                                    type="text"
+                                    id="LastName"
+                                    defaultValue={singleUser.lastName}
+                                />
 
-                        </FormGroup>
-                        <FormGroup>
-                            <Label className="LastNameLabel">Last Name</Label>
-                            <Input
-                                className="newPost"
-                                onChange={handleFieldChange}
-                                type="text"
-                                id="LastName"
-                                defaultValue={singleUser.lastName}
-                            />
+                            </FormGroup>
 
-                        </FormGroup>
+                            <FormGroup>
+                                <Label className="LastNameLabel">Bio</Label>
+                                <Input
+                                    className="newPost"
+                                    onChange={handleFieldChange}
+                                    type="textarea"
+                                    rows="7"
+                                    id="Bio"
+                                    defaultValue={singleUser.bio}
+                                />
+                            </FormGroup>
 
-                        <FormGroup>
-                            <Label className="LastNameLabel">Bio</Label>
-                            <Input
-                                className="newPost"
-                                onChange={handleFieldChange}
-                                type="textarea"
-                                id="Bio"
-                                defaultValue={singleUser.bio}
-                            />
+                            <Button
+                                className="postButton"
+                                onClick={saveUpdatedUserProfile}
+                                variant="custom"
+                                type="submit">
+                                Save
+                            </Button> &nbsp;
 
-                        </FormGroup>
+                            <Button onClick={Cancel}>Cancel</Button>
 
-                        {/* <FormGroup>
-                        <Label className="ImageLocationLabel">Image Url</Label>
-                        <Input
-                            className="newPost"
-                            onChange={handleFieldChange}
-                            type="text"
-                            id="ImageLocation"
-                            defaultValue={singleUser.imageLocation}
-                        />
-                    </FormGroup> */}
-
-                        <Button
-                            className="postButton"
-                            onClick={saveUpdatedUserProfile}
-                            variant="custom"
-                            type="submit">
-                            Save Profile
-                    </Button> &nbsp;
-
-            <Button onClick={Cancel}>Cancel</Button>
-
-                    </Form>
-                </div>
-            </Card>
+                        </Form>
+                    </CardBody>
+                </Card>
+            </div>
         </div>
     )
 

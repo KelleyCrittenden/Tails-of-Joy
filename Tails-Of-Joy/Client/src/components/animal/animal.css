@@ -1,15 +1,38 @@
-.animalDetailsCardContainer {
-    width: 40%;
-    margin: auto;
-    margin-top: 20px;
-    margin-bottom: 20px;
-}
-
 .animal-container-cards {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around;
-    align-content: space-around;
+    justify-content: space-between;
+    align-content: space-between;
     margin-top: 10px;
     margin-bottom: 10px;
   }
+
+  .animalCard {
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+        transition: 0.3s;
+        border-radius: 5px; 
+        background: aliceblue;
+        margin-bottom: 2em;
+        flex: 0 1 24%;
+  }
+
+  .animalImage {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.animalDetailImg {
+    height: auto;
+    object-fit: cover;
+	overflow: hidden;
+    width: 400px;
+    height: 500px;
+    border-top-right-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+}
+
+.animalTextarea {
+    overflow-y: scroll;
+    height: 132px;
+}

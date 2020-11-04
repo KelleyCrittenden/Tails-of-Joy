@@ -1,14 +1,8 @@
-
-.commentButton {
-    margin-left: 1em;
-    margin-top: 2em;
-}
-
 .commentCard {
-    background-color:lightgray;   
-    border-radius: 1em;
+    border-radius: .5em;
     border-color: white;
-    margin-top: 1em
+    margin-top: 1em;
+    background-color: #F5F5F5;
 }
 
 .commentTextArea {
@@ -19,4 +13,9 @@
     margin: 1em auto;
     margin-top: 30px;
     width: 500px;
+}
+
+.textarea {
+    overflow-y: scroll;
+    height: 150px;
 }

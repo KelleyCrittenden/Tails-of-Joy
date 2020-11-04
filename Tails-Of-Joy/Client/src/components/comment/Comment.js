@@ -4,6 +4,7 @@ import { Card, CardBody } from "reactstrap";
 import { useParams, Link } from "react-router-dom";
 import { Button } from "reactstrap";
 import "./comment.css"
+import DayJS from 'react-dayjs';
 
 export default function Comment({ comment }) {
 
@@ -15,15 +16,16 @@ export default function Comment({ comment }) {
         <Card style={{ border: "none" }}>
             <div className="commentCard">
                 <CardBody>
-                    <div>{comment.userProfile.username}</div>
-                    <div>{comment.createDateTime}</div>
-                    <div className="commentTextArea">{comment.content}</div>
+                    <div>Posted By: {comment.userProfile.username}</div>
+                    <p>Posted: <DayJS format="MMM D, YY h:mm A">{comment.createDateTime}</DayJS></p>
+
+                    <div className="commentTextArea mb-3 row=10">{comment.content}</div>
 
                     {(currentUser === comment.userProfileId) ?
 
                         <div>
-                            <Button onClick={() => history.push(`/comment/edit/${comment.id}`)}>Edit</Button>
-                            <Button color="danger" onClick={() => history.push(`/comment/delete/${comment.id}`)}>Delete</Button>
+                            <Button style={{ margin: 2 }} onClick={() => history.push(`/comment/edit/${comment.id}`)}>Edit</Button>
+                            <Button style={{ margin: 2 }} color="danger" onClick={() => history.push(`/comment/delete/${comment.id}`)}>Delete</Button>
                         </div>
                         :
                         null}

@@ -27,7 +27,7 @@ export default function Header() {
                             {isLoggedIn &&
                                 <>
                                     <NavItem>
-                                        <NavLink tag={RRNavLink} to="/animal">Animals</NavLink>
+                                        <NavLink tag={RRNavLink} to="/animal">Dogs</NavLink>
                                     </NavItem>
 
                                     <NavItem>
@@ -40,7 +40,7 @@ export default function Header() {
 
                                     {activeUser.userTypeId === 1 ?
                                         <NavItem>
-                                            <NavLink tag={RRNavLink} to="/pendingAdoptions">Pending Adoptions</NavLink>
+                                            <NavLink tag={RRNavLink} to="/pendingAdoptions">Adoptions</NavLink>
                                         </NavItem>
                                         : null
                                     }
@@ -48,7 +48,7 @@ export default function Header() {
 
                                     {activeUser.userTypeId === 1 ?
                                         <NavItem>
-                                            <NavLink tag={RRNavLink} to="/unavailableAnimals">Unavailable Animals</NavLink>
+                                            <NavLink tag={RRNavLink} to="/unavailableAnimals">Unavailable Dogs</NavLink>
                                         </NavItem>
                                         : null
                                     }

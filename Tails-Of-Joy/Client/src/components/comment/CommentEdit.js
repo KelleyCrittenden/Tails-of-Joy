@@ -48,8 +48,8 @@ const CommentEdit = () => {
                 <div className="row justify-content-center">
                     <Card className="col-sm-12 col-lg-6">
                         <CardBody>
+                            <h5 align="center">Edit Comment</h5>
                             <FormGroup>
-                                <Label className="ContentLabel">Conmment</Label>
                                 <Input
                                     className="newComment"
                                     onChange={handleFieldChange}
@@ -58,16 +58,15 @@ const CommentEdit = () => {
                                     id="Content"
                                     defaultValue={comment.content}
                                 />
-
-                                <Button
-                                    className="commentButton"
-                                    onClick={saveUpdatedComment}
-                                    variant="custom"
-                                    type="submit">
-                                    Save Comment
-                    </Button>
-
                             </FormGroup>
+                            <Button
+                                onClick={saveUpdatedComment}
+                                variant="custom"
+                                type="submit">
+                                Save
+                    </Button>&nbsp;
+
+
 
 
                             <Button onClick={Cancel}>Cancel</Button>

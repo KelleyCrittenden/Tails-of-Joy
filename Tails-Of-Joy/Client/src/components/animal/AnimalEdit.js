@@ -20,7 +20,7 @@ const AnimalEdit = () => {
     const saveEditedAnimal = (e) => {
         e.preventDefault();
         updateAnimal(editedAnimal)
-        history.push(`/animal/details/${id}`)
+        return (history.push(`/animal/details/${id}`))
     };
 
     useEffect(() => {
@@ -42,7 +42,7 @@ const AnimalEdit = () => {
                 <Card className="col-sm-12 col-lg-6">
                     <CardBody>
                         <Form encType="multipart/form-data">
-                            {animal.isAdoptable === true ?
+                            {/* {animal.isAdoptable === true ?
                                 <FormGroup>
                                     <Label for="isAdoptable">Availble for Adoption: </Label>
                                     <select id="IsAdoptable" onChange={handleFieldChange}>
@@ -67,7 +67,7 @@ const AnimalEdit = () => {
 
                                 </FormGroup>
 
-                            }
+                            } */}
 
                             <FormGroup>
                                 <Label for="name">Name: </Label>
@@ -122,8 +122,7 @@ const AnimalEdit = () => {
                                 <FormGroup>
                                     <Label for="childFriendly">Child Friendly: </Label>
                                     <select id="ChildFriendly" onChange={handleFieldChange}>
-                                        <option selected>Yes</option>
-                                        <option value={true}>Yes</option>
+                                        <option selected value={true}>Yes</option>
                                         <option value={false} >No</option>
                                     </select>
                                 </FormGroup>
@@ -131,9 +130,9 @@ const AnimalEdit = () => {
                                 <FormGroup>
                                     <Label for="childFriendly">Child Friendly: </Label>
                                     <select id="ChildFriendly" onChange={handleFieldChange}>
-                                        <option selected>No</option>
+                                        <option selected value={false} >No</option>
                                         <option value={true}>Yes</option>
-                                        <option value={false} >No</option>
+
                                     </select>
                                 </FormGroup>
                             }
@@ -142,8 +141,7 @@ const AnimalEdit = () => {
                                 <FormGroup>
                                     <Label for="smallAnimalFriendly">Small Animal Friendly: </Label>
                                     <select id="SmallAnimalFriendly" onChange={handleFieldChange}>
-                                        <option selected>{animal.SmallAnimalFriendly}</option>
-                                        <option value={true}>Yes</option>
+                                        <option selected value={true}>Yes</option>
                                         <option value={false} >No</option>
                                     </select>
                                 </FormGroup>
@@ -151,9 +149,8 @@ const AnimalEdit = () => {
                                 <FormGroup>
                                     <Label for="smallAnimalFriendly">Small Animal Friendly: </Label>
                                     <select id="SmallAnimalFriendly" onChange={handleFieldChange}>
-                                        <option selected>No</option>
+                                        <option selected value={false} >No</option>
                                         <option value={true}>Yes</option>
-                                        <option value={false} >No</option>
                                     </select>
                                 </FormGroup>
                             }
@@ -172,18 +169,10 @@ const AnimalEdit = () => {
                                 <Input
                                     id="Content"
                                     defaultValue={animal.content}
-                                    type="text"
+                                    type="textarea"
+                                    rows="10"
                                     onChange={handleFieldChange} />
                             </FormGroup>
-
-                            {/* <FormGroup>
-                    <Label for="imageLocation">Image: </Label>
-                    <Input
-                        id="ImageLocation"
-                        defaultValue={animal.imageLocation}
-                        type="text"
-                        onChange={handleFieldChange} />
-                </FormGroup> */}
 
                             <FormGroup>
                                 <Button
@@ -191,10 +180,10 @@ const AnimalEdit = () => {
                                     onClick={saveEditedAnimal}
                                     variant="custom"
                                     type="submit">
-                                    Save Animal
-                </Button>&nbsp;
+                                    Save
+                                </Button>&nbsp;
 
-                <Button onClick={Cancel}>Cancel</Button>
+                                <Button onClick={Cancel}>Cancel</Button>
                             </FormGroup>
 
                         </Form >

@@ -5,6 +5,8 @@ import { UserProfileContext } from "../../providers/UserProfileProvider";
 import { PostContext } from "../../providers/PostProvider";
 import { CommentContext } from "../../providers/CommentProvider"
 import Comment from "../comment/Comment"
+import DayJS from 'react-dayjs';
+import "./post.css"
 
 const PostDetails = () => {
 
@@ -35,40 +37,32 @@ const PostDetails = () => {
 
     return (
         <>
-
-            <div className="postDetailsCardContainer">
-                <Card className="m-auto">
+            <div className="animalDetailsCardContainer">
+                <Card className="m-auto d-flex flex-row mt-4">
+                    <CardImg className="animalDetailImg w-50" src={post.imageLocation} alt={post.title} />
                     <CardBody>
                         <div>
                             <div>
                                 <h2>{post.title}</h2>
-                                <h6>{post.createDateTime}</h6>
-                                {/* <Button onClick={() => history.push(`/userProfile/q=${post.userProfile.id}`)}>{post.userProfile.username}'s Profile</Button>
-                                <CardSubtitle>By: {post.userProfile.id}</CardSubtitle> */}
+                                <p>Posted: <DayJS format="MMM D, YY h:mm A">{post.createDateTime}</DayJS></p>
                             </div>
                         </div>
+
+                        <p className="postTextarea" style={{ whiteSpace: "pre-wrap" }}>{post.content}</p>
+                        <Button style={{ margin: 2 }} onClick={Cancel}>Back</Button>
+
+                        {(currentUser === post.userProfileId) ?
+                            <>
+                                <Button style={{ margin: 2 }} onClick={() => history.push(`/post/edit/${post.id}`)}>Edit</Button>
+                                <Button color="danger" style={{ margin: 2 }} onClick={() => history.push(`/post/delete/${post.id}`)}>Delete</Button>
+                            </>
+                            :
+                            null}
                     </CardBody>
-                    <CardImg top />
-
-                    <CardImg top src={post.imageLocation} alt={post.title} />
-                    <p style={{ whiteSpace: "pre-wrap" }}>{post.content}</p>
-                    {(currentUser === post.userProfileId) ?
-
-                        <div>
-                            <Button style={{ margin: 10 }} onClick={() => history.push(`/post/edit/${post.id}`)}>Edit</Button>
-                            <Button style={{ margin: 10 }} onClick={() => history.push(`/post/delete/${post.id}`)}>Delete</Button>
-                        </div>
-                        :
-                        null}
-                    <Button style={{ margin: 10 }} onClick={Cancel}>Cancel</Button>
-
-
-                    <Button id="addCommentButton" onClick={addCommentButton}> Add Comment </Button>
-
-
+                </Card>
+                <div>
+                    <Button style={{ margin: 10 }} color="success" id="addCommentButton" onClick={addCommentButton}> Add Comment </Button>
                     {(comments.length > 0) ?
-
-
                         < ListGroup >
                             <h4>Comments: </h4>
                             {
@@ -80,12 +74,7 @@ const PostDetails = () => {
                         :
                         null
                     }
-
-
-
-
-                </Card>
-
+                </div>
             </div>
         </>
     );

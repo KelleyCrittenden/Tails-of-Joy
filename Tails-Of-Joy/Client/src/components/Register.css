@@ -1,11 +1,3 @@
-body {
-    /* background-image: url(../images/landing_page_background.jpg); */
-    background-position: center;
-    background-size: 110%;
-    background-repeat: no-repeat;
-    height: 100vh;
-}
-
 .Register {
     margin-top: 30px;
     padding: 20px;
@@ -14,6 +6,4 @@ body {
     border-width: 1px;
     border-color: grey;
     background-color: white;
-    opacity: .9;
-    
 }

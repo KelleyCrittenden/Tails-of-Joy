@@ -31,18 +31,15 @@ export default function AnimalDelete() {
     return (
         <>
             <div className="d-flex justify-content-center">
-                <Card style={{ border: "none", width: "30%", height: "30%", margin: "20px" }} className="smallContainer">
+                <Card style={{ border: "none", width: "50%", height: "50%", margin: "20px" }} className="smallContainer">
                     <CardBody>
 
-                        <p>Are you sure you want to make this Animal Available?</p>
-
-                        <h4>{animal.name}</h4>
-                        <h5>{animal.breed}</h5>
-                        <p>{animal.title}</p>
+                        <h5 align="center">Are you sure you want to make {animal.name} available?</h5>
                         <CardImg top src={animal.imageLocation} alt={animal.name} />
 
-                        <Button color="danger" id={animal.id} onClick={handleReactivateAnimal}>Reactivate</Button>&nbsp;
-                        <Button onClick={Cancel}>Cancel</Button>
+                        <Button style={{ margin: 2 }} color="success" id={animal.id} onClick={reactivateAnimal}>Reactivate</Button>&nbsp;
+                        <Button style={{ margin: 2 }} onClick={Cancel}>Cancel</Button>
+
                     </CardBody>
                 </Card>
             </div>

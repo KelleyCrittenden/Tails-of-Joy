@@ -40,14 +40,10 @@ const AdoptionApproval = () => {
     return (
         <>
             <div className="d-flex justify-content-center">
-                <Card style={{ border: "none", width: "30%", height: "30%", margin: "20px" }} className="smallContainer">
+                <Card style={{ width: "65%", height: "30%", margin: "20px" }} className="smallContainer">
                     <CardBody>
 
-                        <p>Are you sure you want to Deny this Adoption?</p>
-
-
-
-
+                        <h3>Are you sure you want to Deny this Adoption?</h3>
 
                         <Button
                             color="danger"
@@ -58,7 +54,7 @@ const AdoptionApproval = () => {
                             Deny
                     </Button>&nbsp;
 
-                    <Button onClick={Cancel}>Cancel</Button>
+                    <Button onClick={Cancel}>Back</Button>
 
 
                     </CardBody>

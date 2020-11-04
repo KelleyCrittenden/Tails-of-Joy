@@ -45,27 +45,26 @@ const CommentAdd = (props) => {
                         <CardBody>
                             <Form className="commentForm">
                                 <FormGroup>
-                                    <Label className="ContentLabel">Conmment</Label>
                                     <Input
                                         className="newComment"
                                         onChange={handleFieldChange}
                                         type="textarea"
-                                        style={{ height: 200 }}
+                                        rows="5"
                                         id="Content"
-                                        placeholder="Enter Comment"
+                                        placeholder="Enter Comment Here..."
                                     />
                                 </FormGroup>
                             </Form>
 
                             <Button
-                                className="commentButton"
                                 onClick={newComment}
                                 variant="custom"
                                 type="submit">
-                                Save Comment
-                            </Button>&nbsp;
+                                Save
+                            </Button> &nbsp;
 
                             <Button onClick={Cancel}>Cancel</Button>
+
 
                         </CardBody>
                     </Card>

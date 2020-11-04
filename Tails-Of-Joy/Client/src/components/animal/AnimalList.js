@@ -9,9 +9,7 @@ import "./animal.css"
 export default function AnimlalList() {
     const history = useHistory();
     const { animals, getAllAvailableAnimals } = useContext(AnimalContext)
-
     const user = JSON.parse(sessionStorage.getItem("userProfile")).id
-
 
     const Create = () => {
         history.push("animal/add")
@@ -29,9 +27,7 @@ export default function AnimlalList() {
                 <div>
                     {user == 1 ?
                         <div>
-                            <Button mb-3 onClick={Create}>
-                                Add Animal
-                            </Button>
+                            <Button color="success" className="btn" onClick={Create}>Add Dog</Button>
                         </div>
                         :
                         null}

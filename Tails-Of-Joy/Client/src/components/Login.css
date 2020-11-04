@@ -1,8 +1,7 @@
 body {
-    background-image: url(../images/landing_page_background.jpg);
+    background-image: linear-gradient(to right, white, darkgrey);
     background-position: center;
     background-size: 110%;
-    background-repeat: no-repeat;
     height: 100vh;
 }
 
@@ -15,6 +14,5 @@ body {
     border-color: grey;
     width: 50%;
     background-color:white;
-    opacity: .9;
     max-width: 10px;
 }

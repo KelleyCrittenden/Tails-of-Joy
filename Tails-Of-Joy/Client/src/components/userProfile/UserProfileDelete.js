@@ -40,11 +40,11 @@ const ConfirmUserProfileDelete = () => {
             <Card className="userProfileCard">
                 <CardBody>
 
-                    <p>Are you sure you want to delete your account?</p>
+                    <h3>Are you sure you want to delete your account?</h3>
 
                     <Button color="danger" id={singleUser.id} onClick={handleDelete}>Delete</Button>&nbsp;
 
-            <Button onClick={Cancel}>Cancel</Button>
+            <Button onClick={Cancel}>Back</Button>
                 </CardBody>
             </Card>
 
