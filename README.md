@@ -1,6 +1,6 @@
 
-# Nashville Software School Fullstack Capstone: Tails of Joy
-### Tails of Joy was created in the hopes of promoting shelter dogs and allowing users to interact and share their stories and experiences.
+## Nashville Software School Fullstack Capstone: Tails of Joy
+Tails of Joy was created in the hopes of promoting shelter dogs and allowing users to interact and share their stories and experiences.
 
 ## Installation
 1. Clone the repository
