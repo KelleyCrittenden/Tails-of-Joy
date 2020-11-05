@@ -1,6 +1,6 @@
 
-### Nashville Software School Fullstack Capstone: Tails of Joy
-## Tails of Joy was created in the hopes of promoting shelter dogs and allowing users to interact and share their stories and experiences.
+# Nashville Software School Fullstack Capstone: Tails of Joy
+### Tails of Joy was created in the hopes of promoting shelter dogs and allowing users to interact and share their stories and experiences.
 
 ## Installation
 1. Clone the repository
@@ -18,7 +18,7 @@
 
 ## Admin Role
 To view admin capabilites login using the admin@admin.com email and the password 123456.
-# The Admin has the following capabilities
+### The Admin has the following capabilities
 1. Edit their own profile, but cannot delete it.
 2. Add, Edit and Remove dogs from the list.
 3. Add, Edit and Delete a post.
@@ -29,7 +29,7 @@ To view admin capabilites login using the admin@admin.com email and the password
 
 ## User Role
 To view user capabilites register a new user or login using the email jakereed@email.com and the password 123456
-# The User has the following capabilities:
+### The User has the following capabilities:
 1. Edit or Delete their own profile.
 2. View list of all available dogs.
 3. View other User's Profiles.
@@ -37,7 +37,7 @@ To view user capabilites register a new user or login using the email jakereed@e
 5. Add, Edit and Delete their own comments from a post.
 6. Apply to adopt a dog, this will temporarily remove the dog from the list until the adoptoin is approved or denied.
 
-### Technologies used
+## Technologies used
 - ASP.Net
 - C#
 - SQL
