@@ -24,7 +24,7 @@ export default function Animal({ animal }) {
                 </CardTitle>
                 <CardText>{animal.title}</CardText>
 
-                <Button className="align-self-end btn btn-lg btn-block btn-primary" onClick={() => history.push(`/animal/details/${animal.id}`)}>Details</Button>
+                <Button className="align-self-bottom btn btn-lg btn-block btn-primary" onClick={() => history.push(`/animal/details/${animal.id}`)}>Details</Button>
 
             </CardBody>
 
