@@ -202,7 +202,7 @@ namespace Tails_Of_Joy.Repositories
             }
 
         // Changing IsApproved to 1 = Not Approved
-        public void Delete(int id)
+        public void Delete(Adoption adoption)
         {
             using (var conn = Connection)
             {
@@ -215,7 +215,7 @@ namespace Tails_Of_Joy.Repositories
                         WHERE Id = @id";
 
                     DbUtils.AddParameter(cmd, "isApproved", 1);
-                    DbUtils.AddParameter(cmd, "@id", id);
+                    DbUtils.AddParameter(cmd, "@id", adoption.AnimalId);
 
                     cmd.ExecuteNonQuery();
                 }
@@ -233,7 +233,7 @@ namespace Tails_Of_Joy.Repositories
 
 
                     DbUtils.AddParameter(cmd, "@isAdoptable", 1);
-                    //DbUtils.AddParameter(cmd, "@id", adoption.AnimalId);
+                    DbUtils.AddParameter(cmd, "@id", adoption.AnimalId);
 
                     cmd.ExecuteNonQuery();
                 }

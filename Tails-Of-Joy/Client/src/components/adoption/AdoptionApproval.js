@@ -22,7 +22,7 @@ const AdoptionApproval = () => {
     const handleApproval = (e) => {
         e.preventDefault();
         updateAdoption(adoptionToApprove)
-        history.push("/pendingAdoptions")
+        history.push("/unavailableAnimals")
     };
 
     useEffect(() => {

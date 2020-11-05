@@ -78,9 +78,9 @@ export const AdoptionProvider = (props) => {
         })
     }
 
-    const deleteAdoption = (adoptionId) => {
+    const deleteAdoption = (adoption) => {
         return getToken().then((token) => {
-            fetch(`/api/adoption/${adoptionId}`, {
+            fetch(`/api/adoption/${adoption.id}`, {
                 method: "DELETE",
                 headers: {
                     Authorization: `Bearer ${token}`,

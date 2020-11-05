@@ -25,7 +25,7 @@ const AdoptionAdd = () => {
             animalId: parseInt(id)
         }
         addAdoption(adoption).then((p) => {
-            history.push(`/animal/details/${id}`)
+            history.push(`/animal`)
         });
     };
 
@@ -36,17 +36,19 @@ const AdoptionAdd = () => {
     return (
         <>
             <div className="d-flex justify-content-center">
-                <Card style={{ border: "none", width: "30%", height: "30%", margin: "20px" }} className="smallContainer">
+                <Card style={{ border: "none", width: "50%", height: "50%", margin: "20px" }} className="smallContainer">
                     <CardBody>
 
                         <p>Are you sure you want to Adopt this Animal?</p>
+                        <CardImg mb-2 top src={animal.imageLocation} alt={animal.name} />
 
 
                         <div>
+
+
+
+                            <Button color="success" onClick={Submit}>Apply</Button>&nbsp;
                             <Button onClick={Cancel}>Cancel</Button>
-
-
-                            <Button onClick={Submit}>Apply</Button>
                         </div>
 
                     </CardBody>

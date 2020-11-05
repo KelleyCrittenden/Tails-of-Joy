@@ -7,9 +7,9 @@ import { AnimalContext } from "../../providers/AnimalProvider"
 import Adoption from "./Adoption"
 
 
-const AdoptionApproval = () => {
+const AdoptionDenial = () => {
 
-    const [adoptionToApprove, setAdoptionToApprove] = useState({});
+    const [adoptionToDeny, setAdoptionToDeny] = useState({});
     const { adoption, getById, deleteAdoption } = useContext(AdoptionContext);
     const { userProfile } = useContext(UserProfileContext)
     const { animal } = useContext(AnimalContext)
@@ -21,7 +21,7 @@ const AdoptionApproval = () => {
 
     const handleDenial = (e) => {
         e.preventDefault();
-        deleteAdoption(adoptionToApprove.id)
+        deleteAdoption(adoptionToDeny)
         history.push("/pendingAdoptions")
     };
 
@@ -30,7 +30,7 @@ const AdoptionApproval = () => {
     }, []);
 
     useEffect(() => {
-        setAdoptionToApprove(adoption);
+        setAdoptionToDeny(adoption);
     }, [adoption]);
 
     const Cancel = () => {
@@ -44,6 +44,7 @@ const AdoptionApproval = () => {
                     <CardBody>
 
                         <h3>Are you sure you want to Deny this Adoption?</h3>
+
 
                         <Button
                             color="danger"
@@ -64,4 +65,4 @@ const AdoptionApproval = () => {
     )
 
 }
-export default AdoptionApproval;
+export default AdoptionDenial;

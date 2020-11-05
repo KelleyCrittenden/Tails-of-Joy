@@ -29,7 +29,7 @@ const CommentEdit = () => {
 
     const saveUpdatedComment = (e) => {
         e.preventDefault();
-        updateComment(editedComment)
+        updateComment(editedComment);
         history.push(`/post/details/${editedComment.postId}`)
 
     };

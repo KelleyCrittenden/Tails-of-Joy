@@ -1,7 +1,7 @@
 import { useHistory, useParams } from "react-router-dom";
 import { UserProfileContext } from "../../providers/UserProfileProvider";
 import React, { useContext, useEffect } from "react";
-import { Card, CardImg, CardBody, Button, CardHeader } from "reactstrap";
+import { Card, CardImg, CardBody, Button } from "reactstrap";
 
 const MyProfileDetails = () => {
 
@@ -15,8 +15,6 @@ const MyProfileDetails = () => {
     }, [currentUser]);
 
     return (
-
-
         <>
             {(currentUser === singleUser.id) ?
                 <div className="animalDetailsCardContainer">

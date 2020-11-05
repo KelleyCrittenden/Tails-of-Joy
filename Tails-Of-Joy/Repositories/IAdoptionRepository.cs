@@ -6,7 +6,7 @@ namespace Tails_Of_Joy.Repositories
     public interface IAdoptionRepository
     {
         void Add(Adoption adoption);
-        void Delete(int id);
+        void Delete(Adoption adoption);
         Adoption GetById(int id);
         List<Adoption> GetAllAdoptionsByUserProfileId(int id);
         List<Adoption> GetAllApprovedAdoptions();

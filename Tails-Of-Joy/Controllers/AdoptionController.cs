@@ -94,9 +94,9 @@ namespace Tails_Of_Joy.Controllers
         // Updating a single Adoption, Denying it
         // DELETE api/<AnimalController>/5
         [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
+        public IActionResult Delete(int id, Adoption adoption)
         {
-            _adoptionRepository.Delete(id);
+            _adoptionRepository.Delete(adoption);
             return Ok(id);
         }
 
