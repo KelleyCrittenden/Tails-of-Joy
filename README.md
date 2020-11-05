@@ -21,6 +21,7 @@ To view admin capabilites login using the admin@admin.com email and the password
 4. Add, Edit and Delete their own comments from a post.
 5. Approve or Deny Adoptions that users have applied for.
 6. View all unavailable dogs
+7. Reactivate dogs to the available list
 
 
 ## User Role
