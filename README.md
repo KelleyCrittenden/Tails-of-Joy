@@ -6,15 +6,11 @@ Tails of Joy was created in the hopes of promoting shelter dogs and allowing use
 1. Clone the repository
 2. cd into client
 3. npm install to install React.js and the necessary packages
-4. npm react-router-dom
-5. npm install --save bootstrap reacstrap
-6. npm install firebase
-7. npm install --save dayjs react-dayjs
-8. Load up the server side on Visual Studio.
-9. Run 01_DB_Create SQl to create the database.
-10. Run the 02_Seed_Data SQL to populate the database.
-11. Run the server side application.
-12. Npm start inside of client.
+4. Load up the server side on Visual Studio.
+5. Run 01_DB_Create SQl to create the database.
+6. Run the 02_Seed_Data SQL to populate the database.
+7. Run the server side application.
+8. Npm start inside of client.
 
 ## Admin Role
 To view admin capabilites login using the admin@admin.com email and the password 123456.
