@@ -44,5 +44,6 @@ To view user capabilites register a new user or login using the email jakereed@e
 - React.js
 - Reactstrap
 - Cloudinary
+- Firebase
 
 
